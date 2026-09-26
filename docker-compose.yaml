@@ -1,4 +1,5 @@
-version: '3'
+name: sem-quick-cw
+
 services:
 
   # Build app from Dockerfile in same folder
