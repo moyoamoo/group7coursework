@@ -7,6 +7,6 @@ Realeses:[![Releases](https://img.shields.io/github/release/moyoamoo/group7cours
 
 Build:![workflow](https://github.com/moyoamoo/group7coursework/actions/workflows/main.yml/badge.svg)
 
-https://github.com/moyoamoo/group7coursework/actions/workflows/WORKFLOW-FILE/badge.svg
+(https://github.com/moyoamoo/group7coursework/actions/workflows/main.yml/badge.svg)
 
 
