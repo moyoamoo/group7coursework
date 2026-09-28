@@ -1,4 +1,4 @@
-# group7coursework
+# Software Engineering Methods: Group 7 Project 
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/moyoamoo/group7coursework/main)
 
 License:[![LICENSE](https://img.shields.io/github/license/moyoamoo/group7coursework.svg?style=flat-square)](https://github.com/moyoamoo/group7coursework/blob/main/LICENSE)
