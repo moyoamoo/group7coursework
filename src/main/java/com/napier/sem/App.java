@@ -17,9 +17,7 @@ public class App
 
     private Connection con = null;
 
-    /**
-     * Connect to the MySQL database.
-     */
+    // Connect to the MySQL database
     public void connect()
     {
         try
@@ -29,6 +27,7 @@ public class App
         }
         catch (ClassNotFoundException e)
         {
+            // If class not found, exit with status -1
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
@@ -40,7 +39,7 @@ public class App
             System.out.println("Connecting to database...");
             try
             {
-                // Wait a bit for db to start
+                // Wait for database  to start
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
@@ -59,9 +58,7 @@ public class App
         }
     }
 
-    /**
-     * Disconnect from the MySQL database.
-     */
+    // Disconnect from the MySQL database.
     public void disconnect()
     {
         if (con != null)
@@ -77,4 +74,6 @@ public class App
             }
         }
     }
+
+
 }
