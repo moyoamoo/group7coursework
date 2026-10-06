@@ -4,14 +4,14 @@ package com.napier.sem;
  * Represents a city from the world database
  */
 public class Country {
-    private int code;
+    private String code;
     private String name;
     private String continent;
     private String region;
-    private long population;
+    private int population;
     private String capital;
 
-    public Country(int code, String name, String continent, String region, long population, String capital){
+    public Country(String code, String name, String continent, String region, int population, String capital){
         this.code = code;
         this.name = name;
         this.continent = continent;
@@ -20,7 +20,7 @@ public class Country {
         this.capital = capital;
     }
 
-    public long getCode(){
+    public String getCode(){
         return code;
     }
 
@@ -36,7 +36,7 @@ public class Country {
         return region;
     }
 
-    public long getPopulation(){
+    public int getPopulation(){
         return population;
     }
 

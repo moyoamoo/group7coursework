@@ -11,6 +11,9 @@ public class App
         // Connect to database
         a.connect();
 
+        Country ctry = a.getCountry("France");
+        a.displayCountry(ctry);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -75,5 +78,47 @@ public class App
         }
     }
 
+    public Country getCountry(String country) {
+        try{
+            // Create SQL statement
+            Statement stmt = con.createStatement();
 
+            // String got SQL statement
+            String strSelectCountry =
+                    "SELECT Name, Continent, Region, Population, Capital, Code "
+                            + "FROM country "
+                            + "WHERE country = " + country;
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelectCountry);
+
+            // Return a new country
+            if(rset.next()){
+                String name = rset.getString("Name");
+                String code = rset.getString("Code");
+                String continent = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int population = rset.getInt("Population");
+                String capital = rset.getString("Capital");
+                Country newCountry = new Country(code, name, continent, region, population, capital);
+
+                return newCountry;
+            } else {
+                return null;
+            }
+        }   catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+
+
+    }
+
+    public void displayCountry(Country newCountry){
+        if(newCountry != null){
+            newCountry.toString();
+        }
+    }
 }
