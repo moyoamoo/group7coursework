@@ -1,7 +1,7 @@
 package com.napier.sem;
 
 /**
- * Represents a city from the world database
+ * Represents a country from the world database
  */
 public class Country {
     private String code;
@@ -11,6 +11,7 @@ public class Country {
     private int population;
     private String capital;
 
+    // Constructor
     public Country(String code, String name, String continent, String region, int population, String capital){
         this.code = code;
         this.name = name;
@@ -20,6 +21,7 @@ public class Country {
         this.capital = capital;
     }
 
+    // Getters
     public String getCode(){
         return code;
     }
@@ -45,16 +47,16 @@ public class Country {
     }
 
     // Return Country class contents as string
-
     @Override
-    public String toString(){
-        return "Country{" +
-                "Code=" +  code +
-                ", Continent:'" + continent + '\'' +
-                ", Region: '" + region + '\'' +
-                ", Capital: '" + capital + '\'' +
-                ", Population=" + population +
-                '}';
-    }
+        public String toString(){
+            return "Country{" +
+                    "Code=" + code +
+                    ", Name='" + name + '\'' +
+                    ", Continent='" + continent + '\'' +
+                    ", Region='" + region + '\'' +
+                    ", Capital='" + capital + '\'' +
+                    ", Population=" + population +
+                    '}';
+        }
 
 }

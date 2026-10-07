@@ -51,6 +51,7 @@ public class App
             }
             catch (SQLException sql)
             {
+
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sql.getMessage());
             }
@@ -78,47 +79,48 @@ public class App
         }
     }
 
+
     public Country getCountry(String country) {
-        try{
+        try {
             // Create SQL statement
             Statement stmt = con.createStatement();
 
-            // String got SQL statement
+            // String for SQL statement
             String strSelectCountry =
-                    "SELECT Name, Continent, Region, Population, Capital, Code "
-                            + "FROM country "
-                            + "WHERE country = " + country;
+                    "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
+                            + "FROM country c "
+                            + "LEFT JOIN city ci ON c.Capital = ci.ID "
+                            + "WHERE c.Name = '" + country + "'";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelectCountry);
 
             // Return a new country
-            if(rset.next()){
+            if (rset.next()) {
                 String name = rset.getString("Name");
                 String code = rset.getString("Code");
                 String continent = rset.getString("Continent");
                 String region = rset.getString("Region");
                 int population = rset.getInt("Population");
-                String capital = rset.getString("Capital");
+                String capital = rset.getString("CapitalName");
                 Country newCountry = new Country(code, name, continent, region, population, capital);
 
                 return newCountry;
             } else {
                 return null;
             }
-        }   catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get country details");
             return null;
         }
-
-
     }
 
-    public void displayCountry(Country newCountry){
-        if(newCountry != null){
-            newCountry.toString();
+    public void displayCountry(Country newCountry) {
+        if (newCountry != null) {
+            System.out.println(newCountry.toString());
+        } else {
+            System.out.println("No country found");
         }
     }
 }
