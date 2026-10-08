@@ -1,10 +1,10 @@
-# USE CASE: 7 Produce a report on all the cities in the world organised by largest population to smallest.
+# USE CASE: 8 Produce a report on all the cities in a continent organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *employee* I want *to produce a report on all the cities in the world organised by largest population to smallest* so that *I can easily access to this population information.*
+As an *employee* I want *to produce a report on all the cities in a continent organised by largest population to smallest* so that *I can easily access to this population information.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains population information of cities in the world.
 
 ### Success End Condition
 
-A report is available to all employees with all the cities in the world organised by largest population to smallest
+A report is available to all employees with all the cities in a continent organised by largest population to smallest
 The report should include:
 1. The name of the city.
 2. The country the city is in.
