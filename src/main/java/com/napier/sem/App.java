@@ -13,6 +13,7 @@ public class App
 
         Country ctry = a.getCountry("France");
         a.displayCountry(ctry);
+        a.getCountriesByPopulation();
 
         // Disconnect from database
         a.disconnect();
@@ -116,6 +117,49 @@ public class App
         }
     }
 
+    public void getCountriesByPopulation() {
+        try {
+
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+
+            // SQL statement
+            String strSelectCountries = 
+                "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
+                + "FROM country c"
+                + "LEFT JOIN city ci ON c.Capital = ci.ID "
+                + "ORDER BY c.Population DESC";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelectCountries);
+
+            // Display each country
+            while (rset.next()) {
+                String name = rset.getString("Name");
+                String code = rset.getString("Code");
+                String continent = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int population = rset.getInt("Population");
+                String capital = rset.getString("CapitalName");
+
+                Country country = new Country(
+                    code,
+                    name,
+                    continent,
+                    region,
+                    population,
+                    capital
+                );
+
+                displayCountry(country);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by population");
+        }
+    }
+
+    
     public void displayCountry(Country newCountry) {
         if (newCountry != null) {
             System.out.println(newCountry.toString());
