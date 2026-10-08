@@ -1,4 +1,4 @@
-# USE CASE: 5 Produce a report on the top N populated countries in a region where N is provided by the user
+# USE CASE: 6 Produce a report on the top N populated countries in a region where N is provided by the user
 
 ## CHARACTERISTIC INFORMATION
 
