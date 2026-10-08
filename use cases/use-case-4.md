@@ -1,10 +1,10 @@
-# USE CASE: 4 Produce a report on the top N populated countries in the world where N is provided by the user
+# USE CASE 4: Produce a report on the top N populated countries in the world where N is provided by the employee
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *employee* I want *to produce a report on the top N populated countries in the world where N is provided by the user* so that *I can easily access to this population information.*
+As an *employee* I want *to produce a report on the top N populated countries in the world where N is provided by the employee* so that *I can easily access to this population information.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains population information of countries in the world.
 
 ### Success End Condition
 
-A report is available to all employees with the top N populated countries in the world where N is provided by the user with:
+A report is available to all employees with the top N populated countries in the world where N is provided by the employee with:
 1. The name of the country
 2. The total population of the country.
 3. The total population of the country living in cities (including a %).

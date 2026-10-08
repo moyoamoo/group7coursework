@@ -1,4 +1,4 @@
-# USE CASE: 7 Produce a report on all the cities in the world organised by largest population to smallest.
+# USE CASE 7: Produce a report on all the cities in the world organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 

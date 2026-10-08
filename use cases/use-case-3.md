@@ -1,4 +1,4 @@
-# USE CASE: 3 Produce a report on all the countries in a region organised by largest population to smallest.
+# USE CASE 3: Produce a report on all the countries in a region organised by largest population to smallest.
 
 ## CHARACTERISTIC INFORMATION
 
@@ -16,11 +16,12 @@ Primary task.
 
 ### Preconditions
 
-Database contains population information of countries in the world.
+Database contains population information of countries in a region.
 
 ### Success End Condition
 
-A report is available to all employees with all the countries in a region organised by largest population to smallest with:
+A report is available to all employees with all the countries in a region organised by largest population to smallest.
+The report should include:
 1. The name of the country
 2. The total population of the country.
 3. The total population of the country living in cities (including a %).

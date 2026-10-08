@@ -1,10 +1,10 @@
-# USE CASE 2: Produce a report on all the countries in a continent organised by largest population to smallest.
+# USE CASE 25: Produce a report the population of people, people living in cities, and people not living in cities in each country
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *employee* I want *to produce a report on all the countries in a continent organised by largest population to smallest* so that *I can easily access to this population information.*
+As an *employee* I want *to produce a report on The population of people, people living in cities, and people not living in cities in each country* so that *I can easily access this population information.*
 
 ### Scope
 
@@ -16,11 +16,11 @@ Primary task.
 
 ### Preconditions
 
-Database contains population information of countries in a continent.
+Database contains population information of cities in the world.
 
 ### Success End Condition
 
-A report is available to all employees with all the countries in a continent organised by largest population to smallest.
+A report is available to all employees with the population of people, people living in cities, and people not living in cities in each country.
 The report should include:
 1. The name of the country
 2. The total population of the country.
@@ -42,7 +42,7 @@ Employee has access to software to view report.
 ## MAIN SUCCESS SCENARIO
 
 1. Employee selects the report type they want to view.
-2. Employee chooses the continent they want to view information from
+2. Employee selects the country
 3. Employee is shown report
 
 ## EXTENSIONS
@@ -55,4 +55,4 @@ None.
 
 ## SCHEDULE
 
-**DUE DATE**: Release 1.2.0 12/10/2026
+**DUE DATE**: 
