@@ -1,10 +1,10 @@
-# USE CASE: 11 Produce a report on all the cities in a district organised by largest population to smallest.
+# USE CASE: 12 Produce a report on the top N populated cities in the world where N is provided by the user
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *employee* I want *to produce a report on all the cities in a district organised by largest population to smallest* so that *I can easily access to this population information.*
+As an *employee* I want *to produce a report on the top N populated cities in the world where N is provided by the user* so that *I can easily access to this population information.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains population information of cities in the world.
 
 ### Success End Condition
 
-A report is available to all employees with all the cities in a district organised by largest population to smallest
+A report is available to all employees with The top N populated cities in the world where N is provided by the user.
 The report should include:
 1. The name of the city.
 2. The country the city is in.
@@ -42,12 +42,15 @@ Employee has access to software to view report.
 ## MAIN SUCCESS SCENARIO
 
 1. Employee selects the report type they want to view.
-2. Employee selects the country they want view a report of.
-2. Employee is shown report.
+2. Employee enters the number of cities they want to view information from
+3. Employee is shown report
 
 ## EXTENSIONS
 
-None.
+2. **Employee entered an invalid number**
+    1. Employee informed by software number is invalid
+    2. Employee is prompted to enter another number
+
 
 ## SUB-VARIATIONS
 
