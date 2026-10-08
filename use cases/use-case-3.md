@@ -41,14 +41,12 @@ Employee has access to software to view report.
 ## MAIN SUCCESS SCENARIO
 
 1. Employee selects the report type they want to view.
-2. Employee enters the region they want to view information from
+2. Employee chooses the region they want to view information from
 3. Employee is shown report
 
 ## EXTENSIONS
 
-3. **Region does not exist**
-    1. Employee informed by software region does not exist
-    2. Employee is prompted to enter another region
+None.
 
 ## SUB-VARIATIONS
 

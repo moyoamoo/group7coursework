@@ -1,10 +1,10 @@
-# USE CASE: 4 Produce a report on the top N populated countries in the world where N is provided by the user
+# USE CASE: 5 Produce a report on the top N populated countries in a continent where N is provided by the user
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As an *employee* I want *to produce a report on the top N populated countries in the world where N is provided by the user* so that *I can easily access to this population information.*
+As an *employee* I want *to produce a report on the top N populated countries in a continent where N is provided by the user* so that *I can easily access to this population information.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database contains population information of countries in the world.
 
 ### Success End Condition
 
-A report is available to all employees with the top N populated countries in the world where N is provided by the user with:
+A report is available to all employees with the top N populated countries in a continent where N is provided by the user with:
 1. The name of the country
 2. The total population of the country.
 3. The total population of the country living in cities (including a %).
@@ -41,14 +41,14 @@ Employee has access to software to view report.
 ## MAIN SUCCESS SCENARIO
 
 1. Employee selects the report type they want to view.
-2. Employee enters the number of countries they want to view information from
-3. Employee is shown report
+2. Employee chooses the continent they want to view information from 
+3. Employee enters the number of countries they want to view information from
+4. Employee is shown report
 
 ## EXTENSIONS
-
 3. **Employee entered an invalid number**
-    1. Employee informed by software number is invalid 
-    2. Employee is prompted to enter another number 
+    1. Employee informed by software number is invalid
+    2. Employee is prompted to enter another number
 
 ## SUB-VARIATIONS
 
