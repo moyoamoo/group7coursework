@@ -1,27 +1,74 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class App
 {
-    public static void main(String[] args) {
-        // Create new Application
-        App a = new App();
-
-        // Connect to database
-        a.connect();
-
-        Country ctry = a.getCountry("France");
-        a.displayCountry(ctry);
-
-        a.getCountriesByRegion();
-
-        // Disconnect from database
-        a.disconnect();
-    }
 
     private Connection con = null;
+    private static final Scanner scan = new Scanner(System.in);
 
+    // Get the users report number
+    public int getUserReportSelection(){
+        return getUserInt("Enter a report number: ", 1, 3);
+   }
+
+   // Get a valid user integer within range
+    private int getUserInt(String prompt, int min, int max) {
+        boolean validInput = false;
+        int userValue = 0;
+        //while user input is invalid
+        while (!validInput) {
+            //print user prompt
+            System.out.print(prompt);
+            if (!scan.hasNextLine()) {
+                throw new IllegalStateException("No input available");
+            }
+
+            String input = scan.nextLine().trim();
+            try {
+                userValue = Integer.parseInt(input);
+                //see if int is in range of expected values
+                if ((userValue < min) || (userValue > max)) {
+                    System.out.println("Please enter a number between " + min + " and " + max + ".");
+                } else {
+                    validInput = true;
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("'" + input + "' is not a valid number.");
+            }
+        }
+        return userValue;
+    }
+
+   // Show user the list of available reports
+   public void showReportMenu(){
+       System.out.println("Welcome to Population Report");
+       System.out.println("1. All the countries in the world organised by largest population to smallest ");
+       System.out.println("2. All the countries in a continent organised by largest population to smallest ");
+       System.out.println("3. All the countries in a region organised by largest population to smallest ");
+   }
+
+
+   public void selectReport(int reportNumber){
+
+        switch (reportNumber){
+            case 1:
+                System.out.println("1. All the countries in the world organised by largest population to smallest ");
+                break;
+            case 2:
+                System.out.println("2. All the countries in a continent organised by largest population to smallest ");
+                break;
+            case 3:
+                System.out.println("2. All the countries in a region organised by largest population to smallest ");
+                break;
+            default:
+                System.out.println("Report not found");
+
+        }
+   }
     // Connect to the MySQL database
     public void connect()
     {
@@ -80,7 +127,6 @@ public class App
             }
         }
     }
-
 
     public Country getCountry(String country) {
         try {
@@ -170,5 +216,27 @@ public class App
         } else {
             System.out.println("No country found");
         }
+    }
+    public static void main(String[] args) {
+
+        // Create new Application
+        App a = new App();
+        int reportNumber = a.getUserReportSelection();
+        a.selectReport(reportNumber);
+
+        // Connect to database
+        //a.connect();
+
+        //a.showReportMenu();
+        //int reportNumber = a.getUserReportSelection();
+        //a.selectReport(reportNumber);
+
+       // Country ctry = a.getCountry("France");
+        //a.displayCountry(ctry);
+
+       // a.getCountriesByRegion("Middle East");
+
+        // Disconnect from database
+       // a.disconnect();
     }
 }
