@@ -9,45 +9,18 @@ public class App
 
     private Connection con = null;
     private static final Scanner scan = new Scanner(System.in);
-    private String[] reports = {"All the countries in the world organised by largest population to smallest",
-            "All the countries in a continent organised by largest population to smallest",
-            "All the countries in a region organised by largest population to smallest"};
-    private String[] regions = {
-            "Antarctica",
-            "Australia and New Zealand",
-            "Baltic Countries",
-            "British Islands",
-            "Caribbean",
-            "Central Africa",
-            "Central America",
-            "Eastern Africa",
-            "Eastern Asia",
-            "Eastern Europe",
-            "Melanesia",
-            "Micronesia",
-            "Micronesia/Caribbean",
-            "Middle East",
-            "Nordic Countries",
-            "North America",
-            "Northern Africa",
-            "Polynesia",
-            "South America",
-            "Southeast Asia",
-            "Southern Africa",
-            "Southern Europe",
-            "Southern and Central Asia",
-            "Western Africa",
-            "Western Europe"
-    };
+    private final Regions regions = new Regions();
+    private final Reports reports = new Reports();
+
 
     // Get the users report number
     public int getUserReportSelection(){
-        return getUserInt("Enter a report number: ", 1, reports.length);
+        return getUserInt("Enter a report number: ", 1, reports.count());
    }
 
     // Get the users region number
     public int getUserRegionSelection(){
-        return getUserInt("Enter a region number: ", 1, regions.length);
+        return getUserInt("Enter a region number: ", 1, regions.count());
     }
 
 
@@ -196,22 +169,11 @@ public class App
 
     public void countriesByRegion(){
         int regionNumber = getUserRegionSelection();
-        String region = displayElement(regions, regionNumber - 1);
+        String region = regions.getRegion(regionNumber);
         System.out.println("All the countries in " + region + "organised by largest population to smallest");
-        getCountriesByRegion(regions[regionNumber - 1]);
+        getCountriesByRegion(region);
     }
 
-    // Display an array
-    public void displayArray(String prompt, String[] arr){
-        System.out.println(prompt);
-        for (int i = 0; i < arr.length; i++){
-            System.out.println((i + 1) + ". " + arr[i]);
-        }
-    }
-
-    public String displayElement(String[] arr, int index){
-       return arr[index];
-    }
 
     public void getCountriesByRegion(String region) {
         try {
@@ -276,24 +238,13 @@ public class App
         a.connect();
 
         // Show list of possible reports
-        a.displayArray("Welcome to Population Report", a.reports);
+        a.reports.displayReports("Welcome to Population Report");
 
         // Get the number of the report the user would like to view
         int reportNumber = a.getUserReportSelection();
 
         // Select report
         a.selectReport(reportNumber);
-
-
-
-        //a.showReportMenu();
-        //int reportNumber = a.getUserReportSelection();
-        //a.selectReport(reportNumber);
-
-       // Country ctry = a.getCountry("France");
-        //a.displayCountry(ctry);
-
-       // a.getCountriesByRegion("Middle East");
 
         //Disconnect from database
         a.disconnect();
