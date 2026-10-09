@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import java.lang.annotation.ElementType;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -79,25 +80,18 @@ public class App
         return userValue;
     }
 
-   // Show user the list of available reports
-   public void showReportMenu(){
-       System.out.println("Welcome to Population Report");
-       for (int i = 0; i < reports.length; i++){
-          System.out.println(i + ". " + reports[i]);
-       }
-   }
 
    public void selectReport(int reportNumber){
 
         switch (reportNumber){
             case 1:
-                System.out.println("1. All the countries in the world organised by largest population to smallest ");
+                System.out.println("All the countries in the world organised by largest population to smallest ");
                 break;
             case 2:
-                System.out.println("2. All the countries in a continent organised by largest population to smallest ");
+                System.out.println("All the countries in a continent organised by largest population to smallest ");
                 break;
             case 3:
-                System.out.println("3. All the countries in a region organised by largest population to smallest ");
+                System.out.println("All the countries in a region organised by largest population to smallest ");
                 countriesByRegion();
                 break;
             default:
@@ -202,6 +196,8 @@ public class App
 
     public void countriesByRegion(){
         int regionNumber = getUserRegionSelection();
+        String region = displayElement(regions, regionNumber - 1);
+        System.out.println("All the countries in " + region + "organised by largest population to smallest");
         getCountriesByRegion(regions[regionNumber - 1]);
     }
 
@@ -209,28 +205,32 @@ public class App
     public void displayArray(String prompt, String[] arr){
         System.out.println(prompt);
         for (int i = 0; i < arr.length; i++){
-            System.out.println(i + ". " + arr[i]);
+            System.out.println((i + 1) + ". " + arr[i]);
         }
     }
 
+    public String displayElement(String[] arr, int index){
+       return arr[index];
+    }
+
     public void getCountriesByRegion(String region) {
-    try {
-    // Create SQL statement
-    Statement stmt = con.createStatement();
+        try {
+        // Create SQL statement
+        Statement stmt = con.createStatement();
 
-    // SQL statement to find countries in the selected region
-    String strSelectCountries =
-    "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
-    + "FROM country c "
-    + "LEFT JOIN city ci ON c.Capital = ci.ID "
-    + "WHERE c.Region = '" + region + "' "
-    + "ORDER BY c.Population DESC";
+        // SQL statement to find countries in the selected region
+        String strSelectCountries =
+        "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
+        + "FROM country c "
+        + "LEFT JOIN city ci ON c.Capital = ci.ID "
+        + "WHERE c.Region = '" + region + "' "
+        + "ORDER BY c.Population DESC";
 
-    // Execute SQL statement
-    ResultSet rset = stmt.executeQuery(strSelectCountries);
+        // Execute SQL statement
+        ResultSet rset = stmt.executeQuery(strSelectCountries);
 
-    // Display each country
-    while (rset.next()) {
+        // Display each country
+        while (rset.next()) {
         String name = rset.getString("Name");
         String code = rset.getString("Code");
         String continent = rset.getString("Continent");
@@ -273,7 +273,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        //a.connect();
+        a.connect();
 
         // Show list of possible reports
         a.displayArray("Welcome to Population Report", a.reports);
