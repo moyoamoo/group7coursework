@@ -8,13 +8,49 @@ public class App
 
     private Connection con = null;
     private static final Scanner scan = new Scanner(System.in);
+    private String[] reports = {"All the countries in the world organised by largest population to smallest",
+            "All the countries in a continent organised by largest population to smallest",
+            "All the countries in a region organised by largest population to smallest"};
+    private String[] regions = {
+            "Antarctica",
+            "Australia and New Zealand",
+            "Baltic Countries",
+            "British Islands",
+            "Caribbean",
+            "Central Africa",
+            "Central America",
+            "Eastern Africa",
+            "Eastern Asia",
+            "Eastern Europe",
+            "Melanesia",
+            "Micronesia",
+            "Micronesia/Caribbean",
+            "Middle East",
+            "Nordic Countries",
+            "North America",
+            "Northern Africa",
+            "Polynesia",
+            "South America",
+            "Southeast Asia",
+            "Southern Africa",
+            "Southern Europe",
+            "Southern and Central Asia",
+            "Western Africa",
+            "Western Europe"
+    };
 
     // Get the users report number
     public int getUserReportSelection(){
-        return getUserInt("Enter a report number: ", 1, 3);
+        return getUserInt("Enter a report number: ", 1, reports.length);
    }
 
-   // Get a valid user integer within range
+    // Get the users region number
+    public int getUserRegionSelection(){
+        return getUserInt("Enter a region number: ", 1, regions.length);
+    }
+
+
+    // Get a valid user integer within range
     private int getUserInt(String prompt, int min, int max) {
         boolean validInput = false;
         int userValue = 0;
@@ -46,11 +82,10 @@ public class App
    // Show user the list of available reports
    public void showReportMenu(){
        System.out.println("Welcome to Population Report");
-       System.out.println("1. All the countries in the world organised by largest population to smallest ");
-       System.out.println("2. All the countries in a continent organised by largest population to smallest ");
-       System.out.println("3. All the countries in a region organised by largest population to smallest ");
+       for (int i = 0; i < reports.length; i++){
+          System.out.println(i + ". " + reports[i]);
+       }
    }
-
 
    public void selectReport(int reportNumber){
 
@@ -62,7 +97,8 @@ public class App
                 System.out.println("2. All the countries in a continent organised by largest population to smallest ");
                 break;
             case 3:
-                System.out.println("2. All the countries in a region organised by largest population to smallest ");
+                System.out.println("3. All the countries in a region organised by largest population to smallest ");
+                countriesByRegion();
                 break;
             default:
                 System.out.println("Report not found");
@@ -164,6 +200,19 @@ public class App
         }
     }
 
+    public void countriesByRegion(){
+        int regionNumber = getUserRegionSelection();
+        getCountriesByRegion(regions[regionNumber - 1]);
+    }
+
+    // Display an array
+    public void displayArray(String prompt, String[] arr){
+        System.out.println(prompt);
+        for (int i = 0; i < arr.length; i++){
+            System.out.println(i + ". " + arr[i]);
+        }
+    }
+
     public void getCountriesByRegion(String region) {
     try {
     // Create SQL statement
@@ -182,31 +231,31 @@ public class App
 
     // Display each country
     while (rset.next()) {
-    String name = rset.getString("Name");
-    String code = rset.getString("Code");
-    String continent = rset.getString("Continent");
-    String countryRegion = rset.getString("Region");
-    int population = rset.getInt("Population");
-    String capital = rset.getString("CapitalName");
+        String name = rset.getString("Name");
+        String code = rset.getString("Code");
+        String continent = rset.getString("Continent");
+        String countryRegion = rset.getString("Region");
+        int population = rset.getInt("Population");
+        String capital = rset.getString("CapitalName");
 
-    Country country = new Country(
-    code,
-    name,
-    continent,
-    countryRegion,
-    population,
-    capital
-    );
+        Country country = new Country(
+        code,
+        name,
+        continent,
+        countryRegion,
+        population,
+        capital
+        );
 
-    displayCountry(country);
-    }
+        displayCountry(country);
+        }
 
-    rset.close();
-    stmt.close();
+        rset.close();
+        stmt.close();
 
     } catch (Exception e) {
-    System.out.println(e.getMessage());
-    System.out.println("Failed to get countries by region");
+        System.out.println(e.getMessage());
+        System.out.println("Failed to get countries by region");
     }
 }
 
@@ -217,15 +266,25 @@ public class App
             System.out.println("No country found");
         }
     }
+
     public static void main(String[] args) {
 
         // Create new Application
         App a = new App();
-        int reportNumber = a.getUserReportSelection();
-        a.selectReport(reportNumber);
 
         // Connect to database
         //a.connect();
+
+        // Show list of possible reports
+        a.displayArray("Welcome to Population Report", a.reports);
+
+        // Get the number of the report the user would like to view
+        int reportNumber = a.getUserReportSelection();
+
+        // Select report
+        a.selectReport(reportNumber);
+
+
 
         //a.showReportMenu();
         //int reportNumber = a.getUserReportSelection();
@@ -236,7 +295,7 @@ public class App
 
        // a.getCountriesByRegion("Middle East");
 
-        // Disconnect from database
-       // a.disconnect();
+        //Disconnect from database
+        a.disconnect();
     }
 }
