@@ -14,7 +14,7 @@ public class App
         Country ctry = a.getCountry("France");
         a.displayCountry(ctry);
 
-        a.getCountriesByContinent("Europe")
+        a.getCountriesByContinent();
 
         // Disconnect from database
         a.disconnect();
