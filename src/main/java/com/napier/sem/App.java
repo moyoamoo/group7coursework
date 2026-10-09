@@ -14,6 +14,8 @@ public class App
         Country ctry = a.getCountry("France");
         a.displayCountry(ctry);
 
+        a.getCountriesByContinent("Europe")
+
         // Disconnect from database
         a.disconnect();
     }
@@ -116,6 +118,51 @@ public class App
         }
     }
 
+    public void getCountriesByContinent(String continent) {
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+
+            // SQL statement
+            String strSelectCountries =
+                "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
+                + "FROM country c "
+                + "LEFT JOIN city ci ON c.Capital = ci.ID "
+                + "WHERE c.Continent = '" + continent + "' "
+                + "ORDER BY c.Population DESC";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelectCountries);
+
+            // Display each country
+            while (rset.next()) {
+                String name = rset.getString("Name");
+                String code = rset.getString("Code");
+                String countryContinent = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int population = rset.getInt("Population");
+                String capital = rset.getString("CapitalName");
+
+                Country country = new Country(
+                    code,
+                    name,
+                    countryContinent,
+                    region,
+                    population,
+                    capital
+                );
+
+                displaycountry(country);
+            }
+
+            rset.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get countries by population");
+        }
+    }
     public void displayCountry(Country newCountry) {
         if (newCountry != null) {
             System.out.println(newCountry.toString());
