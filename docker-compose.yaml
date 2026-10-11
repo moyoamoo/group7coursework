@@ -3,6 +3,8 @@ services:
   # Build app from Dockerfile in same folder
   app:
     build: .
+    stdin_open: true   # docker run -i
+    tty: true          # docker run -t
 
   # Build the db as name db from the Dockerfile in the db folder
   db:
