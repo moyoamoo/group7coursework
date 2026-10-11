@@ -1,13 +1,17 @@
 package com.napier.sem;
 
-import java.lang.annotation.ElementType;
+
 import java.sql.*;
+import java.util.List;
 import java.util.Scanner;
+
+
 
 public class App
 {
 
     private Connection con = null;
+    private CountryConnection countryConnect;
     private static final Scanner scan = new Scanner(System.in);
     private final Regions regions = new Regions();
     private final Reports reports = new Reports();
@@ -98,6 +102,9 @@ public class App
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+
+                // connection
+                countryConnect= new CountryConnection(con);
                 System.out.println("Successfully connected");
                 break;
             }
@@ -131,68 +138,28 @@ public class App
         }
     }
 
-
     public void countriesByRegion(){
+
+        System.out.println("DEBUG: new countriesByRegion");
+        // Display list of regions
+        regions.displayRegions("Regions:");
+
+        // Get user selection of region as int
         int regionNumber = getUserRegionSelection();
+
+        // Get user selection of region as string
         String region = regions.getRegion(regionNumber);
         System.out.println("All the countries in " + region + "organised by largest population to smallest");
-        getCountriesByRegion(region);
-    }
 
+        // Run database query to get countries as region
+        List<Country> countries = countryConnect.getCountriesByRegion(region);
 
-    public void getCountriesByRegion(String region) {
-        try {
-        // Create SQL statement
-        Statement stmt = con.createStatement();
-
-        // SQL statement to find countries in the selected region
-        String strSelectCountries =
-        "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
-        + "FROM country c "
-        + "LEFT JOIN city ci ON c.Capital = ci.ID "
-        + "WHERE c.Region = '" + region + "' "
-        + "ORDER BY c.Population DESC";
-
-        // Execute SQL statement
-        ResultSet rset = stmt.executeQuery(strSelectCountries);
-
-        // Display each country
-        while (rset.next()) {
-        String name = rset.getString("Name");
-        String code = rset.getString("Code");
-        String continent = rset.getString("Continent");
-        String countryRegion = rset.getString("Region");
-        int population = rset.getInt("Population");
-        String capital = rset.getString("CapitalName");
-
-        Country country = new Country(
-        code,
-        name,
-        continent,
-        countryRegion,
-        population,
-        capital
-        );
-
-        displayCountry(country);
-        }
-
-        rset.close();
-        stmt.close();
-
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
-        System.out.println("Failed to get countries by region");
-    }
-}
-
-    public void displayCountry(Country newCountry) {
-        if (newCountry != null) {
-            System.out.println(newCountry.toString());
-        } else {
-            System.out.println("No country found");
+        // Display countries
+        for(Country c : countries){
+            System.out.println(c.toString());
         }
     }
+
 
     public static void main(String[] args) {
 
