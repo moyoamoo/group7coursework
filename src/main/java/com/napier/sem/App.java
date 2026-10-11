@@ -57,12 +57,13 @@ public class App
         return userValue;
     }
 
-
+    // User select the report they want to view
    public void selectReport(int reportNumber){
 
         switch (reportNumber){
             case 1:
                 System.out.println("All the countries in the world organised by largest population to smallest ");
+                allCountries();
                 break;
             case 2:
                 System.out.println("All the countries in a continent organised by largest population to smallest ");
@@ -138,9 +139,17 @@ public class App
         }
     }
 
-    public void countriesByRegion(){
+    //get all countries populations
+    public void allCountries(){
+        // Run database query to get all countries
+        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.ALL_COUNTRIES);
 
-        System.out.println("DEBUG: new countriesByRegion");
+        // Display countries
+        for(Country c : countries){
+            System.out.println(c.toString());
+        }
+    }
+    public void countriesByRegion(){
         // Display list of regions
         regions.displayRegions("Regions:");
 
@@ -153,14 +162,13 @@ public class App
         System.out.println("All the countries in " + region + " organised by largest population to smallest");
 
         // Run database query to get countries as region
-        List<Country> countries = countryConnect.getCountriesByRegion(region);
+        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_REGION, region);
 
         // Display countries
         for(Country c : countries){
             System.out.println(c.toString());
         }
     }
-
 
     public static void main(String[] args) {
 
