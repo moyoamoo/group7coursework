@@ -21,6 +21,8 @@ public class CountryConnection {
      */
     public List<Country> getCountriesByRegion(String region){
         List<Country> countries = new ArrayList<>();
+        System.out.println((region));
+
 
         try{
             // SQL statement to find countries in the selected region
@@ -28,7 +30,7 @@ public class CountryConnection {
                     "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
                             + "FROM country c "
                             + "LEFT JOIN city ci ON c.Capital = ci.ID "
-                            + "WHERE c.Region = '" + region + "' "
+                            + "WHERE c.Region = ? "
                             + "ORDER BY c.Population DESC";
 
             // Create SQL statement, prepared statement allows sql parameters

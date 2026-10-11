@@ -149,7 +149,8 @@ public class App
 
         // Get user selection of region as string
         String region = regions.getRegion(regionNumber);
-        System.out.println("All the countries in " + region + "organised by largest population to smallest");
+        System.out.println((region));
+        System.out.println("All the countries in " + region + " organised by largest population to smallest");
 
         // Run database query to get countries as region
         List<Country> countries = countryConnect.getCountriesByRegion(region);
