@@ -46,6 +46,11 @@ public class Regions {
         return regions[regionNumber - 1];
     }
 
+    /** Display list of Regions
+     *
+     * @param prompt Text shown to user
+     */
+
     public void displayRegions(String prompt){
         System.out.println(prompt);
         for (int i = 0; i < regions.length; i++){

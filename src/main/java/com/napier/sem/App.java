@@ -15,6 +15,7 @@ public class App
     private static final Scanner scan = new Scanner(System.in);
     private final Regions regions = new Regions();
     private final Reports reports = new Reports();
+    private final Continents continents = new Continents();
 
 
     // Get the users report number
@@ -27,6 +28,10 @@ public class App
         return getUserInt("Enter a region number: ", 1, regions.count());
     }
 
+    // Get the users continent number
+    public int getUserContinentSelection(){
+        return getUserInt("Enter a continent number: ", 1, continents.count());
+    }
 
     // Get a valid user integer within range
     private int getUserInt(String prompt, int min, int max) {
@@ -67,6 +72,7 @@ public class App
                 break;
             case 2:
                 System.out.println("All the countries in a continent organised by largest population to smallest ");
+                countriesByContinent();
                 break;
             case 3:
                 System.out.println("All the countries in a region organised by largest population to smallest ");
@@ -149,6 +155,29 @@ public class App
             System.out.println(c.toString());
         }
     }
+
+    public void countriesByContinent(){
+        // Display list of continents
+        continents.displayContinents("Continents:");
+
+        // Get user section of continent as int
+        int continentNumber = getUserContinentSelection();
+
+        //Get user selection of continent as string
+        String continent = continents.getContinent(continentNumber);
+
+        System.out.println("All the countries in " + continent + " organised by largest population to smallest");
+
+        // Run database query to get countries as continents
+        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_CONTINENT, continent);
+
+        // Display countries
+        for(Country c : countries){
+            System.out.println(c.toString());
+        }
+
+    }
+    //get all countries populations by region
     public void countriesByRegion(){
         // Display list of regions
         regions.displayRegions("Regions:");
@@ -158,7 +187,6 @@ public class App
 
         // Get user selection of region as string
         String region = regions.getRegion(regionNumber);
-        System.out.println((region));
         System.out.println("All the countries in " + region + " organised by largest population to smallest");
 
         // Run database query to get countries as region
@@ -169,6 +197,7 @@ public class App
             System.out.println(c.toString());
         }
     }
+
 
     public static void main(String[] args) {
 
