@@ -1,69 +1,23 @@
 package com.napier.sem;
 
-
 import java.sql.*;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class App
 {
-
     private Connection con = null;
     private CountryConnection countryConnect;
     private static final Scanner scan = new Scanner(System.in);
+    private static final int MIN_INPUT_RANGE = 1;
     private final Regions regions = new Regions();
     private final Reports reports = new Reports();
     private final Continents continents = new Continents();
+    private final UserInput userInput = new UserInput();
 
-
-    // Get the users report number
-    public int getUserReportSelection(){
-        return getUserInt("Enter a report number: ", 1, reports.count());
-   }
-
-    // Get the users region number
-    public int getUserRegionSelection(){
-        return getUserInt("Enter a region number: ", 1, regions.count());
-    }
-
-    // Get the users continent number
-    public int getUserContinentSelection(){
-        return getUserInt("Enter a continent number: ", 1, continents.count());
-    }
-
-    // Get a valid user integer within range
-    private int getUserInt(String prompt, int min, int max) {
-        boolean validInput = false;
-        int userValue = 0;
-        //while user input is invalid
-        while (!validInput) {
-            //print user prompt
-            System.out.print(prompt);
-            if (!scan.hasNextLine()) {
-                throw new IllegalStateException("No input available");
-            }
-
-            String input = scan.nextLine().trim();
-            try {
-                userValue = Integer.parseInt(input);
-                //see if int is in range of expected values
-                if ((userValue < min) || (userValue > max)) {
-                    System.out.println("Please enter a number between " + min + " and " + max + ".");
-                } else {
-                    validInput = true;
-                }
-
-            } catch (NumberFormatException e) {
-                System.out.println("'" + input + "' is not a valid number.");
-            }
-        }
-        return userValue;
-    }
 
     // User select the report they want to view
-   public void selectReport(int reportNumber){
+    public void selectReport(int reportNumber){
 
         switch (reportNumber){
             case 1:
@@ -127,7 +81,6 @@ public class App
             }
         }
     }
-
     // Disconnect from the MySQL database.
     public void disconnect()
     {
@@ -144,7 +97,6 @@ public class App
             }
         }
     }
-
     //get all countries populations
     public void allCountries(){
         // Run database query to get all countries
@@ -155,13 +107,13 @@ public class App
             System.out.println(c.toString());
         }
     }
-
+    //get all countries populations by continent
     public void countriesByContinent(){
         // Display list of continents
         continents.displayContinents("Continents:");
 
         // Get user section of continent as int
-        int continentNumber = getUserContinentSelection();
+        int continentNumber = userInput.getUserInt("Enter a Continent number: ", MIN_INPUT_RANGE, continents.count());
 
         //Get user selection of continent as string
         String continent = continents.getContinent(continentNumber);
@@ -183,7 +135,7 @@ public class App
         regions.displayRegions("Regions:");
 
         // Get user selection of region as int
-        int regionNumber = getUserRegionSelection();
+        int regionNumber = userInput.getUserInt("Enter a Region number: ", MIN_INPUT_RANGE, regions.count());
 
         // Get user selection of region as string
         String region = regions.getRegion(regionNumber);
@@ -198,7 +150,6 @@ public class App
         }
     }
 
-
     public static void main(String[] args) {
 
         // Create new Application
@@ -211,7 +162,7 @@ public class App
         a.reports.displayReports("Welcome to Population Report");
 
         // Get the number of the report the user would like to view
-        int reportNumber = a.getUserReportSelection();
+        int reportNumber = a.userInput.getUserInt("Enter a Continent number: ", MIN_INPUT_RANGE, a.reports.count());
 
         // Select report
         a.selectReport(reportNumber);
