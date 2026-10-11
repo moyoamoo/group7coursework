@@ -1,5 +1,7 @@
 package com.napier.sem;
-
+/**
+ * Represents regions from the world database
+ */
 public class Regions {
     private final String[] regions = {
             "Antarctica",
@@ -29,10 +31,18 @@ public class Regions {
             "Western Europe"
     };
 
+    /** Get copy of regions array
+     *
+     * @return returns copy of regions array
+     */
     public String[] getRegions() {
         return regions.clone();
     }
 
+    /** Get region array length
+     *
+     * @return returns length
+     */
     public int count() {
         return regions.length;
     }
@@ -50,7 +60,6 @@ public class Regions {
      *
      * @param prompt Text shown to user
      */
-
     public void displayRegions(String prompt){
         System.out.println(prompt);
         for (int i = 0; i < regions.length; i++){

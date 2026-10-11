@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents db connection for country reports
+ *
+ */
 
 public class CountryConnection {
     private final Connection con;
@@ -14,9 +18,9 @@ public class CountryConnection {
         this.con = con;
     }
 
-    /** Get countries in a region organised by largest population to smallest from database
+    /** Get countries from world database
      * @param sql SQL that will be run
-     * @param params User selects report type (region, continent etc.), if no params all countries shown
+     * @param params User selected report type (region, continent etc.), if no params all countries shown
      * @return countries List of countries
      *
      */

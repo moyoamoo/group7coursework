@@ -1,6 +1,10 @@
 package com.napier.sem;
 
+/**
+ * Represents continents from the world database
+ */
 public class Continents {
+    // Array of Continents in db
     private final String[] continents = {
             "Africa",
             "Antarctica",
@@ -11,10 +15,18 @@ public class Continents {
             "South America"
     };
 
+    /** Get copy of continent array
+     *
+     * @return returns copy of continent array
+     */
     public String[] getRegions() {
         return continents.clone();
     }
 
+    /** Get continent array length
+     *
+     * @return returns length
+     */
     public int count() {
         return continents.length;
     }

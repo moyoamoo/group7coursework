@@ -6,10 +6,18 @@ public class Reports {
                                 "All the countries in a region organised by largest population to smallest"};
 
 
+    /** Get copy of reports array
+     *
+     * @return returns copy of reports array
+     */
     public String[] getReports() {
         return reports.clone();
     }
 
+    /** Get reports array length
+     *
+     * @return returns length
+     */
     public int count() {
         return reports.length;
     }
@@ -23,6 +31,10 @@ public class Reports {
         return reports[reportNumber - 1];
     }
 
+    /** Get single report title from array
+     *
+     * @param prompt text shown to user
+     */
     public void displayReports(String prompt){
         System.out.println(prompt);
         for (int i = 0; i < reports.length; i++){

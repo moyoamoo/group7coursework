@@ -2,13 +2,11 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class App
 {
     private Connection con = null;
     private CountryConnection countryConnect;
-    private static final Scanner scan = new Scanner(System.in);
     private static final int MIN_INPUT_RANGE = 1;
     private final Regions regions = new Regions();
     private final Reports reports = new Reports();
@@ -16,7 +14,11 @@ public class App
     private final UserInput userInput = new UserInput();
 
 
-    // User select the report they want to view
+
+    /** User select the report they want to view
+     *
+     * @param reportNumber Number shown to user, not reports index in array
+     */
     public void selectReport(int reportNumber){
 
         switch (reportNumber){
@@ -37,7 +39,9 @@ public class App
 
         }
    }
-    // Connect to the MySQL database
+    /** Connect to the MySQL Database
+     *
+     */
     public void connect()
     {
         try
@@ -81,7 +85,10 @@ public class App
             }
         }
     }
-    // Disconnect from the MySQL database.
+
+    /** Disconnect from the MySQL database
+     *
+     */
     public void disconnect()
     {
         if (con != null)
@@ -97,7 +104,10 @@ public class App
             }
         }
     }
-    //get all countries populations
+
+    /** All the countries in the world organised by largest population to smallest (Report 1)
+     *
+     */
     public void allCountries(){
         // Run database query to get all countries
         List<Country> countries = countryConnect.runCountryQuery(CountryQueries.ALL_COUNTRIES);
@@ -107,7 +117,10 @@ public class App
             System.out.println(c.toString());
         }
     }
-    //get all countries populations by continent
+
+    /** All the countries in a continent organised by largest population to smallest (Report 2)
+     *
+     */
     public void countriesByContinent(){
         // Display list of continents
         continents.displayContinents("Continents:");
@@ -129,7 +142,10 @@ public class App
         }
 
     }
-    //get all countries populations by region
+
+    /** All the countries in a region organised by largest population to smallest (Report 3)
+     *
+     */
     public void countriesByRegion(){
         // Display list of regions
         regions.displayRegions("Regions:");
@@ -162,7 +178,7 @@ public class App
         a.reports.displayReports("Welcome to Population Report");
 
         // Get the number of the report the user would like to view
-        int reportNumber = a.userInput.getUserInt("Enter a Continent number: ", MIN_INPUT_RANGE, a.reports.count());
+        int reportNumber = a.userInput.getUserInt("Enter a Report Number: ", MIN_INPUT_RANGE, a.reports.count());
 
         // Select report
         a.selectReport(reportNumber);
