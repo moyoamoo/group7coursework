@@ -1,25 +1,22 @@
-name: A workflow for my App
+name: A workflow for Group 7 project
 on: push
 
 jobs:
-  check:
+  build:
+    name: Hello world action
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-java@v4
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'
+      - name: Build with Maven
+        run: mvn package
+      - name: Run docker compose
+        run: docker compose up --abort-on-container-exit
 
-      - run: mvn package -DskipTests
-
-      - run: |
-          docker compose build app
-          docker compose up -d db
-
-      - if: failure()
-        run: docker compose logs
-
-      - if: always()
-        run: docker compose down
