@@ -31,7 +31,9 @@ public class App
         System.out.println("The top N populated countries in the world");
         nCountriesInWorld();
 
-        System.out.println("Report not found");
+        //Report 5
+        System.out.println("The top N populated countries in a continent");
+        nCountriesInContinent();
    }
     /** Connect to the MySQL Database
      *
@@ -158,6 +160,7 @@ public class App
         }
     }
 
+    // The top N populated countries in the world where N is provided by the user (Report 4)
     public void nCountriesInWorld(){
         int numberOfCountries = 10;
 
@@ -165,6 +168,25 @@ public class App
 
         // Run database query to get countries as region
         List<Country> countries = countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES, numberOfCountries);
+
+        // Display countries
+        for(Country c : countries){
+            System.out.println(c.toString());
+        }
+    }
+
+    // The top N populated countries in a continent where N is provided by the user (Report 5)
+    public void nCountriesInContinent(){
+        int numberOfCountries = 10;
+        int continentNumber = 5;
+
+        // Get user selection of region as string
+        String continent = continents.getContinent(continentNumber);
+
+        System.out.println("Top " + numberOfCountries + " populated countries in " + continent);
+
+        // Run database query to get countries as region
+        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, numberOfCountries);
 
         // Display countries
         for(Country c : countries){

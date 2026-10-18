@@ -33,4 +33,13 @@ public class CountryQueries {
             + "ORDER BY c.Population DESC "
             + "LIMIT ?";
 
+    //SQL Query for the most N populated countries in a continent (Report 5)
+    public static final String N_COUNTRIES_BY_CONTINENT =
+            "SELECT c.Name, c.Continent, c.Region, c.Population, c.Code, ci.Name AS CapitalName "
+                    + "FROM country c "
+                    + "LEFT JOIN city ci ON c.Capital = ci.ID "
+                    + "WHERE c.Continent = ?"
+                    + "ORDER BY c.Population DESC "
+                    + "LIMIT ?";
+
 }
