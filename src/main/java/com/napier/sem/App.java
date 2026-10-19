@@ -7,37 +7,33 @@ public class App
 {
     private Connection con = null;
     private CountryConnection countryConnect;
-    private static final int MIN_INPUT_RANGE = 1;
     private final Regions regions = new Regions();
     private final Reports reports = new Reports();
     private final Continents continents = new Continents();
-    private final UserInput userInput = new UserInput();
 
 
+    //Print Reports
+    public void printReports(){
 
-    /** User select the report they want to view
-     *
-     * @param reportNumber Number shown to user, not reports index in array
-     */
-    public void selectReport(int reportNumber){
+        //Report 1
+        System.out.println("All the countries in the world organised by largest population to smallest ");
+        allCountries();
 
-        switch (reportNumber){
-            case 1:
-                System.out.println("All the countries in the world organised by largest population to smallest ");
-                allCountries();
-                break;
-            case 2:
-                System.out.println("All the countries in a continent organised by largest population to smallest ");
-                countriesByContinent();
-                break;
-            case 3:
-                System.out.println("All the countries in a region organised by largest population to smallest ");
-                countriesByRegion();
-                break;
-            default:
-                System.out.println("Report not found");
+        //Report 2
+        System.out.println("All the countries in a continent organised by largest population to smallest ");
+        countriesByContinent();
 
-        }
+        //Report 3
+        System.out.println("All the countries in a region organised by largest population to smallest ");
+        countriesByRegion();
+
+        //Report 4
+        System.out.println("The top N populated countries in the world");
+        nCountriesInWorld();
+
+        //Report 5
+        System.out.println("The top N populated countries in a continent");
+        nCountriesInContinent();
    }
     /** Connect to the MySQL Database
      *
@@ -126,9 +122,8 @@ public class App
         continents.displayContinents("Continents:");
 
         // Get user section of continent as int
-        int continentNumber = userInput.getUserInt("Enter a Continent number: ", MIN_INPUT_RANGE, continents.count());
+        int continentNumber = 2;
 
-        //Get user selection of continent as string
         String continent = continents.getContinent(continentNumber);
 
         System.out.println("All the countries in " + continent + " organised by largest population to smallest");
@@ -150,8 +145,7 @@ public class App
         // Display list of regions
         regions.displayRegions("Regions:");
 
-        // Get user selection of region as int
-        int regionNumber = userInput.getUserInt("Enter a Region number: ", MIN_INPUT_RANGE, regions.count());
+        int regionNumber = 2;
 
         // Get user selection of region as string
         String region = regions.getRegion(regionNumber);
@@ -159,6 +153,40 @@ public class App
 
         // Run database query to get countries as region
         List<Country> countries = countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_REGION, region);
+
+        // Display countries
+        for(Country c : countries){
+            System.out.println(c.toString());
+        }
+    }
+
+    // The top N populated countries in the world where N is provided by the user (Report 4)
+    public void nCountriesInWorld(){
+        int numberOfCountries = 10;
+
+        System.out.println("Top " + numberOfCountries + " populated countries in the world");
+
+        // Run database query to get countries as region
+        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES, numberOfCountries);
+
+        // Display countries
+        for(Country c : countries){
+            System.out.println(c.toString());
+        }
+    }
+
+    // The top N populated countries in a continent where N is provided by the user (Report 5)
+    public void nCountriesInContinent(){
+        int numberOfCountries = 10;
+        int continentNumber = 5;
+
+        // Get user selection of region as string
+        String continent = continents.getContinent(continentNumber);
+
+        System.out.println("Top " + numberOfCountries + " populated countries in " + continent);
+
+        // Run database query to get countries as region
+        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, numberOfCountries);
 
         // Display countries
         for(Country c : countries){
@@ -177,13 +205,10 @@ public class App
         // Show list of possible reports
         a.reports.displayReports("Welcome to Population Report");
 
-        // Get the number of the report the user would like to view
-        int reportNumber = a.userInput.getUserInt("Enter a Report Number: ", MIN_INPUT_RANGE, a.reports.count());
+        // Print all reports
+        a.printReports();
 
-        // Select report
-        a.selectReport(reportNumber);
-
-        //Disconnect from database
+        // Disconnect from database
         a.disconnect();
     }
 }
