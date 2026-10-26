@@ -7,7 +7,7 @@ public class App
 {
     private Connection con = null;
     private CountryConnection countryConnect;
-    private CityConnection cityConnect;
+    private CapitalCityConnection capitalCityConnect;
     private final Regions regions = new Regions();
     private final Reports reports = new Reports();
     private final Continents continents = new Continents();
@@ -17,36 +17,33 @@ public class App
     public void printReports(){
 
         //Report 1
-        System.out.println("All the countries in the world organised by largest population to smallest ");
-        allCountries();
+        //System.out.println("All the countries in the world organised by largest population to smallest ");
+        //allCountries();
 
         //Report 2
-        System.out.println("All the countries in a continent organised by largest population to smallest ");
-        countriesByContinent();
+        //System.out.println("All the countries in a continent organised by largest population to smallest ");
+        //countriesByContinent();
 
         //Report 3
-        System.out.println("All the countries in a region organised by largest population to smallest ");
-        countriesByRegion();
+        //System.out.println("All the countries in a region organised by largest population to smallest ");
+        //countriesByRegion();
 
-        //Report 4
-        System.out.println("The top N populated countries in the world");
-        nCountriesInWorld();
+        // Report 4
+       // System.out.println("The top N populated countries in the world");
+        //nCountriesInWorld();
 
-        //Report 5
-        System.out.println("The top N populated countries in a continent");
-        nCountriesInContinent();
+        // Report 5
+       // System.out.println("The top N populated countries in a continent");
+       // nCountriesInContinent();
 
-        // Report 23
-        System.out.println("Top 3 Capital Cities in the World:");
-        reports.printTopNCapitalsWorld(cityConnect, 3);
+        // The top N populated capital cities in the world where N is provided by the user (Report 20)
+        reports.printTopNCapitalsWorld(capitalCityConnect, 3);
 
-        //report 26
-        System.out.println("Top 3 Capital Cities in Europe:");
-        reports.printTopNCapitalsByContinent(cityConnect, "Europe", 3);
+        //The top N populated capital cities in a continent where N is provided by the user (Report 21)
+        reports.printTopNCapitalsByContinent(capitalCityConnect, "Africa", 3);
 
-        //report 25/27
-        System.out.println("Top 3 Capital Cities in the Caribbean:");
-        reports.printTopNCapitalsByRegion(cityConnect, "Caribbean", 3);
+        //The top N populated capital cities in a region where N is provided by the user (Report 22)
+        reports.printTopNCapitalsByRegion(capitalCityConnect, "Caribbean", 3);
    }
     /** Connect to the MySQL Database
      *
@@ -78,9 +75,9 @@ public class App
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
 
                 // connection
-                countryConnect= new CountryConnection(con);
+                countryConnect = new CountryConnection(con);
+                capitalCityConnect = new CapitalCityConnection(con);
                 System.out.println("Successfully connected");
-                cityConnect = new CityConnection(con);
                 break;
             }
             catch (SQLException sql)

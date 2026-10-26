@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents db connection for city reports
+
+
 public class CityConnection {
     private final Connection con;
 
@@ -14,7 +17,7 @@ public class CityConnection {
         this.con = con;
     }
 
-    public List<City> runCityQuery(String sql, Object... params){
+    public List<City> runCapitalCityQuery(String sql, Object... params){
         List<City> cities = new ArrayList<>();
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -26,8 +29,8 @@ public class CityConnection {
                 while (rset.next()) {
                     cities.add(new City(
                             rset.getString("Name"),
+                            rset.getString("District"),
                             rset.getString("Country"),
-                            "N/A", // District is often blank for capitals
                             rset.getInt("Population")
                     ));
                 }

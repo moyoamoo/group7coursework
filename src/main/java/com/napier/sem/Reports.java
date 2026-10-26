@@ -3,9 +3,12 @@ package com.napier.sem;
 import java.util.List;
 
 public class Reports {
-    private static final String[] reports  = {"All the countries in the world organised by largest population to smallest",
-                                                "All the countries in a continent organised by largest population to smallest",
-                                "All the countries in a region organised by largest population to smallest"};
+
+    private static final String[] reports  = {
+            "All the countries in the world organised by largest population to smallest",
+            "All the countries in a continent organised by largest population to smallest",
+            "All the countries in a region organised by largest population to smallest"
+    };
 
 
     /** Get copy of reports array
@@ -43,45 +46,69 @@ public class Reports {
             System.out.println((i + 1) + ". " + reports[i]);
         }
     }
-    //CITY REPORTS (Khadijah)
 
-    public void printAllCities(CityConnection cityConnect) {
-        List<City> cities = cityConnect.runCityQuery(CityQueries.ALL_CITIES);
-        System.out.println("City Report:");
-        for (City c : cities) {
-            System.out.println(c.getName() + ", " + c.getCountry() + " (" + c.getPopulation() + ")");
-        }
-    }
+    //City Reports
 
-    public void printTopNCapitalsWorld(CityConnection cityConnect, int n) {
-        List<City> cities = cityConnect.runCityQuery(CityQueries.TOP_N_CAPITALS_WORLD, n);
+    //public void printAllCities(CityConnection cityConnect) {
+    // List<CapitalCity> cities = cityConnect.runCityQuery(CapitalCityQueries.ALL_CITIES);
+    // System.out.println("City Report:");
+    // for (CapitalCity c : cities) {
+    //     System.out.println(c.getName() + ", " + c.getCountry() + " (" + c.getPopulation() + ")");
+    // }
+    //   }
+
+    //public void printCapitalsByContinent(CityConnection cityConnect, String continent) {
+
+    // List<CapitalCity> cities = cityConnect.runCityQuery(CapitalCityQueries.CAPITALS_BY_CONTINENT, continent);
+
+    // System.out.println("Capital Cities in " + continent + ":");
+
+    // Print Cities
+    //  for (CapitalCity c : cities) {
+    // System.out.println(c.toString());
+    // }
+    //  }
+
+    // Capital City Reports
+
+    // The top N populated capital cities in the world where N is provided by the user (Report 20)
+    public void printTopNCapitalsWorld(CapitalCityConnection capitalCityConnect, int n) {
+        // Get Capital Cities
+        List<CapitalCity> cities = capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_WORLD, n);
+
+        // Print Report Title
         System.out.println("Top " + n + " Capital Cities in the World:");
-        for (City c : cities) {
-            System.out.println(c.getName() + ", " + c.getCountry() + " (" + c.getPopulation() + ")");
+
+        //Print Report
+        for (CapitalCity c : cities) {
+            System.out.println(c.toString());
         }
     }
 
-    public void printCapitalsByContinent(CityConnection cityConnect, String continent) {
-        List<City> cities = cityConnect.runCityQuery(CityQueries.CAPITALS_BY_CONTINENT, continent);
-        System.out.println("Capital Cities in " + continent + ":");
-        for (City c : cities) {
-            System.out.println(c.getName() + ", " + c.getCountry() + " (" + c.getPopulation() + ")");
-        }
-    }
+    // The top N populated capital cities in a continent where N is provided by the user (Report 21)
+    public void printTopNCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent, int n) {
+        // Get Capital Cities
+        List<CapitalCity> cities = capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_CONTINENT, continent, n);
 
-    public void printTopNCapitalsByContinent(CityConnection cityConnect, String continent, int n) {
-        List<City> cities = cityConnect.runCityQuery(CityQueries.TOP_N_CAPITALS_BY_CONTINENT, continent, n);
+        // Print Report Title
         System.out.println("Top " + n + " Capital Cities in " + continent + ":");
-        for (City c : cities) {
-            System.out.println(c.getName() + ", " + c.getCountry() + " (" + c.getPopulation() + ")");
+
+        // Print Cities
+        for (CapitalCity c : cities) {
+            System.out.println(c.toString());
         }
     }
+    //The top N populated capital cities in a region where N is provided by the user (Report 22)
+    public void printTopNCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region, int n) {
+        // Get Capital Cities
+        List<CapitalCity> cities = capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
 
-    public void printTopNCapitalsByRegion(CityConnection cityConnect, String region, int n) {
-        List<City> cities = cityConnect.runCityQuery(CityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
+        // Print Report Title
         System.out.println("Top " + n + " Capital Cities in " + region + ":");
-        for (City c : cities) {
-            System.out.println(c.getName() + ", " + c.getCountry() + " (" + c.getPopulation() + ")");
+
+        //Print Report
+        for (CapitalCity c : cities) {
+            System.out.println(c.toString());
         }
     }
 }
