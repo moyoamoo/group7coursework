@@ -123,6 +123,7 @@ public class Reports {
         }
     }
 
+    //The top N populated countries in the world (Report 4)
     public void printNCountriesInWorld(CountryConnection countryConnect){
         int numberOfCountries = 10;
         // Print report name
@@ -136,6 +137,8 @@ public class Reports {
             System.out.println(c.toString());
         }
     }
+
+    //The top N populated countries in a continent (Report 5)
     public void printNCountriesInContinent(CountryConnection countryConnect){
         int numberOfCountries = 10;
         int continentNumber = 5;
@@ -172,6 +175,60 @@ public class Reports {
         }
     }
 
+    // All the cities in a continent organised by largest population to smallest (Report 8)
+    public void printAllCitiesInContinent(CityConnection cityConnect){
+        int continentNumber = 5;
+
+        // Get continent selection from array
+        String continent = continents.getContinent(continentNumber);
+
+        // Print report name
+        System.out.println("All the cities in " + continent + "organised by largest population to smallest");
+
+        // Run database query to get countries as region
+        List<City> cities = cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_CONTINENT, continent);
+
+        //Print Report
+        for (City c : cities ) {
+            System.out.println(c.toString());
+        }
+    }
+
+    // All the cities in a country organised by largest population to smallest (Report 10)
+    public void printAllCitiesInCountry(CityConnection cityConnect){
+        String country = "France";
+
+        // Print report name
+        System.out.println("All the cities in " + country + " organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        List<City> cities = cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_COUNTRY, country);
+
+        //Print Report
+        for (City c : cities) {
+            System.out.println(c.toString());
+        }
+    }
+
+    //The top N populated cities in a region where N is provided by the user (Report 14)
+    public void printNCitiesInRegion(CityConnection cityConnect){
+
+        String region = "Eastern Asia";
+
+        // Number of Cities
+        int n = 3;
+
+        // Print report name
+        System.out.println("All the cities in " + region + " organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        List<City> cities = cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_REGION, region, n);
+
+        //Print Report
+        for (City c : cities) {
+            System.out.println(c.toString());
+        }
+    }
     // Capital City Reports
 
     // All the capital cities in a continent organised by largest population to smallest (Report 18)
@@ -181,7 +238,7 @@ public class Reports {
         List<CapitalCity> cities = capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.CAPITALS_BY_CONTINENT, continent);
 
         //Print Report Title
-        System.out.println("Capital Cities in " + continent + ":");
+        System.out.println("All capital Cities in " + continent + ":");
 
         // Print Capital Cities report
         for (CapitalCity c : cities) {
