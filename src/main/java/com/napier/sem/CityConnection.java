@@ -17,7 +17,7 @@ public class CityConnection {
         this.con = con;
     }
 
-    public List<City> runCapitalCityQuery(String sql, Object... params){
+    public List<City> runCityQuery(String sql, Object... params){
         List<City> cities = new ArrayList<>();
 
         try (PreparedStatement stmt = con.prepareStatement(sql)) {

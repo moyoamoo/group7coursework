@@ -8,34 +8,31 @@ public class App
     private Connection con = null;
     private CountryConnection countryConnect;
     private CapitalCityConnection capitalCityConnect;
-    private final Regions regions = new Regions();
+    private CityConnection cityConnect;
     private final Reports reports = new Reports();
-    private final Continents continents = new Continents();
+
 
 
     //Print Reports
     public void printReports(){
 
-        //Report 1
-        //System.out.println("All the countries in the world organised by largest population to smallest ");
-        //allCountries();
+        //Country Reports
+        // All the countries in the world organised by largest population to smallest (Report 1)
+        reports.printAllCountries(countryConnect);
 
-        //Report 2
-        //System.out.println("All the countries in a continent organised by largest population to smallest ");
-        //countriesByContinent();
+        // All the countries in a continent organised by largest population to smallest (Report 2)
+        reports.printCountriesByContinent(countryConnect);
 
-        //Report 3
-        //System.out.println("All the countries in a region organised by largest population to smallest ");
-        //countriesByRegion();
+        //All the countries in a region organised by largest population to smallest (Report 3)
+        reports.printCountriesByRegion(countryConnect);
 
-        // Report 4
-       // System.out.println("The top N populated countries in the world");
-        //nCountriesInWorld();
+        //The top N populated countries in the world (Report 4)
+        reports.printNCountriesInWorld(countryConnect);
 
-        // Report 5
-       // System.out.println("The top N populated countries in a continent");
-       // nCountriesInContinent();
+        //The top N populated countries in a continent (Report 5)
+        reports.printNCountriesInContinent(countryConnect);
 
+        // Capital City Reports
         // The top N populated capital cities in the world where N is provided by the user (Report 20)
         reports.printTopNCapitalsWorld(capitalCityConnect, 3);
 
@@ -77,6 +74,7 @@ public class App
                 // connection
                 countryConnect = new CountryConnection(con);
                 capitalCityConnect = new CapitalCityConnection(con);
+                cityConnect = new CityConnection(con);
                 System.out.println("Successfully connected");
                 break;
             }
@@ -112,98 +110,6 @@ public class App
         }
     }
 
-    /** All the countries in the world organised by largest population to smallest (Report 1)
-     *
-     */
-    public void allCountries(){
-        // Run database query to get all countries
-        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.ALL_COUNTRIES);
-
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-    }
-
-    /** All the countries in a continent organised by largest population to smallest (Report 2)
-     *
-     */
-    public void countriesByContinent(){
-        // Display list of continents
-        continents.displayContinents("Continents:");
-
-        // Get user section of continent as int
-        int continentNumber = 2;
-
-        String continent = continents.getContinent(continentNumber);
-
-        System.out.println("All the countries in " + continent + " organised by largest population to smallest");
-
-        // Run database query to get countries as continents
-        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_CONTINENT, continent);
-
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-
-    }
-
-    /** All the countries in a region organised by largest population to smallest (Report 3)
-     *
-     */
-    public void countriesByRegion(){
-        // Display list of regions
-        regions.displayRegions("Regions:");
-
-        int regionNumber = 2;
-
-        // Get user selection of region as string
-        String region = regions.getRegion(regionNumber);
-        System.out.println("All the countries in " + region + " organised by largest population to smallest");
-
-        // Run database query to get countries as region
-        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_REGION, region);
-
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-    }
-
-    // The top N populated countries in the world where N is provided by the user (Report 4)
-    public void nCountriesInWorld(){
-        int numberOfCountries = 10;
-
-        System.out.println("Top " + numberOfCountries + " populated countries in the world");
-
-        // Run database query to get countries as region
-        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES, numberOfCountries);
-
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-    }
-
-    // The top N populated countries in a continent where N is provided by the user (Report 5)
-    public void nCountriesInContinent(){
-        int numberOfCountries = 10;
-        int continentNumber = 5;
-
-        // Get user selection of region as string
-        String continent = continents.getContinent(continentNumber);
-
-        System.out.println("Top " + numberOfCountries + " populated countries in " + continent);
-
-        // Run database query to get countries as region
-        List<Country> countries = countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, numberOfCountries);
-
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-    }
 
     public static void main(String[] args) {
 
