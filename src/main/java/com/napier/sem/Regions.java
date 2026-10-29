@@ -3,7 +3,7 @@ package com.napier.sem;
  * Represents regions from the world database
  */
 public class Regions {
-    private final String[] regions = {
+    public final String[] regions = {
             "Antarctica",
             "Australia and New Zealand",
             "Baltic Countries",
