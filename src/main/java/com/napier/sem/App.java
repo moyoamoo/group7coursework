@@ -18,42 +18,58 @@ public class App
 
         //Country Reports
         // All the countries in the world organised by largest population to smallest (Report 1)
-        reports.printAllCountries(countryConnect);
+        List<Country> allCountries = reports.getAllCountries(countryConnect);
+        reports.displayCountryReports(allCountries);
 
         // All the countries in a continent organised by largest population to smallest (Report 2)
-        reports.printCountriesByContinent(countryConnect);
+        List<Country> countriesByContinent = reports.getCountriesByContinent(countryConnect,"South America");
+        reports.displayCountryReports(countriesByContinent);
 
         // All the countries in a region organised by largest population to smallest (Report 3)
-        reports.printCountriesByRegion(countryConnect);
+        List<Country> countriesByRegion = reports.getCountriesByRegion(countryConnect, "Polynesia");
+        reports.displayCountryReports(countriesByRegion);
 
         // The top N populated countries in the world (Report 4)
-        reports.printNCountriesInWorld(countryConnect);
+        List<Country> nCountriesInWorld = reports.getNCountriesInWorld(countryConnect, 3);
+        reports.displayCountryReports(nCountriesInWorld);
 
         // The top N populated countries in a continent (Report 5)
-        reports.printNCountriesInContinent(countryConnect);
+        List<Country> nCountriesInContinent = reports.getNCountriesInContinent(countryConnect, "Europe", 3);
+        reports.displayCountryReports(nCountriesInContinent);
+
 
         // City Report
         // All the cities in the world organised by largest population to smallest (Report 7)
-        reports.printAllCities(cityConnect);
+        List <City> allCities = reports.getAllCities(cityConnect);
+        reports.displayCityReports(allCities);
 
         // All the cities in a continent organised by largest population to smallest (Report 8)
-        reports.printAllCitiesInContinent(cityConnect);
+        List <City> allCitiesInContinent = reports.getAllCitiesInContinent(cityConnect, "Oceania");
+        reports.displayCityReports(allCitiesInContinent);
 
         // All the cities in a country organised by largest population to smallest (Report 10)
-        reports.printAllCitiesInCountry(cityConnect);
+        List <City> allCitiesInCountry = reports.getAllCitiesInCountry(cityConnect, "France");
+        reports.displayCityReports(allCitiesInCountry);
 
         //The top N populated cities in a region where N is provided by the user (Report 14)
-        reports.printNCitiesInRegion(cityConnect);
-        // Capital City Reports
+        List <City> nCitiesInRegion = reports.getNCitiesInRegion(cityConnect, "Eastern Asia", 3);
+        reports.displayCityReports(nCitiesInRegion);
+
+                // Capital City Reports
         // The top N populated capital cities in the world where N is provided by the user (Report 20)
-        reports.printTopNCapitalsWorld(capitalCityConnect, 3);
+
+        List <CapitalCity> topNCapitalsWorld = reports.getTopNCapitalsWorld(capitalCityConnect, 3);
+        reports.displayCapitalCityReports(topNCapitalsWorld);
 
         //The top N populated capital cities in a continent where N is provided by the user (Report 21)
-        reports.printTopNCapitalsByContinent(capitalCityConnect, "Africa", 3);
+        List <CapitalCity> topNCapitalsByContinent = reports.getTopNCapitalsByContinent(capitalCityConnect, "Africa", 3);
+        reports.displayCapitalCityReports(topNCapitalsByContinent);
 
         //The top N populated capital cities in a region where N is provided by the user (Report 22)
-        reports.printTopNCapitalsByRegion(capitalCityConnect, "Caribbean", 3);
+        List <CapitalCity> topNCapitalsByRegion = reports.getTopNCapitalsByRegion(capitalCityConnect, "Caribbean", 3);
+        reports.displayCapitalCityReports(topNCapitalsByRegion);
    }
+
     /** Connect to the MySQL Database
      *
      */
@@ -132,7 +148,7 @@ public class App
         a.connect();
 
         // Show list of possible reports
-        a.reports.displayReports("Welcome to Population Report");
+        // a.reports.displayReports("Welcome to Population Report");
 
         // Print all reports
         a.printReports();
