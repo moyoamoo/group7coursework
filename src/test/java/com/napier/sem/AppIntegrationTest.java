@@ -69,4 +69,14 @@ public class AppIntegrationTest {
     }
 
 
+    // Invalid Continent should return empty result
+    @Test
+    void report2InvalidContinentReturnsEmpty()
+    {
+        List<Country> result = app.reports.getCountriesByContinent(app.countryConnect, "Narnia");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+
 }
