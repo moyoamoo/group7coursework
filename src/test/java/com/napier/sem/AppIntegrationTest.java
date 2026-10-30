@@ -60,5 +60,13 @@ public class AppIntegrationTest {
         assertFalse(result.isEmpty());
     }
 
+    // Test that it returns the correct number of countries
+    @Test
+    void report2CorrectCount()
+    {
+        List<Country> result = app.reports.getCountriesByContinent(app.countryConnect, "South America");
+        assertEquals(14, result.size());   // standard world.sql has 14; check yours
+    }
+
 
 }
