@@ -1,11 +1,12 @@
 package com.napier.sem;
+import java.util.HashMap;
 
 /**
  * Represents continents from the world database
  */
 public class Continents {
     // Array of Continents in db
-    private final String[] continents = {
+    public final String[] continents = {
             "Africa",
             "Antarctica",
             "Asia",
