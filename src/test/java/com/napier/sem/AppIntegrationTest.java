@@ -27,6 +27,8 @@ public class AppIntegrationTest {
         app.disconnect();
     }
 
+    //Report 1
+
     // Test to see if it returns all countries
     @Test
     void report1ReturnAllCountries(){
@@ -49,5 +51,14 @@ public class AppIntegrationTest {
         List<Country> result = app.reports.getAllCountries(app.countryConnect);
         assertEquals("China", result.get(0).getName());
     }
+
+    // Report 2
+    // Test that is returns a list of countries
+    @Test
+    void report2ReturnCountries(){
+        List<Country> result = app.reports.getCountriesByContinent(app.countryConnect, "South America");
+        assertFalse(result.isEmpty());
+    }
+
 
 }
