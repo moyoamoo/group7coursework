@@ -1,4 +1,5 @@
 package com.napier.sem;
+import java.util.HashMap;
 
 /**
  * Represents continents from the world database
