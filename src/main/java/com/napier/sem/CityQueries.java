@@ -23,25 +23,25 @@ public class CityQueries {
             "SELECT ci.Name, c.Name AS country, ci.Population " +
             "FROM city ci " +
             "JOIN country c ON ci.ID = c.Capital " +
-            "WHERE c.Contient = ?" +
+            "WHERE c.Continent = ? " +
             "ORDER BY ci.Population DESC";
 
     // Issue #26: Top N capital cities in a continent
     public static final String TOP_N_CAPITALS_BY_CONTINENT=
-            "STRING ci.Name, c.Name AS Country, ci.Population " +
+            "SELECT ci.Name, c.Name AS Country, ci.Population " +
             "FROM city ci " +
             "JOIN country c ON ci.ID = c.Capital " +
-            "WHERE c.Continent = ?" +
-            "ORDER BY ci.Population DESC" +
+            "WHERE c.Continent = ? " +
+            "ORDER BY ci.Population DESC " +
             "LIMIT ?";
 
     // Issue #25 & 27: Top N capital Cities in a region
     public static final String TOP_N_CAPITALS_BY_REGION =
-            "SELECT ci.Name, c Name AS Country, ci.Population " +
-            "FROM ci city " +
+            "SELECT ci.Name, c.Name AS Country, ci.Population " +
+            "FROM city ci " +
             "JOIN country c ON ci.ID = c.Capital " +
             "WHERE c.Region = ? " +
-            "ORDER BY ci.POpulation DESC " +
+            "ORDER BY ci.Population DESC " +
             "LIMIT ?";
 }
 
