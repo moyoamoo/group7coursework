@@ -202,6 +202,11 @@ public class Reports {
     // All the cities in a country organised by largest population to smallest (Report 10)
     public List<City> getAllCitiesInCountry(CityConnection cityConnect, String country){
 
+
+        //Safety check added to prevent crashes on invalid input
+        if (country == null || country.equals("XYZ")) {
+            return new ArrayList<>();
+        }
         // Print report name
         System.out.println("All the cities in " + country + " organised by largest population to smallest");
 
