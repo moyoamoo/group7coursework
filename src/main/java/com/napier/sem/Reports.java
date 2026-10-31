@@ -204,19 +204,6 @@ public class Reports {
 
     }
 
-    // The top N populated countries in a region (Report 6)
-    public List<Country> getNCountriesInRegion(CountryConnection countryConnect, String region, int n){
-
-        if(n <= 0 || !userInput.getValidRegion(region)){
-            return new ArrayList<>();
-        }
-        // Print report name
-        System.out.println("Top " + n + " populated countries in " + region);
-
-        // Run database query to get countries by region
-        return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_REGION, region, n);
-
-    }
 
     //City Reports
 
