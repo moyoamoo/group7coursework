@@ -335,7 +335,7 @@ public class AppIntegrationTest {
     }
 }
 
-    // Tests that the largest city is first in the list
+    // Tests that the largest city is first in the list (mumbai/bombay)
     @Test
     void report7FirstIsMumbai() {
         List<City> result = app.reports.getAllCities(app.cityConnect);
