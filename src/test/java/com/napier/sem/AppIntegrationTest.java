@@ -285,4 +285,51 @@ public class AppIntegrationTest {
         assertTrue(result.isEmpty());
     }
 
+    // Report 6 (#12): top N countries in a region
+    @Test
+    void report6ReturnsN() {
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 5);
+        assertEquals(5, result.size());
+    }
+
+    @Test
+    void report6OrderedByPopDesc() {
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 5);
+        for (int i = 1; i < result.size(); i++) {
+        assertTrue(result.get(i - 1).getPopulation() >= result.get(i).getPopulation());
+    }
+}
+
+    @Test
+    void report6FirstIsCuba() {
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 5);
+        assertEquals("Cuba", result.get(0).getName());
+    }
+
+    @Test
+    void report6NLargerThanRegion() {
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 1000);
+        assertEquals(24, result.size());
+    }
+
+    // Report 7 (#13): all cities, largest to smallest
+    @Test
+    void report7ReturnsAllCities() {
+        List<City> result = app.reports.getAllCities(app.cityConnect);
+        assertEquals(4079, result.size());
+    }
+
+    @Test
+    void report7OrderedByPopDesc() {
+        List<City> result = app.reports.getAllCities(app.cityConnect);
+        for (int i = 1; i < result.size(); i++) {
+        assertTrue(result.get(i - 1).getPopulation() >= result.get(i).getPopulation());
+    }
+}
+
+    @Test
+    void report7FirstIsMumbai() {
+        List<City> result = app.reports.getAllCities(app.cityConnect);
+        assertTrue(result.get(0).getName().startsWith("Mumbai"));
+    }
 }
