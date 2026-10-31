@@ -69,6 +69,39 @@ public class ValidationUnitTest {
         assertTrue(result.isEmpty(), "Should return empty list for invalid n");
     }
 
+    // UNIT TEST ISSUE 12: The top N populated countries in a region
+    @Test
+    void report6InvalidRegionReturnsEmpty() {
+        assertTrue(reports.getNCountriesInRegion(null, "Narnia", 5).isEmpty());
+    }
+    
+    @Test
+        void report6ZeroNReturnsEmpty() {
+        assertTrue(reports.getNCountriesInRegion(null, "Caribbean", 0).isEmpty());
+    }
+
+    @Test
+    void report6NegativeNReturnsEmpty() {
+        assertTrue(reports.getNCountriesInRegion(null, "Caribbean", -1).isEmpty());
+    }
+
+    @Test
+    void displayCountryReportsEmptyList() {
+        reports.displayCountryReports(new ArrayList<>());
+    }
+
+    // UNIT TEST ISSUE 13: All the cities in the world, largest to smallest
+
+    @Test
+    void displayCityReportsEmptyList() {
+        reports.displayCityReports(new ArrayList<>());
+    }
+
+    @Test
+    void report7TitleCorrect() {
+        assertEquals("All the cities in the world organised by largest population to smallest",
+        reports.getReports(7));
+    }
 
     //UNIT TESTS ISSUE 14: cities in a continent
     @Test
