@@ -285,13 +285,16 @@ public class AppIntegrationTest {
         assertTrue(result.isEmpty());
     }
 
-    // Report 6 (#12): top N countries in a region
+    // Report 6: top N countries in a region
+    
+    // Tests that asking for 5 countries returns exactly 5 countries
     @Test
     void report6ReturnsN() {
         List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 5);
         assertEquals(5, result.size());
     }
 
+    // Tests that results are ordered by population, largest first
     @Test
     void report6OrderedByPopDesc() {
         List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 5);
@@ -300,25 +303,30 @@ public class AppIntegrationTest {
     }
 }
 
+    // Tests that the most populated Carribean country (Cuba) is first in list
     @Test
     void report6FirstIsCuba() {
         List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 5);
         assertEquals("Cuba", result.get(0).getName());
     }
 
+    // Tests that if N is bigger than number of countries in region, returns all countries
     @Test
     void report6NLargerThanRegion() {
         List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 1000);
         assertEquals(24, result.size());
     }
 
-    // Report 7 (#13): all cities, largest to smallest
+    // Report 7: all cities, largest to smallest
+    
+    // Tests that every city in the database is returned.
     @Test
     void report7ReturnsAllCities() {
         List<City> result = app.reports.getAllCities(app.cityConnect);
         assertEquals(4079, result.size());
     }
 
+    // Tests that cities are ordered by population , largest first
     @Test
     void report7OrderedByPopDesc() {
         List<City> result = app.reports.getAllCities(app.cityConnect);
@@ -327,6 +335,7 @@ public class AppIntegrationTest {
     }
 }
 
+    // Tests that the largest city is first in the list
     @Test
     void report7FirstIsMumbai() {
         List<City> result = app.reports.getAllCities(app.cityConnect);
