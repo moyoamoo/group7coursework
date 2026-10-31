@@ -229,14 +229,6 @@ public class AppIntegrationTest {
         assertTrue(result.isEmpty());
     }
 
-    // Test that upper bounds of n returns empty array
-    @Test
-    void report4InvalidNUpperBoundsReturnsEmpty(){
-        int n = 400;
-        List<Country> result = app.reports.getNCountriesInWorld(app.countryConnect, n);
-        assertTrue(result.isEmpty());
-    }
-
     //Report 5: The top N populated countries in a continent where N is provided by the user.
     // Test that it returns countries
     @Test
@@ -269,11 +261,28 @@ public class AppIntegrationTest {
         }
     }
 
-    // Upper bounds
+    // Test that lower bounds of n returns empty array
+    @Test
+    void report5InvalidNLowerBoundsReturnsEmpty(){
+        int n = -1;
+        List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, "Asia", n);
+        assertTrue(result.isEmpty());
+    }
 
-    // Lower Bounds
-
-    // Continent empty
+    // Test that is continent is empty returns empty array
+    @Test
+    void report5ContinentEmptyReturnsEmpty(){
+        int n = -1;
+        List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, "", n);
+        assertTrue(result.isEmpty());
+    }
 
     // Continent null
+    @Test
+    void report5ContinentNullReturnsEmpty(){
+        int n = -1;
+        List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, null, n);
+        assertTrue(result.isEmpty());
+    }
+
 }

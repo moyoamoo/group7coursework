@@ -142,6 +142,11 @@ public class Reports {
     //The top N populated countries in the world (Report 4)
     public List<Country> getNCountriesInWorld(CountryConnection countryConnect, int n){
 
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
         // Print report name
         System.out.println("Top " + n + " populated countries in the world");
 
@@ -152,6 +157,11 @@ public class Reports {
 
     //The top N populated countries in a continent (Report 5)
     public List<Country> getNCountriesInContinent(CountryConnection countryConnect, String continent, int n){
+
+        // Check if n is greater than 1 and continent is not blank/null
+        if (n < 1 || continent == null || continent.isBlank()){
+            return new ArrayList<>();
+        }
 
         // Check if continent is valid
         Boolean validContinent = userInput.getValidContinent(continent);
