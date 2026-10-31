@@ -11,6 +11,8 @@ public class Country {
     private int population;
     private String capital;
 
+
+
     // Constructor
     public Country(String code, String name, String continent, String region, int population, String capital){
         this.code = code;
