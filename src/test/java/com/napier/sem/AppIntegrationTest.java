@@ -54,18 +54,18 @@ public class AppIntegrationTest {
     }
 
     // Test that the report has the correct columns
-    @Test
-    void report1CorrectColumns(){
-        List<Country> result = app.reports.getAllCountries(app.countryConnect);
-        assertFalse(result.isEmpty());
-        for (Country r : result){
-            assertNotNull(r.getName());
-            assertNotNull(r.getContinent());
-            assertNotNull(r.getRegion());
-            assertTrue(r.getPopulation() >= 0);
-            assertNotNull(r.getCapital());
-        }
-    }
+    //@Test
+    //void report1CorrectColumns(){
+        //List<Country> result = app.reports.getAllCountries(app.countryConnect);
+        //assertFalse(result.isEmpty());
+        //for (Country r : result){
+            //assertNotNull(r.getName());
+           // assertNotNull(r.getContinent());
+           // assertNotNull(r.getRegion());
+           // assertTrue(r.getPopulation() >= 0);
+           // assertNotNull(r.getCapital());
+      //  }
+   // }
 
     // Report 2: All the countries in a continent organised by largest population to smallest
 

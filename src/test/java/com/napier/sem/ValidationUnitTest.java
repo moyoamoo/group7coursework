@@ -7,8 +7,69 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ValidationUnitTest {
     Reports reports = new Reports();
 
+    CountryConnection dummyCountryConnect = null;
     CityConnection dummyCityConnect = null;
     CapitalCityConnection dummyCapitalConnection = null;
+
+    // Test that invalid continents return empty list
+    @Test
+    void report2InvalidContinentsReturnEmpty(){
+        List<Country> result = reports.getCountriesByContinent(dummyCountryConnect, "Earthsea");
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
+    }
+
+    // Test that null continents return empty list
+    @Test
+    void report2NullContinentReturnsEmpty(){
+        List<Country> result = reports.getCountriesByContinent(dummyCountryConnect, null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null continent");
+
+    }
+
+    // Test that invalid region return empty list
+    @Test
+    void report3InvalidRegionReturnEmpty(){
+        List<Country> result = reports.getCountriesByRegion(dummyCountryConnect, "Gotham");
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid region");
+    }
+
+    // Test that null region return empty list
+    @Test
+    void report3NullRegionReturnsEmpty(){
+        List<Country> result = reports.getCountriesByRegion(dummyCountryConnect, null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null region");
+
+    }
+
+    // Test that invalid n return empty list
+    @Test
+    void report4InvalidNReturnEmpty(){
+        int n = -1;
+        List<Country> result = reports.getNCountriesInWorld(dummyCountryConnect, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    // Test that invalid n return empty list
+    @Test
+    void report5InvalidNReturnEmpty(){
+        int n = -1;
+        List<Country> result = reports.getNCountriesInContinent(dummyCountryConnect, "Spain", n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    // Test that null continent return empty
+    @Test
+    void report5NullContinentReturnEmpty(){
+        int n = -1;
+        List<Country> result = reports.getNCountriesInContinent(dummyCountryConnect, null, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+
 
     //UNIT TESTS ISSUE 14: cities in a continent
     @Test
