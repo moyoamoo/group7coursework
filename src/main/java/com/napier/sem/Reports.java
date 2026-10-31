@@ -175,6 +175,7 @@ public class Reports {
         System.out.println("Top " + n + " populated countries in " + continent);
 
         // Run database query to get n countries in a  continent
+        // Run database query to get countries as continent
         return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, n);
 
     }
@@ -199,6 +200,20 @@ public class Reports {
         System.out.println("Top " + n + " populated countries in " + region);
 
         // Run database query n countries in a region
+        return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_REGION, region, n);
+
+    }
+
+    // The top N populated countries in a region (Report 6)
+    public List<Country> getNCountriesInRegion(CountryConnection countryConnect, String region, int n){
+
+        if(n <= 0 || !userInput.getValidRegion(region)){
+            return new ArrayList<>();
+        }
+        // Print report name
+        System.out.println("Top " + n + " populated countries in " + region);
+
+        // Run database query to get countries by region
         return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_REGION, region, n);
 
     }
