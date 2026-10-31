@@ -164,11 +164,25 @@ public class Reports {
         // Print report name
         System.out.println("Top " + n + " populated countries in " + continent);
 
-        // Run database query to get countries as region
+        // Run database query to get countries as continent
         return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, n);
 
     }
 
+    // The top N populated countries in a region (Report 6)
+    public List<Country> getNCountriesInRegion(CountryConnection countryConnect, String region, int n){
+        
+        if(n <= 0 || !userInput.getValidRegion(region)){
+            return new ArrayList<>();
+        }
+        // Print report name
+        System.out.println("Top " + n + " populated countries in " + region);
+
+        // Run database query to get countries by region
+        return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_REGION, region, n);
+    
+    }
+    
     //City Reports
 
     // All the cities in the world organised by largest population to smallest. (Report 7)
