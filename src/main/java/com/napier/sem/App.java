@@ -7,7 +7,7 @@ public class App
 {
     private Connection con = null;
     public CountryConnection countryConnect;
-    private CapitalCityConnection capitalCityConnect;
+    public CapitalCityConnection capitalCityConnect;
     public CityConnection cityConnect;
     public Reports reports = new Reports();
 
