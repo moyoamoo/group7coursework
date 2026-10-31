@@ -37,6 +37,10 @@ public class App
         List<Country> nCountriesInContinent = reports.getNCountriesInContinent(countryConnect, "Europe", 3);
         reports.displayCountryReports(nCountriesInContinent);
 
+        // The top N populated countries in a region (Report 6)
+        List<Country> nCountriesInRegion = reports.getNCountriesInRegion(countryConnect, "Nordic Countries", 3);
+        reports.displayCountryReports(nCountriesInRegion);
+
 
         // City Report
         // All the cities in the world organised by largest population to smallest (Report 7)

@@ -174,8 +174,32 @@ public class Reports {
         // Print report name
         System.out.println("Top " + n + " populated countries in " + continent);
 
-        // Run database query to get countries as region
+        // Run database query to get n countries in a  continent
         return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, n);
+
+    }
+
+    //The top N populated countries in a region (Report 6)
+    public List<Country> getNCountriesInRegion(CountryConnection countryConnect, String region, int n){
+
+        // Check if n is greater than 1 and continent is not blank/null
+        if (n < 1 || region == null || region.isBlank()){
+            return new ArrayList<>();
+        }
+
+        // Check if continent is valid
+        Boolean validRegion = userInput.getValidRegion(region);
+
+        // If not return empty array
+        if(!validRegion){
+            return new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println("Top " + n + " populated countries in " + region);
+
+        // Run database query n countries in a region
+        return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_REGION, region, n);
 
     }
 
@@ -283,6 +307,7 @@ public class Reports {
         // Get Capital Cities
         return  capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_CONTINENT, continent, n);
     }
+
     //The top N populated capital cities in a region where N is provided by the user (Report 22)
     public List<CapitalCity> getTopNCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region, int n) {
         // Check if region is valid

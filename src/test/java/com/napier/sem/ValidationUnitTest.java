@@ -70,7 +70,6 @@ public class ValidationUnitTest {
     }
 
 
-
     //UNIT TESTS ISSUE 14: cities in a continent
     @Test
     void test14invalidContinentsReturnsEmpty() {
