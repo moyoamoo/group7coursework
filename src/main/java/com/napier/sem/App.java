@@ -59,7 +59,7 @@ public class App
         List <City> nCitiesInRegion = reports.getNCitiesInRegion(cityConnect, "Eastern Asia", 3);
         reports.displayCityReports(nCitiesInRegion);
 
-                // Capital City Reports
+        // Capital City Reports
         // The top N populated capital cities in the world where N is provided by the user (Report 20)
 
         List <CapitalCity> topNCapitalsWorld = reports.getTopNCapitalsWorld(capitalCityConnect, 3);

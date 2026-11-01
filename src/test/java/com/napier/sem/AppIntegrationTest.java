@@ -1,17 +1,18 @@
 package com.napier.sem;
 
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.TestInstance;
-
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AppIntegrationTest {
 
     static App app;
+    Reports reports = new Reports();
 
     @BeforeAll
     static void init()
@@ -25,6 +26,14 @@ public class AppIntegrationTest {
     static void tearDown()
     {
         app.disconnect();
+    }
+
+
+
+    // Test if print report runs
+    @Test
+    void printReportRunsWithoutError(){
+        app.printReports();
     }
 
     //Report 1: All the countries in the world organised by largest population to smallest
@@ -53,19 +62,6 @@ public class AppIntegrationTest {
         assertEquals("China", result.get(0).getName());
     }
 
-    // Test that the report has the correct columns
-    //@Test
-    //void report1CorrectColumns(){
-        //List<Country> result = app.reports.getAllCountries(app.countryConnect);
-        //assertFalse(result.isEmpty());
-        //for (Country r : result){
-            //assertNotNull(r.getName());
-           // assertNotNull(r.getContinent());
-           // assertNotNull(r.getRegion());
-           // assertTrue(r.getPopulation() >= 0);
-           // assertNotNull(r.getCapital());
-      //  }
-   // }
 
     // Report 2: All the countries in a continent organised by largest population to smallest
 
@@ -341,4 +337,5 @@ public class AppIntegrationTest {
         List<City> result = app.reports.getAllCities(app.cityConnect);
         assertTrue(result.get(0).getName().startsWith("Mumbai"));
     }
+
 }
