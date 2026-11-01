@@ -108,19 +108,20 @@ public class Reports {
     // All the countries in a continent organised by largest population to smallest (Report 2)
     public List<Country> getCountriesByContinent(CountryConnection countryConnect, String continent){
 
+        List<Country> result;
+
         // Check if continent is valid
         Boolean validContinent = userInput.getValidContinent(continent);
 
         // If not return empty array
         if(!validContinent){
-            return new ArrayList<>();
+            result = new ArrayList<>();
+        } else {// Print Report Title
+            System.out.println("All the countries in " + continent + " organised by largest population to smallest");// Run database query to get countries as continents
+            result = countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_CONTINENT, continent);
         }
 
-        // Print Report Title
-        System.out.println("All the countries in " + continent + " organised by largest population to smallest");
-
-        // Run database query to get countries as continents
-        return countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_CONTINENT, continent);
+        return result;
     }
 
     // All the countries in a region organised by largest population to smallest (Report 3)

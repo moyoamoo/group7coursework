@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CapitalCityIntegration {
+public class CapitalCityIntegrationTest {
     static App app;
 
     @BeforeAll
