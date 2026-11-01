@@ -36,22 +36,6 @@ public class Reports {
     };
 
 
-   /** Get copy of reports array
-     *
-     * @return returns copy of reports array
-     */
-    public String[] getReports() {
-        return reports.clone();
-    }
-
-    /** Get reports array length
-     *
-     * @return returns length
-     */
-    public int count() {
-        return reports.length;
-    }
-
     /** Get single report title from array
      *
      * @param reportNumber Number shown to user, not reports index in array
