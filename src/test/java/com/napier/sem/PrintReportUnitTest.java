@@ -10,20 +10,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PrintReportUnitTest {
-    static App app;
+
     static Reports reports;
 
     @BeforeAll
     static void init() {
-        app = new App();
-        app.connect("localhost:33060", 30000);
         reports = new Reports();
     }
 
-    @AfterAll
-    static void tearDown() {
-        app.disconnect();
-    }
 
     // Dummy Country
     private List<Country> countryList(int size)
