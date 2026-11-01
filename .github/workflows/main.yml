@@ -30,10 +30,11 @@ jobs:
         run: mvn -Dtest='!*IntegrationTest' test
 
       - name: CodeCov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./target/site/jacoco
-          flags: Unit Tests
+          flags: unittests
           verbose: true
 
   IntegrationTests:
@@ -66,12 +67,13 @@ jobs:
           docker stop world
           docker rm world
           docker image rm database
-
+          
       - name: CodeCov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./target/site/jacoco
-          flags: Integration Tests
+          flags: unittests
           verbose: true
 
   build:
