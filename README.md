@@ -8,3 +8,4 @@ Releases: [![Releases](https://img.shields.io/github/release/moyoamoo/group7cour
 
 Build: ![workflow](https://github.com/moyoamoo/group7coursework/actions/workflows/main.yml/badge.svg)
 
+Code Coverage: [![codecov](https://codecov.io/gh/moyoamoo/group7coursework/graph/badge.svg?token=TE0ROBE1E6)](https://codecov.io/gh/moyoamoo/group7coursework)
