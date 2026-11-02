@@ -60,8 +60,13 @@ public class App
         reports.displayCityReports(nCitiesInRegion);
 
         // Capital City Reports
-        // The top N populated capital cities in the world where N is provided by the user (Report 20)
 
+        //All the capital cities in a continent organised by largest population to smallest (Report 18)
+        List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
+        reports.displayCapitalCityReports(capitalCitiesByContinent);
+
+        // Capital City Reports
+        // The top N populated capital cities in the world where N is provided by the user (Report 20)
         List <CapitalCity> topNCapitalsWorld = reports.getTopNCapitalsWorld(capitalCityConnect, 3);
         reports.displayCapitalCityReports(topNCapitalsWorld);
 
