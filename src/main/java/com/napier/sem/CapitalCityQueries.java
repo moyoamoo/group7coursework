@@ -11,7 +11,7 @@ public class CapitalCityQueries {
                     "ORDER BY ci.Population DESC";
 
     // The top N populated capital cities in the world where N is provided by the user (Report 20)
-    public static final String TOP_N_CAPITALS_WORLD=
+    public static final String TOP_N_CAPITALS_WORLD =
             "SELECT ci.name, c.Name AS Country, ci.Population " +
             "FROM city ci " +
             "Join country c ON ci.ID = c.Capital "+
