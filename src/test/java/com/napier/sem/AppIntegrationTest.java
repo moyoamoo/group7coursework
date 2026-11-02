@@ -36,7 +36,7 @@ public class AppIntegrationTest {
         app.printReports();
     }
 
-    //Report 1: All the countries in the world organised by largest population to smallest
+    //Report 1: All the countries in the world organised by largest population to smallest (Issue #7)
 
     // Test to see if it returns all countries
     @Test
@@ -63,7 +63,7 @@ public class AppIntegrationTest {
     }
 
 
-    // Report 2: All the countries in a continent organised by largest population to smallest
+    // Report 2: All the countries in a continent organised by largest population to smallest (Issue #8)
 
     // Test that is returns a list of countries
     @Test
@@ -128,7 +128,7 @@ public class AppIntegrationTest {
         }
     }
 
-    //Report 3: All the countries in a region organised by largest population to smallest
+    //Report 3: All the countries in a region organised by largest population to smallest (Issue #9)
 
     //Test that it returns countries
     @Test
@@ -276,7 +276,7 @@ public class AppIntegrationTest {
     // Continent null
     @Test
     void report5ContinentNullReturnsEmpty(){
-        int n = -1;
+        int n = 1;
         List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, null, n);
         assertTrue(result.isEmpty());
     }
@@ -328,11 +328,19 @@ public class AppIntegrationTest {
         assertTrue(result.isEmpty());
     }
 
-    // Test that is continent is empty returns empty array
+    // Test empty region returns empty array
     @Test
     void report6RegionEmptyReturnsEmpty(){
         int n = 1;
         List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "", n);
+        assertTrue(result.isEmpty());
+    }
+
+    // Test null region returns empty array
+    @Test
+    void report6RegionNullReturnsEmpty(){
+        int n = 1;
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, null, n);
         assertTrue(result.isEmpty());
     }
 
