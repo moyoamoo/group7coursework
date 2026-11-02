@@ -268,7 +268,7 @@ public class AppIntegrationTest {
     // Test that is continent is empty returns empty array
     @Test
     void report5ContinentEmptyReturnsEmpty(){
-        int n = -1;
+        int n = 1;
         List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, "", n);
         assertTrue(result.isEmpty());
     }
@@ -278,6 +278,13 @@ public class AppIntegrationTest {
     void report5ContinentNullReturnsEmpty(){
         int n = -1;
         List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, null, n);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void report5InvalidContinentReturnsEmpty(){
+        int n = 1;
+        List<Country> result = app.reports.getNCountriesInContinent(app.countryConnect, "Pluto", n);
         assertTrue(result.isEmpty());
     }
 
@@ -312,6 +319,23 @@ public class AppIntegrationTest {
         List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Caribbean", 1000);
         assertEquals(24, result.size());
     }
+
+    // Test that invalid region returns empty
+    @Test
+    void report6InvalidRegionReturnsEmpty(){
+        int n = 1;
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "Pluto", n);
+        assertTrue(result.isEmpty());
+    }
+
+    // Test that is continent is empty returns empty array
+    @Test
+    void report6RegionEmptyReturnsEmpty(){
+        int n = 1;
+        List<Country> result = app.reports.getNCountriesInRegion(app.countryConnect, "", n);
+        assertTrue(result.isEmpty());
+    }
+
 
     // Report 7: all cities, largest to smallest
     

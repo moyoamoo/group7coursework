@@ -61,8 +61,8 @@ public class CityIntegrationTest {
         }
 
     @Test
-    void report10InvalidCountryReturnsEmpty() {
-            List<City> result = app.reports.getAllCitiesInCountry(app.cityConnect, "XYZ");
+    void report10NullCountryReturnsEmpty() {
+            List<City> result = app.reports.getAllCitiesInCountry(app.cityConnect, null);
             assertNotNull(result);
             assertTrue(result.isEmpty());
         }
