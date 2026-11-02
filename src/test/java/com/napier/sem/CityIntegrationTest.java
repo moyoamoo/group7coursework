@@ -77,4 +77,18 @@ public class CityIntegrationTest {
             assertTrue(c.getPopulation() >= 0 );
         }
     }
+
+    @Test
+    void report10BlankCountryReturnsEmpty(){
+        List<City> result = app.reports.getAllCitiesInCountry(app.cityConnect, "");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void report10InvalidCountryReturnsEmpty(){
+        List<City> result = app.reports.getAllCitiesInCountry(app.cityConnect, "Earthsea");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
 }

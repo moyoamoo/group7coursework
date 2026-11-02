@@ -158,8 +158,7 @@ public class Reports {
         // Print report name
         System.out.println("Top " + n + " populated countries in " + continent);
 
-        // Run database query to get n countries in a  continent
-        // Run database query to get countries as continent
+        // Run database query to get n countries in a continent
         return countryConnect.runCountryQuery(CountryQueries.N_COUNTRIES_BY_CONTINENT, continent, n);
 
     }
