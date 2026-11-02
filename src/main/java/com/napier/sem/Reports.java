@@ -336,4 +336,46 @@ public class Reports {
 
         return connection.run(PopulationReportQueries.BY_COUNTRY, country);
     }
+
+    // Issue #28
+    public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);
+    }
+
+    // Issue #29
+    public List<PopulationReport> getPopulationDistributionByRegion(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_REGION);
+    }
+
+    // Issue #30
+    public List<PopulationReport> getPopulationDistributionByCountry(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
+    }
+
+    // Issue #31
+    public List<PopulationReport> getTotalPopulationByContinent(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_CONTINENT);
+    }
+
+    // Issue #32
+    public List<PopulationReport> getTotalPopulationByRegion(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_REGION);
+    }
+
+    // Issue #33
+    public List<PopulationReport> getTotalPopulationByCountry(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_COUNTRY);
+    }
+
+    // Display population reports
+    public void displayPopulationReports(List<PopulationReport> reports) {
+        if (reports == null || reports.isEmpty()) {
+            System.out.println("No population report data found.");
+            return;
+        }
+
+        for (PopulationReport report : reports) {
+            System.out.println(report);
+        }
+    }
 }

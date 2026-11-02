@@ -73,6 +73,26 @@ public class App
         //The top N populated capital cities in a region where N is provided by the user (Report 22)
         List <CapitalCity> topNCapitalsByRegion = reports.getTopNCapitalsByRegion(capitalCityConnect, "Caribbean", 3);
         reports.displayCapitalCityReports(topNCapitalsByRegion);
+
+        // Population Reports (#28-#33)
+
+        System.out.println("\n#28 Population distribution by continent");
+        reports.displayPopulationReports(reports.getPopulationDistributionByContinent(populationReportConnect));
+
+        System.out.println("\n#29 Population distribution by region");
+        reports.displayPopulationReports(reports.getPopulationDistributionByRegion(populationReportConnect));
+
+        System.out.println("\n#30 Population distribution by country");
+        reports.displayPopulationReports(reports.getPopulationDistributionByCountry(populationReportConnect));
+
+        System.out.println("\n#31 Total population by continent");
+        reports.displayPopulationReports(reports.getTotalPopulationByContinent(populationReportConnect));
+
+        System.out.println("\n#32 Total population by region");
+        reports.displayPopulationReports(reports.getTotalPopulationByRegion(populationReportConnect));
+
+        System.out.println("\n#33 Total population by country");
+        reports.displayPopulationReports(reports.getTotalPopulationByCountry(populationReportConnect));
    }
 
     /** Connect to the MySQL Database
