@@ -222,11 +222,19 @@ public class Reports {
     // All the cities in a country organised by largest population to smallest (Report 10)
     public List<City> getAllCitiesInCountry(CityConnection cityConnect, String country){
 
-
         //Safety check added to prevent crashes on invalid input
-        if (country == null || country.equals("XYZ")) {
+        if (country == null || country.isBlank()) {
             return new ArrayList<>();
         }
+
+        // Check if country is valid
+        Boolean validCountry = userInput.getValidCountry(country);
+
+        // If invalid return empty list
+        if(!validCountry){
+            return  new ArrayList<>();
+        }
+
         // Print report name
         System.out.println("All the cities in " + country + " organised by largest population to smallest");
 
@@ -257,6 +265,14 @@ public class Reports {
     // All the capital cities in a continent organised by largest population to smallest (Report 18)
     public List<CapitalCity> getCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent) {
 
+        // Check if continent is valid
+        Boolean validContinent = userInput.getValidContinent(continent);
+
+        // If not return empty array
+        if(!validContinent){
+            return new ArrayList<>();
+        }
+
         //Print Report Title
         System.out.println("All capital Cities in " + continent + ":");
 
@@ -268,6 +284,11 @@ public class Reports {
 
     // The top N populated capital cities in the world where N is provided by the user (Report 20)
     public List<CapitalCity> getTopNCapitalsWorld(CapitalCityConnection capitalCityConnect, int n) {
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
         // Print Report Title
         System.out.println("Top " + n + " Capital Cities in the World:");
 
@@ -278,7 +299,10 @@ public class Reports {
 
     // The top N populated capital cities in a continent where N is provided by the user (Report 21)
     public List<CapitalCity> getTopNCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent, int n) {
-
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
         // Check if continent is valid
         Boolean validContinent = userInput.getValidContinent(continent);
 
@@ -296,6 +320,11 @@ public class Reports {
 
     //The top N populated capital cities in a region where N is provided by the user (Report 22)
     public List<CapitalCity> getTopNCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region, int n) {
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
         // Check if region is valid
         Boolean validRegion = userInput.getValidRegion(region);
 

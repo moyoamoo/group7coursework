@@ -108,6 +108,7 @@ public class PrintReportUnitTest {
         }
     }
 
+    // Test null country report throws exception
     @Test
     void displayCountryReportsNullThrows()
     {
@@ -148,8 +149,9 @@ public class PrintReportUnitTest {
     }
 
 
+    // Test that city report prints
     @Test
-    void displayCityReportsToStringWorks()
+    void displayCityReportsToString()
     {
         for (City c : cityList(2))
         {
