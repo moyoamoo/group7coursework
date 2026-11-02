@@ -65,8 +65,8 @@ public class App
         List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
         reports.displayCapitalCityReports(capitalCitiesByContinent);
 
-        // Capital City Reports
         // The top N populated capital cities in the world where N is provided by the user (Report 20)
+
         List <CapitalCity> topNCapitalsWorld = reports.getTopNCapitalsWorld(capitalCityConnect, 3);
         reports.displayCapitalCityReports(topNCapitalsWorld);
 
