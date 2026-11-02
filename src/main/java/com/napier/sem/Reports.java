@@ -311,4 +311,29 @@ public class Reports {
        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
 
     }
+    // Population by region (Issue #24)
+    public List<PopulationReport> getPopulationByRegion(
+            PopulationReportConnection connection, String region) {
+
+        if (connection == null || region == null || region.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        if (!userInput.getValidRegion(region)) {
+            return new ArrayList<>();
+        }
+
+        return connection.run(PopulationReportQueries.BY_REGION, region);
+    }
+
+    // Population by country (Issue #25)
+    public List<PopulationReport> getPopulationByCountry(
+            PopulationReportConnection connection, String country) {
+
+        if (connection == null || country == null || country.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        return connection.run(PopulationReportQueries.BY_COUNTRY, country);
+    }
 }
