@@ -37,4 +37,12 @@ public class CapitalCityIntegrationTest {
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
+
+    @Test
+    void test26InvalidNReturnsEmpty() {
+        int n = -1;
+        List<CapitalCity> result = app.reports.getTopNCapitalsByContinent(app.capitalCityConnect, "Europe" , n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
 }
