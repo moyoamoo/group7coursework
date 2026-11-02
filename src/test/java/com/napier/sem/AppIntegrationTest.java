@@ -281,6 +281,7 @@ public class AppIntegrationTest {
         assertTrue(result.isEmpty());
     }
 
+    // Test that invalid continent return empty array
     @Test
     void report5InvalidContinentReturnsEmpty(){
         int n = 1;
