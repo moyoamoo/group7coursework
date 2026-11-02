@@ -9,6 +9,7 @@ public class App
     public CountryConnection countryConnect;
     public CapitalCityConnection capitalCityConnect;
     public CityConnection cityConnect;
+    public PopulationReportConnection populationReportConnect;
     public Reports reports = new Reports();
 
 
@@ -109,6 +110,7 @@ public class App
                 countryConnect = new CountryConnection(con);
                 capitalCityConnect = new CapitalCityConnection(con);
                 cityConnect = new CityConnection(con);
+                populationReportConnect = new PopulationReportConnection(con);
                 System.out.println("Successfully connected");
                 break;
             }
