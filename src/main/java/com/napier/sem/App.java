@@ -59,34 +59,44 @@ public class App
         // All the cities in a continent organised by largest population to smallest (Report 8)
         List <City> allCitiesInContinent = reports.getAllCitiesInContinent(cityConnect, "Oceania");
         reports.displayCityReports(allCitiesInContinent);
+        reports.outputCityReport(allCitiesInContinent, "Report_8.md");
 
         // All the cities in a country organised by largest population to smallest (Report 10)
         List <City> allCitiesInCountry = reports.getAllCitiesInCountry(cityConnect, "France");
         reports.displayCityReports(allCitiesInCountry);
+        reports.outputCityReport(allCitiesInCountry, "Report_10.md");
 
         //The top N populated cities in a region where N is provided by the user (Report 14)
         List <City> nCitiesInRegion = reports.getNCitiesInRegion(cityConnect, "Eastern Asia", 3);
         reports.displayCityReports(nCitiesInRegion);
+        reports.outputCityReport(nCitiesInRegion, "Report_14.md");
 
         // Capital City Reports
 
         //All the capital cities in a continent organised by largest population to smallest (Report 18)
         List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
         reports.displayCapitalCityReports(capitalCitiesByContinent);
+        reports.outputCapitalCityReport(capitalCitiesByContinent, "Report_18.md");
 
         // Capital City Reports
         // The top N populated capital cities in the world where N is provided by the user (Report 20)
         List <CapitalCity> topNCapitalsWorld = reports.getTopNCapitalsWorld(capitalCityConnect, 3);
         reports.displayCapitalCityReports(topNCapitalsWorld);
+        reports.outputCapitalCityReport(topNCapitalsWorld, "Report_20.md");
+
 
         //The top N populated capital cities in a continent where N is provided by the user (Report 21)
         List <CapitalCity> topNCapitalsByContinent = reports.getTopNCapitalsByContinent(capitalCityConnect, "Africa", 3);
         reports.displayCapitalCityReports(topNCapitalsByContinent);
+        reports.outputCapitalCityReport(topNCapitalsByContinent, "Report_21.md");
+
 
         //The top N populated capital cities in a region where N is provided by the user (Report 22)
         List <CapitalCity> topNCapitalsByRegion = reports.getTopNCapitalsByRegion(capitalCityConnect, "Caribbean", 3);
         reports.displayCapitalCityReports(topNCapitalsByRegion);
-   }
+        reports.outputCapitalCityReport(topNCapitalsByRegion, "Report_22.md");
+
+    }
 
     /** Connect to the MySQL Database
      *
