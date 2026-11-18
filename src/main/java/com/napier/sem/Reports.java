@@ -1,5 +1,9 @@
 package com.napier.sem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +81,135 @@ public class Reports {
             System.out.println(c.toString());
         }
     }
+    /**
+     * Outputs City Report as Markdown file in folder
+     *
+     * @param cities list of cities
+     * @param filename name of Markdown file
+     */
+    public void outputCityReport(List<City> cities, String filename){
+
+        // If countries is null, return
+        if (cities == null){
+            System.out.println("No Cities");
+            return;
+        }
+
+        // If the file name does end with .md, add
+        if (!filename.endsWith(".md")){
+            filename += ".md";
+        }
+
+        //New String builder
+        StringBuilder sb = new StringBuilder();
+
+        // Print header
+        sb.append("| Name | Country | District | Population | \\r\n\"");
+
+        // Loop the through countries in the list and add to string builder
+        for (City c : cities){
+            if(c == null) continue;
+            sb.append("| " + c.getName() + " | " + c.getCountry() +  " | " + c.getDistrict() + " | " + c.getPopulation() + " |\r\n");
+        }
+        try {
+            // Create new folder
+            new File("./reports/").mkdir();
+            // Create new file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            // Add
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Outputs Country Report as Markdown file in folder
+     *
+     * @param countries list of countries
+     * @param filename name of Markdown file
+     */
+    public void outputCountryReport(List<Country> countries, String filename){
+
+        // If countries is null, return
+        if (countries == null){
+            System.out.println("No Countries");
+            return;
+        }
+
+        // If the file name does end with .md, add
+        if (!filename.endsWith(".md")){
+            filename += ".md";
+        }
+
+        //New String builder
+        StringBuilder sb = new StringBuilder();
+
+        // Print header
+        sb.append("| Code | Name | Continent | Region | Population | Capital | \\r\n\"");
+
+        // Loop the through countries in the list and add to string builder
+        for (Country c : countries){
+            if(c == null) continue;
+            sb.append("| " + c.getCode() + " | " + c.getName() +  " | " + c.getContinent() + " | " + c.getRegion() + " | " + c.getPopulation() + " |\r\n");
+        }
+        try {
+            // Create new folder
+            new File("./reports/").mkdir();
+            // Create new file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            // Add
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Outputs Capital Cities Report as Markdown file in folder
+     *
+     * @param capitalCities list of countries
+     * @param filename name of Markdown file
+     */
+    public void outputCapitalCityReport(List<CapitalCity> capitalCities, String filename){
+
+        // If countries is null, return
+        if (capitalCities == null){
+            System.out.println("No Capital Cities");
+            return;
+        }
+
+        // If the file name does end with .md, add
+        if (!filename.endsWith(".md")){
+            filename += ".md";
+        }
+
+        //New String builder
+        StringBuilder sb = new StringBuilder();
+
+        // Print header
+        sb.append("| Name | Country | Population | \\r\n\"");
+
+        // Loop the through countries in the list and add to string builder
+        for (CapitalCity c : capitalCities){
+            if(c == null) continue;
+            sb.append("| " + c.getName() + " | " + c.getCountry() +  c.getPopulation() + " |\r\n");
+        }
+        try {
+            // Create new folder
+            new File("./reports/").mkdir();
+            // Create new file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            // Add
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     //Country Reports

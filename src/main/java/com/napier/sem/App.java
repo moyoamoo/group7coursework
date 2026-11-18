@@ -20,32 +20,41 @@ public class App
         // All the countries in the world organised by largest population to smallest (Report 1)
         List<Country> allCountries = reports.getAllCountries(countryConnect);
         reports.displayCountryReports(allCountries);
+        reports.outputCountryReport(allCountries, "Report_1.md");
 
         // All the countries in a continent organised by largest population to smallest (Report 2)
         List<Country> countriesByContinent = reports.getCountriesByContinent(countryConnect,"South America");
         reports.displayCountryReports(countriesByContinent);
+        reports.outputCountryReport(countriesByContinent, "Report_2.md");
 
         // All the countries in a region organised by largest population to smallest (Report 3)
         List<Country> countriesByRegion = reports.getCountriesByRegion(countryConnect, "Polynesia");
         reports.displayCountryReports(countriesByRegion);
+        reports.outputCountryReport(countriesByRegion, "Report_3.md");
+
 
         // The top N populated countries in the world (Report 4)
         List<Country> nCountriesInWorld = reports.getNCountriesInWorld(countryConnect, 3);
         reports.displayCountryReports(nCountriesInWorld);
+        reports.outputCountryReport(nCountriesInWorld, "Report_4.md");
+
 
         // The top N populated countries in a continent (Report 5)
         List<Country> nCountriesInContinent = reports.getNCountriesInContinent(countryConnect, "Europe", 3);
         reports.displayCountryReports(nCountriesInContinent);
+        reports.outputCountryReport(nCountriesInContinent, "Report_5.md");
 
         // The top N populated countries in a region (Report 6)
         List<Country> nCountriesInRegion = reports.getNCountriesInRegion(countryConnect, "Nordic Countries", 3);
         reports.displayCountryReports(nCountriesInRegion);
+        reports.outputCountryReport(nCountriesInRegion, "Report_6.md");
 
 
         // City Report
         // All the cities in the world organised by largest population to smallest (Report 7)
         List <City> allCities = reports.getAllCities(cityConnect);
         reports.displayCityReports(allCities);
+        reports.outputCityReport(allCities, "Report_7.md");
 
         // All the cities in a continent organised by largest population to smallest (Report 8)
         List <City> allCitiesInContinent = reports.getAllCitiesInContinent(cityConnect, "Oceania");
