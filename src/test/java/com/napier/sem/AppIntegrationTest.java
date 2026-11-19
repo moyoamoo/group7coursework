@@ -29,7 +29,6 @@ public class AppIntegrationTest {
     }
 
 
-
     // Test if print report runs
     @Test
     void printReportRunsWithoutError(){

@@ -97,10 +97,7 @@ public class App
 
         // Capital City Reports
 
-        //All the capital cities in a continent organised by largest population to smallest (Report 18)
-        List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
-        reports.displayCapitalCityReports(capitalCitiesByContinent);
-        reports.outputCapitalCityReport(capitalCitiesByContinent, "Report_18.md");
+
 
         // Issue 21
         // The top N populated cities in a country where N is provided by the user (Report 15)
@@ -113,9 +110,10 @@ public class App
         // All the capital cities in the world organised by largest population to smallest (Report 17)
 
         // Issue 24
-        // All the capital cities in a continent organised by largest population to smallest (Report 18)
+        //All the capital cities in a continent organised by largest population to smallest (Report 18)
         List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
         reports.displayCapitalCityReports(capitalCitiesByContinent);
+        reports.outputCapitalCityReport(capitalCitiesByContinent, "Report_18.md");
 
         // All the capital cities in a region organised by largest to smallest (Report 19)
 
@@ -139,7 +137,6 @@ public class App
         reports.displayCapitalCityReports(topNCapitalsByRegion);
         reports.outputCapitalCityReport(topNCapitalsByRegion, "Report_22.md");
 
-    }
 
         // Population Reports
 
