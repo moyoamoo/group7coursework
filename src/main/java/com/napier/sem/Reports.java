@@ -104,7 +104,8 @@ public class Reports {
         StringBuilder sb = new StringBuilder();
 
         // Print header
-        sb.append("| Name | Country | District | Population | \r\n\"");
+        sb.append("| Name | Country | District | Population | \r\n");
+        sb.append("| --- | --- | --- | --- |\r\n");
 
         // Loop the through countries in the list and add to string builder
         for (City c : cities){
@@ -147,7 +148,8 @@ public class Reports {
         StringBuilder sb = new StringBuilder();
 
         // Print header
-        sb.append("| Code | Name | Continent | Region | Population | Capital | \r\n\"");
+        sb.append("| Code | Name | Continent | Region | Population | Capital | \r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- |\r\n");
 
         // Loop the through countries in the list and add to string builder
         for (Country c : countries){
@@ -190,7 +192,8 @@ public class Reports {
         StringBuilder sb = new StringBuilder();
 
         // Print header
-        sb.append("| Name | Country | Population |\r\n\"");
+        sb.append("| Name | Country | Population |\r\n");
+        sb.append("| --- | --- | --- |\r\n");
 
         // Loop the through countries in the list and add to string builder
         for (CapitalCity c : capitalCities){
