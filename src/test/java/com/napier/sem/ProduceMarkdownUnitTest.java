@@ -54,7 +54,7 @@ public class ProduceMarkdownUnitTest {
         return list;
     }
 
-    // Test that a report is created
+    // Test that a country report is created
     @Test
     void outputCountryReportProducesMarkdownFile(){
         List<Country> countries = countryList(10);
@@ -149,7 +149,6 @@ public class ProduceMarkdownUnitTest {
         } finally {
             file.delete();
         }
-
     }
 
     // Test that a report is created

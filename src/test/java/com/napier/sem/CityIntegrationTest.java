@@ -52,6 +52,44 @@ public class CityIntegrationTest {
             assertTrue(c.getPopulation() >= 0);
         }
     }
+
+    /*
+    Report 9
+    Issue 17
+    All the cities in a region organised by largest population to smallest
+    */
+
+    @Test
+    void report9ReturnCitiesInRegion() {
+        List<City> result = app.reports.getAllCitiesInRegion(app.cityConnect, "Southern and Central Asia");
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    void report9InvalidRegionReturnsEmpty() {
+        List<City> result = app.reports.getAllCitiesInRegion(app.cityConnect, "Narnia");
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void report9NullRegionReturnsEmpty() {
+        List<City> result = app.reports.getAllCitiesInRegion(app.cityConnect, null);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void report9CorrectColumns() {
+        List<City> result = app.reports.getAllCitiesInRegion(app.cityConnect, "North America");
+        assertFalse(result.isEmpty());
+        for (City c : result) {
+            assertNotNull(c.getName());
+            assertNotNull(c.getCountry());
+            assertNotNull(c.getDistrict());
+            assertTrue(c.getPopulation() >= 0);
+        }
+    }
+
+
     //REPORT 10/ISSUE 15: ALL THE CITIES IN A COUNTRY
 
     @Test

@@ -374,8 +374,26 @@ public class Reports {
         // Print report name
         System.out.println("All the cities in " + continent + "organised by largest population to smallest");
 
-        // Run database query to get countries as region
+        // Run database query to get countries in continent
         return cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_CONTINENT, continent);
+    }
+
+    // Issue 17
+    // All the cities in a region organised by largest population to smallest (Report 9)
+    public List<City> getAllCitiesInRegion(CityConnection cityConnect, String region){
+        // Check if region is valid
+        Boolean validRegion = userInput.getValidRegion(region);
+
+        // If not return empty array
+        if(!validRegion){
+            return new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println("All the cities in " + region + "organised by largest population to smallest");
+
+        // Run database query to get countries in region
+        return cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_REGION, region);
     }
 
     // Issue 15
@@ -419,7 +437,7 @@ public class Reports {
         System.out.println("All the cities in " + region + " organised by largest population to smallest");
 
         // Run database query to get cities by country
-        return cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_REGION, region, n);
+        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_REGION, region, n);
 
     }
     // Capital City Reports

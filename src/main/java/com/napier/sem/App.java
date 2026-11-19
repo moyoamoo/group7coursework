@@ -73,6 +73,8 @@ public class App
 
         //Issue 17
         //All the cities in a region organised by largest population to smallest (Report 9)
+        List<City> allCitiesInRegion = reports.getAllCitiesInRegion(cityConnect, "Polynesia");
+        reports.displayCityReports(allCitiesInRegion);
 
         //Issue 15
         // All the cities in a country organised by largest population to smallest (Report 10)
