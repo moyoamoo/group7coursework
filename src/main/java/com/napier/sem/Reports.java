@@ -78,9 +78,25 @@ public class Reports {
         }
     }
 
+    /** Display Population reports
+     *
+     * @param reports list for population reports
+     */
+    public void displayPopulationReports(List<PopulationReport> reports) {
+        if (reports == null || reports.isEmpty()) {
+            System.out.println("No population report data found.");
+            return;
+        }
+
+        for (PopulationReport report : reports) {
+            System.out.println(report);
+        }
+    }
+
 
     //Country Reports
 
+    // Issue 7
     // All the countries in the world organised by largest population to smallest (Report 1)
     public List<Country> getAllCountries(CountryConnection countryConnect){
         //Print Report Title
@@ -89,6 +105,7 @@ public class Reports {
         return countryConnect.runCountryQuery(CountryQueries.ALL_COUNTRIES);
     }
 
+    // Issue 8
     // All the countries in a continent organised by largest population to smallest (Report 2)
     public List<Country> getCountriesByContinent(CountryConnection countryConnect, String continent){
 
@@ -108,6 +125,7 @@ public class Reports {
         return result;
     }
 
+    // Issue 9
     // All the countries in a region organised by largest population to smallest (Report 3)
     public List<Country> getCountriesByRegion(CountryConnection countryConnect, String region){
         // Check if region is valid
@@ -124,6 +142,7 @@ public class Reports {
         return countryConnect.runCountryQuery(CountryQueries.COUNTRIES_BY_REGION, region);
     }
 
+    //Issue 10
     //The top N populated countries in the world (Report 4)
     public List<Country> getNCountriesInWorld(CountryConnection countryConnect, int n){
 
@@ -140,7 +159,8 @@ public class Reports {
 
     }
 
-    //The top N populated countries in a continent (Report 5)
+    //Issue 11
+    // The top N populated countries in a continent (Report 5)
     public List<Country> getNCountriesInContinent(CountryConnection countryConnect, String continent, int n){
 
         // Check if n is greater than 1 and continent is not blank/null
@@ -165,6 +185,7 @@ public class Reports {
 
     }
 
+    // Issue 12
     //The top N populated countries in a region (Report 6)
     public List<Country> getNCountriesInRegion(CountryConnection countryConnect, String region, int n){
 
@@ -192,6 +213,7 @@ public class Reports {
 
     //City Reports
 
+    // Issue 13
     // All the cities in the world organised by largest population to smallest. (Report 7)
     public List<City> getAllCities(CityConnection cityConnect) {
 
@@ -202,6 +224,7 @@ public class Reports {
 
     }
 
+    // Issue 14
     // All the cities in a continent organised by largest population to smallest (Report 8)
     public List<City> getAllCitiesInContinent(CityConnection cityConnect, String continent){
 
@@ -220,12 +243,12 @@ public class Reports {
         return cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_CONTINENT, continent);
     }
 
+    // Issue 15
     // All the cities in a country organised by largest population to smallest (Report 10)
     public List<City> getAllCitiesInCountry(CityConnection cityConnect, String country){
 
-
         //Safety check added to prevent crashes on invalid input
-        if (country == null || country.equals("XYZ")) {
+        if (country == null) {
             return new ArrayList<>();
         }
         // Print report name
@@ -236,6 +259,7 @@ public class Reports {
 
     }
 
+    // Issue 20
     //The top N populated cities in a region where N is provided by the user (Report 14)
     public List<City> getNCitiesInRegion(CityConnection cityConnect, String region, int n){
         // Check if region is valid
@@ -255,9 +279,20 @@ public class Reports {
     }
     // Capital City Reports
 
+
+    // Capital City Reports
+
+    // Issue 24
     // All the capital cities in a continent organised by largest population to smallest (Report 18)
     public List<CapitalCity> getCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent) {
 
+        // Check if continent is valid
+        Boolean validContinent = userInput.getValidContinent(continent);
+
+        // If not return empty array
+        if(!validContinent){
+            return new ArrayList<>();
+        }
         //Print Report Title
         System.out.println("All capital Cities in " + continent + ":");
 
@@ -266,7 +301,7 @@ public class Reports {
 
     }
 
-
+    // Issue 27
     // The top N populated capital cities in the world where N is provided by the user (Report 20)
     public List<CapitalCity> getTopNCapitalsWorld(CapitalCityConnection capitalCityConnect, int n) {
         // Print Report Title
@@ -277,6 +312,7 @@ public class Reports {
 
     }
 
+    // Issue 26
     // The top N populated capital cities in a continent where N is provided by the user (Report 21)
     public List<CapitalCity> getTopNCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent, int n) {
 
@@ -295,6 +331,7 @@ public class Reports {
         return  capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_CONTINENT, continent, n);
     }
 
+    // Issue 25
     //The top N populated capital cities in a region where N is provided by the user (Report 22)
     public List<CapitalCity> getTopNCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region, int n) {
         // Check if region is valid
@@ -311,7 +348,15 @@ public class Reports {
        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
 
     }
-    // Population by region (Issue #24)
+
+    // Issue 31
+    // The population of a country (Report 27)
+    public List<PopulationReport> getTotalPopulationByContinent(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_CONTINENT);
+    }
+
+    // Issue 32
+    // Population by region (Report 28)
     public List<PopulationReport> getPopulationByRegion(
             PopulationReportConnection connection, String region) {
 
@@ -326,6 +371,7 @@ public class Reports {
         return connection.run(PopulationReportQueries.BY_REGION, region);
     }
 
+    // Issue 33
     // Population by country (Issue #25)
     public List<PopulationReport> getPopulationByCountry(
             PopulationReportConnection connection, String country) {
@@ -352,11 +398,6 @@ public class Reports {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
     }
 
-    // Issue #31
-    public List<PopulationReport> getTotalPopulationByContinent(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_CONTINENT);
-    }
-
     // Issue #32
     public List<PopulationReport> getTotalPopulationByRegion(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_REGION);
@@ -367,15 +408,4 @@ public class Reports {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_COUNTRY);
     }
 
-    // Display population reports
-    public void displayPopulationReports(List<PopulationReport> reports) {
-        if (reports == null || reports.isEmpty()) {
-            System.out.println("No population report data found.");
-            return;
-        }
-
-        for (PopulationReport report : reports) {
-            System.out.println(report);
-        }
-    }
 }

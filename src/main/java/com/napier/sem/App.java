@@ -93,7 +93,8 @@ public class App
 
         // Issue 24
         // All the capital cities in a continent organised by largest population to smallest (Report 18)
-
+        List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
+        reports.displayCapitalCityReports(capitalCitiesByContinent);
 
         // All the capital cities in a region organised by largest to smallest (Report 19)
 
