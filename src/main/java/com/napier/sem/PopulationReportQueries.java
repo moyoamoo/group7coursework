@@ -41,6 +41,7 @@ public final class PopulationReportQueries {
             "SELECT c.Name AS AreaName, c.Population AS TotalPopulation, " +
             "COALESCE(cp.CityPopulation, 0) AS CityPopulation " + CITY_POPULATION_JOIN +
             "WHERE c.Region = ? ORDER BY c.Name";
+
     public static final String BY_COUNTRY =
             "SELECT c.Name AS AreaName, c.Population AS TotalPopulation, " +
             "COALESCE(cp.CityPopulation, 0) AS CityPopulation " + CITY_POPULATION_JOIN +
