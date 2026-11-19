@@ -133,7 +133,7 @@ public class ProduceMarkdownUnitTest {
             System.setOut(originalOut);   // always restore, or later tests lose their output
         }
 
-        assertTrue(output.toString().contains("No Countries"));
+        assertTrue(output.toString().contains("No Cities"));
     }
 
     // Test that a report is created if .md is not added
@@ -182,7 +182,7 @@ public class ProduceMarkdownUnitTest {
             System.setOut(originalOut);   // always restore, or later tests lose their output
         }
 
-        assertTrue(output.toString().contains("No Countries"));
+        assertTrue(output.toString().contains("No Capital Cities"));
     }
 
     // Test that a report is created if .md is not added

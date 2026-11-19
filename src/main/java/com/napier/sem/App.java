@@ -215,7 +215,7 @@ public class App
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
 
-                // connection
+                // Database connections
                 countryConnect = new CountryConnection(con);
                 capitalCityConnect = new CapitalCityConnection(con);
                 cityConnect = new CityConnection(con);
