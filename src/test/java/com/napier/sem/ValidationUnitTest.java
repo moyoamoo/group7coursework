@@ -127,6 +127,66 @@ public class ValidationUnitTest {
         assertTrue(result.isEmpty(), "Should return empty list for invalid country");
     }
 
+    /*
+        Issue 18
+        Report 12
+        The top N populated cities in the world where N is provided by the user
+     */
+
+    // Test that invalid n return empty list
+    @Test
+    void report12InvalidNReturnEmpty(){
+        int n = -1;
+        List<City> result = reports.getNCitiesInWorld(dummyCityConnect, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    /*
+        Issue 19
+        Report 13
+        The top N populated cities in a continent where N is provided by the user
+     */
+
+    // Test that invalid n return empty list
+    @Test
+    void report13InvalidNReturnEmpty(){
+        int n = -1;
+        String continent = "South America";
+        List<City> result = reports.getNCitiesInContinent(dummyCityConnect, continent, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    // Test that null continent return empty list
+    @Test
+    void report13NullContinentReturnsEmpty(){
+        int n = -1;
+        String continent = null;
+        List<City> result = reports.getNCitiesInContinent(dummyCityConnect, continent, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null continent");
+
+    }
+
+    // Test that blank continent return empty list
+    @Test
+    void report13BlankContinentReturnsEmpty(){
+        int n = -1;
+        String continent = "";
+        List<City> result = reports.getNCitiesInContinent(dummyCityConnect, continent, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null continent");
+    }
+
+    // Test that invalid continent return empty list
+    @Test
+    void report13InvalidContinentReturnsEmpty(){
+        int n = -1;
+        String continent = "Narnia";
+        List<City> result = reports.getNCitiesInContinent(dummyCityConnect, continent, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null continent");
+    }
+
     //UNTI TESTS ISSUE 26: Top N capitals in a continent
     @Test
     void test26InvalidContinentReturnsEmpty() {

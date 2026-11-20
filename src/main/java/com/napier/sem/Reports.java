@@ -422,6 +422,72 @@ public class Reports {
 
     }
 
+    /*
+        Issue 16
+        Report 11
+        All the cities in a district organised by largest population to smallest
+     */
+    public List<City> getAllCitiesInDistrict(CityConnection cityConnect, String district){
+
+        //Safety check added to prevent crashes on invalid input
+        if (district == null || district.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println("All the cities in " + district + " organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        return cityConnect.runCityQuery(CityQueries.ALL_CITIES_IN_DISTRICT, district);
+
+    }
+
+    /*
+    Issue 18
+    Report 12
+    The top N populated cities in the world where N is provided by the user
+    */
+    public List<City> getNCitiesInWorld(CityConnection cityConnect, int n){
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println(n + " cities in the world organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_WORLD, n);
+
+    }
+
+    /*
+    Issue 19
+    Report 13
+    The top N populated cities in a continent where N is provided by the user
+    */
+    public List<City> getNCitiesInContinent(CityConnection cityConnect, String continent, int n){
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
+        // Check if continent is valid
+        Boolean validContinent = userInput.getValidContinent(continent);
+
+        // If not return empty array
+        if(!validContinent){
+            return new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println(n + " cities in " + n + " organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_CONTINENT, n);
+
+    }
+
     // Issue 20
     //The top N populated cities in a region where N is provided by the user (Report 14)
     public List<City> getNCitiesInRegion(CityConnection cityConnect, String region, int n){
@@ -433,8 +499,13 @@ public class Reports {
             return new ArrayList<>();
         }
 
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
         // Print report name
-        System.out.println("All the cities in " + region + " organised by largest population to smallest");
+        System.out.println(n + " cities in " + region + " organised by largest population to smallest");
 
         // Run database query to get cities by country
         return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_REGION, region, n);

@@ -84,12 +84,18 @@ public class App
 
         //Issue 16
         //All the cities in a district organised by largest population to smallest (Report 11)
+        List <City> allCitiesInDistrict = reports.getAllCitiesInCountry(cityConnect, "Baltic Countries");
+        reports.displayCityReports(allCitiesInDistrict);
 
         // Issue 18
         //All the cities in the world organised by largest population to smallest (Report 12)
+        List <City> nCitiesInWorld = reports.getNCitiesInWorld(cityConnect, 10);
+        reports.displayCityReports(nCitiesInWorld);
 
         //Issue 19
         //The top N populated cities in a continent where N is provided by the user (Report 13)
+        List <City> nCitiesInContinent = reports.getNCitiesInContinent(cityConnect, "South America", 5);
+        reports.displayCityReports(nCitiesInContinent);
 
         //Issue 20
         //The top N populated cities in a region where N is provided by the user (Report 14)
