@@ -22,7 +22,48 @@ public class CapitalCityIntegrationTest {
         app.disconnect();
     }
 
-    //ISSUE 26/REPORT 26 : TOP N CAPITALS IN A CONTINENT
+    //ISSUE 24/ REPORT 18: ALL CAPITAL CITIES IN A CONTINENT
+    @Test
+    void test24ReturnsCapitalsInContinent() {
+        List<CapitalCity> result = app.reports.getCapitalsByContinent(app.capitalCityConnect, "Europe");
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
+    void test24InvalidContinentReturnsEmpty(){
+        List<CapitalCity> result = app.reports.getCapitalsByContinent(app.capitalCityConnect, "Narnia");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void test24NullContinentReturnsEmpty(){
+        List<CapitalCity> result = app.reports.getCapitalsByContinent(app.capitalCityConnect, null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+
+    @Test
+    void test24OrderedByPopDesc() {
+        List<CapitalCity> result = app.reports.getCapitalsByContinent(app.capitalCityConnect, "Europe");
+        assertFalse(result.isEmpty());
+        for (int i = 1; i < result.size(); i++){
+            assertTrue(result.get(i - 1).getPopulation() >= result.get(i).getPopulation());
+        }
+    }
+        @Test
+    void test24CorrectColumn() {
+        List<CapitalCity> result = app.reports.getCapitalsByContinent(app.capitalCityConnect, "Europe");
+        assertFalse(result.isEmpty());
+        for (CapitalCity c : result){
+            assertNotNull(c.getName());
+            assertNotNull(c.getName());
+            assertTrue(c.getPopulation() >= 0);
+        }
+    }
+
+        //ISSUE 26/REPORT 21 : TOP N CAPITALS IN A CONTINENT
 
     @Test
     void test26TopNCapitalsReturnsData() {
