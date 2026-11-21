@@ -326,12 +326,29 @@ public class ValidationUnitTest {
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for null district");
     }
+    //UNIT TETS ISSUE 24: All capital  cities in  a continent
+    @Test
+    void test24InvalidContinentReturnsEmpty() {
+        List<CapitalCity> result = reports.getCapitalsByContinent(dummyCapitalConnection, "Narnia");
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
+    }
 
+    @Test
+    void test24NullContinentReturnsEmpty(){
+        List<CapitalCity> result = reports.getCapitalsByContinent(dummyCapitalConnection, null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return an empty list for null continent");
+    }
 
+    @Test
+    void test24BlankContinentReturnsEmpty() {
+        List<CapitalCity> result = reports.getCapitalsByContinent(dummyCapitalConnection, "");
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for blank continent");
+    }
 
-
-
-    //UNTI TESTS ISSUE 26: Top N capitals in a continent
+    //UNIT TESTS ISSUE 26: Top N capitals in a continent
     @Test
     void test26InvalidContinentReturnsEmpty() {
         List<CapitalCity> result = reports.getTopNCapitalsByContinent(dummyCapitalConnection, "Narnia", 3);
