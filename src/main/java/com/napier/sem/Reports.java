@@ -481,10 +481,10 @@ public class Reports {
         }
 
         // Print report name
-        System.out.println(n + " cities in " + n + " organised by largest population to smallest");
+        System.out.println(n + " cities in " + continent + " organised by largest population to smallest");
 
         // Run database query to get cities by country
-        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_CONTINENT, n);
+        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_CONTINENT, continent, n);
 
     }
 
@@ -511,6 +511,61 @@ public class Reports {
         return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_REGION, region, n);
 
     }
+
+    /*
+    Issue 21
+    Report 15
+    The top N populated cities in a country where N is provided by the user
+    */
+    public List<City> getNCitiesInCountry(CityConnection cityConnect, String country, int n){
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
+        //Safety check added to prevent crashes on invalid input
+        if (country == null || country.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Check if country is valid
+        Boolean validCountry = userInput.getValidCountry(country);
+
+        // If invalid return empty list
+        if(!validCountry){
+            return  new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println(n + " cities in " + country + " organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_COUNTRY, country, n);
+    }
+
+    /*
+    Issue 22
+    Report 16
+    The top N populated cities in a district where N is provided by the user
+    */
+    public List<City> getNCitiesInDistrict(CityConnection cityConnect, String district, int n){
+        // Check if n is greater than 1
+        if (n < 1){
+            return new ArrayList<>();
+        }
+
+        //Safety check added to prevent crashes on invalid input
+        if (district == null || district.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print report name
+        System.out.println(n + " cities in " + district + " organised by largest population to smallest");
+
+        // Run database query to get cities by country
+        return cityConnect.runCityQuery(CityQueries.N_CITIES_IN_DISTRICT, district, n);
+    }
+
     // Capital City Reports
 
     // Issue 24

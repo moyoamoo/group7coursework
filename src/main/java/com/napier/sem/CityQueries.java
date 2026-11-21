@@ -40,7 +40,7 @@ public class CityQueries {
             "SELECT ci.Name, c.Name AS Country, ci.District, ci.Population " +
                     "FROM  city ci " +
                     "JOIN country c ON ci.CountryCode = c.Code " +
-                    "WHERE c.DISTRICT = ? " +
+                    "WHERE ci.District = ? " +
                     "ORDER BY ci.Population DESC";
 
 
@@ -70,4 +70,21 @@ public class CityQueries {
                     "ORDER BY ci.Population DESC " +
                     "LIMIT ?";
 
+    // The top N populated cities in a country where N is provided by the user (Report 15)
+    public static final String N_CITIES_IN_COUNTRY =
+            "SELECT ci.Name, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM  city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE c.Name = ? " +
+                    "ORDER BY ci.Population DESC " +
+                    "LIMIT ?";
+
+    // The top N populated cities in a district where N is provided by the user (Report 16)
+    public static final String N_CITIES_IN_DISTRICT =
+            "SELECT ci.Name, c.Name AS Country, ci.District, ci.Population " +
+                    "FROM  city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE ci.District = ? " +
+                    "ORDER BY ci.Population DESC " +
+                    "LIMIT ?";
 }

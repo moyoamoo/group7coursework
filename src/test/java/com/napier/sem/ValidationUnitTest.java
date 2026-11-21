@@ -141,7 +141,8 @@ public class ValidationUnitTest {
         assertTrue(result.isEmpty(), "Should return empty list for invalid n");
     }
 
-    /*
+
+      /*
         Issue 19
         Report 13
         The top N populated cities in a continent where N is provided by the user
@@ -186,6 +187,149 @@ public class ValidationUnitTest {
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for null continent");
     }
+
+    /*
+        Issue 20
+        Report 14
+        The top N populated cities in a region where N is provided by the user
+     */
+
+    // Test that invalid n return empty list
+    @Test
+    void report14InvalidNReturnEmpty(){
+        int n = -1;
+        String region = "Nordic Countries";
+        List<City> result = reports.getNCitiesInRegion(dummyCityConnect, region, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    // Test that null region return empty list
+    @Test
+    void report14NullRegionReturnsEmpty(){
+        int n = -1;
+        String region = null;
+        List<City> result = reports.getNCitiesInRegion(dummyCityConnect, region, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null region");
+
+    }
+
+    // Test that blank region return empty list
+    @Test
+    void report14BlankRegionReturnsEmpty(){
+        int n = -1;
+        String region = "";
+        List<City> result = reports.getNCitiesInRegion(dummyCityConnect, region, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null region");
+    }
+
+    // Test that invalid region return empty list
+    @Test
+    void report14InvalidRegionReturnsEmpty(){
+        int n = -1;
+        String region = "Narnia";
+        List<City> result = reports.getNCitiesInRegion(dummyCityConnect, region, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null region");
+    }
+
+
+    /*
+        Issue 21
+        Report 15
+        The top N populated cities in a country where N is provided by the user.
+     */
+
+    // Test that invalid n return empty list
+    @Test
+    void report15InvalidNReturnEmpty(){
+        int n = -1;
+        String country = "France";
+        List<City> result = reports.getNCitiesInCountry(dummyCityConnect, country, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    // Test that null country return empty list
+    @Test
+    void report15NullCountryReturnsEmpty(){
+        int n = -1;
+        String country = null;
+        List<City> result = reports.getNCitiesInCountry(dummyCityConnect, country, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null country");
+
+    }
+
+    // Test that blank country return empty list
+    @Test
+    void report15BlankCountryReturnsEmpty(){
+        int n = -1;
+        String country = "";
+        List<City> result = reports.getNCitiesInCountry(dummyCityConnect, country, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null country");
+    }
+
+    // Test that invalid country return empty list
+    @Test
+    void report15InvalidCountryReturnsEmpty(){
+        int n = -1;
+        String country = "Narnia";
+        List<City> result = reports.getNCitiesInCountry(dummyCityConnect, country, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null country");
+    }
+
+     /*
+        Issue 22
+        Report 16
+        The top N populated cities in a district where N is provided by the user.
+     */
+
+    // Test that invalid n return empty list
+    @Test
+    void report16InvalidNReturnEmpty(){
+        int n = -1;
+        String district = "California";
+        List<City> result = reports.getNCitiesInDistrict(dummyCityConnect, district, n);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid n");
+    }
+
+    // Test that null district return empty list
+    @Test
+    void report16NullDistrictReturnsEmpty(){
+        int n = -1;
+        String district = null;
+        List<City> result = reports.getNCitiesInDistrict(dummyCityConnect, district, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null district");
+
+    }
+
+    // Test that blank district return empty list
+    @Test
+    void report15BlankDistrictReturnsEmpty(){
+        int n = -1;
+        String district = "";
+        List<City> result = reports.getNCitiesInDistrict(dummyCityConnect, district, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null district");
+    }
+
+    // Test that invalid district return empty list
+    @Test
+    void report15InvalidDistrictReturnsEmpty(){
+        int n = -1;
+        String district = "Narnia";
+        List<City> result = reports.getNCitiesInDistrict(dummyCityConnect, district, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null district");
+    }
+
+
+
+
 
     //UNTI TESTS ISSUE 26: Top N capitals in a continent
     @Test

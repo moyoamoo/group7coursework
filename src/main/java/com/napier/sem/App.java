@@ -103,16 +103,16 @@ public class App
         reports.displayCityReports(nCitiesInRegion);
         reports.outputCityReport(nCitiesInRegion, "Report_14.md");
 
-        // Capital City Reports
-
-
 
         // Issue 21
         // The top N populated cities in a country where N is provided by the user (Report 15)
+        List <City> nCitiesInCountry = reports.getNCitiesInCountry(cityConnect, "France", 3);
+        reports.displayCityReports(nCitiesInCountry);
 
         // Issue 22
         // The top N populated cities in a district where N is provided by the user (Report 16)
-
+        List <City> nCitiesInDistrict = reports.getNCitiesInDistrict(cityConnect, "Bali", 3);
+        reports.displayCityReports(nCitiesInDistrict);
         // Capital City Reports
 
         // All the capital cities in the world organised by largest population to smallest (Report 17)
