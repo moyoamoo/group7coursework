@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PrintReportUnitTest {
 
-    static Reports reports;
+    static PrintReportConsole reports;
 
     @BeforeAll
     static void init() {
-        reports = new Reports();
+        reports = new PrintReportConsole();
     }
 
 
