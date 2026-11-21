@@ -650,6 +650,24 @@ public class Reports {
        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
 
     }
+    /*
+     Issue 31
+     Report 27
+     The population of a continent.
+     */
+    public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);
+    }
+
+    // Issue #29
+    public List<PopulationReport> getPopulationDistributionByRegion(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_REGION);
+    }
+
+    // Issue #30
+    public List<PopulationReport> getPopulationDistributionByCountry(PopulationReportConnection connection) {
+        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
+    }
 
     // Issue 31
     // The population of a country (Report 27)
@@ -685,20 +703,6 @@ public class Reports {
         return connection.run(PopulationReportQueries.BY_COUNTRY, country);
     }
 
-    // Issue #28
-    public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);
-    }
-
-    // Issue #29
-    public List<PopulationReport> getPopulationDistributionByRegion(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_REGION);
-    }
-
-    // Issue #30
-    public List<PopulationReport> getPopulationDistributionByCountry(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
-    }
 
     // Issue #32
     public List<PopulationReport> getTotalPopulationByRegion(PopulationReportConnection connection) {
