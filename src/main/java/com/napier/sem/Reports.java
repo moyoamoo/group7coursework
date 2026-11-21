@@ -169,6 +169,22 @@ public class Reports {
         }
     }
 
+    /** Display Population reports
+     *
+     * @param reports list for population reports
+     */
+    public void displayPopulationReports(List<PopulationReport> reports) {
+        if (reports == null || reports.isEmpty()) {
+            System.out.println("No population report data found.");
+            return;
+        }
+
+        for (PopulationReport report : reports) {
+            System.out.println(report);
+        }
+    }
+
+
     /**
      * Outputs Capital Cities Report as Markdown file in folder
      *
@@ -214,20 +230,6 @@ public class Reports {
     }
 
 
-    /** Display Population reports
-     *
-     * @param reports list for population reports
-     */
-    public void displayPopulationReports(List<PopulationReport> reports) {
-        if (reports == null || reports.isEmpty()) {
-            System.out.println("No population report data found.");
-            return;
-        }
-
-        for (PopulationReport report : reports) {
-            System.out.println(report);
-        }
-    }
 
 
     //Country Reports
