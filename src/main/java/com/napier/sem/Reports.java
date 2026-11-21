@@ -49,188 +49,6 @@ public class Reports {
         return reports[reportNumber - 1];
     }
 
-    /** Display country reports
-     *
-     * @param countries list of countries
-     */
-    public void displayCountryReports(List<Country> countries){
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-    }
-
-    /** Display city reports
-     *
-     * @param cities list of countries
-     */
-    public void displayCityReports(List<City> cities){
-        // Display city
-        for(City c : cities){
-            System.out.println(c.toString());
-        }
-    }
-
-    /** Display Capital city reports
-     *
-     * @param capitalCities list of countries
-     */
-    public void displayCapitalCityReports(List<CapitalCity> capitalCities){
-        // Display capital city
-        for(CapitalCity c : capitalCities){
-            System.out.println(c.toString());
-        }
-    }
-    /**
-     * Outputs City Report as Markdown file in folder
-     *
-     * @param cities list of cities
-     * @param filename name of Markdown file
-     */
-    public void outputCityReport(List<City> cities, String filename){
-
-        // If countries is null, return
-        if (cities == null){
-            System.out.println("No Cities");
-            return;
-        }
-
-        // If the file name does end with .md, add
-        if (!filename.endsWith(".md")){
-            filename += ".md";
-        }
-
-        //New String builder
-        StringBuilder sb = new StringBuilder();
-
-        // Print header
-        sb.append("| Name | Country | District | Population | \r\n");
-        sb.append("| --- | --- | --- | --- |\r\n");
-
-        // Loop the through countries in the list and add to string builder
-        for (City c : cities){
-            if(c == null) continue;
-            sb.append("| " + c.getName() + " | " + c.getCountry() +  " | " + c.getDistrict() + " | " + c.getPopulation() + " |\r\n");
-        }
-        try {
-            // Create new folder
-            new File("./reports/").mkdir();
-            // Create new file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            // Add
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Outputs Country Report as Markdown file in folder
-     *
-     * @param countries list of countries
-     * @param filename name of Markdown file
-     */
-    public void outputCountryReport(List<Country> countries, String filename){
-
-        // If countries is null, return
-        if (countries == null){
-            System.out.println("No Countries");
-            return;
-        }
-
-        // If the file name does end with .md, add
-        if (!filename.endsWith(".md")){
-            filename += ".md";
-        }
-
-        //New String builder
-        StringBuilder sb = new StringBuilder();
-
-        // Print header
-        sb.append("| Code | Name | Continent | Region | Population | Capital | \r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- |\r\n");
-
-        // Loop the through countries in the list and add to string builder
-        for (Country c : countries){
-            if(c == null) continue;
-            sb.append("| " + c.getCode() + " | " + c.getName() +  " | " + c.getContinent() + " | " + c.getRegion() + " | " + c.getPopulation() + " |\r\n");
-        }
-        try {
-            // Create new folder
-            new File("./reports/").mkdir();
-            // Create new file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            // Add
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /** Display Population reports
-     *
-     * @param reports list for population reports
-     */
-    public void displayPopulationReports(List<PopulationReport> reports) {
-        if (reports == null || reports.isEmpty()) {
-            System.out.println("No population report data found.");
-            return;
-        }
-
-        for (PopulationReport report : reports) {
-            System.out.println(report);
-        }
-    }
-
-
-    /**
-     * Outputs Capital Cities Report as Markdown file in folder
-     *
-     * @param capitalCities list of countries
-     * @param filename name of Markdown file
-     */
-    public void outputCapitalCityReport(List<CapitalCity> capitalCities, String filename){
-
-        // If countries is null, return
-        if (capitalCities == null){
-            System.out.println("No Capital Cities");
-            return;
-        }
-
-        // If the file name does end with .md, add
-        if (!filename.endsWith(".md")){
-            filename += ".md";
-        }
-
-        //New String builder
-        StringBuilder sb = new StringBuilder();
-
-        // Print header
-        sb.append("| Name | Country | Population |\r\n");
-        sb.append("| --- | --- | --- |\r\n");
-
-        // Loop the through countries in the list and add to string builder
-        for (CapitalCity c : capitalCities){
-            if(c == null) continue;
-            sb.append("| " + c.getName() + " | " + c.getCountry() +  c.getPopulation() + " |\r\n");
-        }
-        try {
-            // Create new folder
-            new File("./reports/").mkdir();
-            // Create new file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            // Add
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
 
     //Country Reports
 
@@ -650,68 +468,155 @@ public class Reports {
        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
 
     }
+    // Population Reports
+
     /*
-     Issue 31
-     Report 27
-     The population of a continent.
+     Issue 28
+     Report 23
+     The population of people, people living in cities, and people not living in cities in each continent
      */
     public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);
     }
 
-    // Issue #29
+    /*
+    Issue 29
+    Report 24
+    The population of people, people living in cities, and people not living in cities in each region
+    */
     public List<PopulationReport> getPopulationDistributionByRegion(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_REGION);
     }
 
-    // Issue #30
+    /* Issue 30
+       The population of people, people living in cities, and people not living in cities in each country (Report 25)
+    */
     public List<PopulationReport> getPopulationDistributionByCountry(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
     }
 
-    // Issue 31
-    // The population of a country (Report 27)
-    public List<PopulationReport> getTotalPopulationByContinent(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_CONTINENT);
+    /* Issue 31
+       The population of a continent (Report 27) */
+    public List<PopulationReport> getPopulationByContinent(PopulationReportConnection connection, String continent) {
+
+        // Check for invalid parameters
+        if (connection == null || continent == null || continent.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Check if continent is valid
+        Boolean validContinent = userInput.getValidContinent(continent);
+
+        // If not return empty array
+        if(!validContinent){
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + continent);
+
+        // Return information for report from world db
+        return connection.run(PopulationReportQueries.POPULATION_BY_CONTINENT, continent);
     }
 
-    // Issue 32
-    // Population by region (Report 28)
-    public List<PopulationReport> getPopulationByRegion(
-            PopulationReportConnection connection, String region) {
 
+    /* Issue 32
+    The population of a region (Report 28) */
+    public List<PopulationReport> getPopulationByRegion(PopulationReportConnection connection, String region) {
+
+        // Check for invalid parameters
         if (connection == null || region == null || region.isBlank()) {
             return new ArrayList<>();
         }
 
-        if (!userInput.getValidRegion(region)) {
+        // Check if region is valid
+        Boolean validRegion = userInput.getValidRegion(region);
+
+        // If not return empty array
+        if(!validRegion){
             return new ArrayList<>();
         }
 
-        return connection.run(PopulationReportQueries.BY_REGION, region);
+        // Print Report Title
+        System.out.println("Total population of " + region);
+
+        // Return information for report from world db
+        return connection.run(PopulationReportQueries.POPULATION_BY_REGION, region);
     }
 
-    // Issue 33
-    // Population by country (Issue #25)
-    public List<PopulationReport> getPopulationByCountry(
-            PopulationReportConnection connection, String country) {
+    /* Issue 33
+       The population of a country (Report 29) */
+    public List<PopulationReport> getPopulationByCountry(PopulationReportConnection connection, String country) {
 
+        // Check for invalid parameters
         if (connection == null || country == null || country.isBlank()) {
             return new ArrayList<>();
         }
 
-        return connection.run(PopulationReportQueries.BY_COUNTRY, country);
+        // Check if country is valid
+        Boolean validCountry = userInput.getValidCountry(country);
+
+        // If not return empty array
+        if(!validCountry){
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + country);
+
+        return connection.run(PopulationReportQueries.POPULATION_BY_COUNTRY, country);
+    }
+
+    /** Issue 34
+       The population of a district (Report 30) */
+    public List<PopulationReport> getPopulationByDistrict(PopulationReportConnection connection, String district) {
+
+        // Check for invalid parameters
+        if (connection == null || district == null || district.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + district);
+
+        return connection.run(PopulationReportQueries.POPULATION_BY_DISTRICT, district);
     }
 
 
-    // Issue #32
-    public List<PopulationReport> getTotalPopulationByRegion(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_REGION);
+    /** Issue 35
+       The population of a city (Report 31) */
+    public List<PopulationReport> getPopulationByCity(PopulationReportConnection connection, String city) {
+
+        // Check for invalid parameters
+        if (connection == null || city == null || city.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + city);
+
+        return connection.run(PopulationReportQueries.POPULATION_BY_CITY, city);
     }
 
-    // Issue #33
-    public List<PopulationReport> getTotalPopulationByCountry(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_COUNTRY);
-    }
+
+      /** Issue 36
+       The number of people who speak Chinese, English, Hindi,
+       Spanish, Arabic from greatest number to smallest,
+       including the percentage of the world population  (Report 32) */
+      public List<Language> getPopulationByLanguage(LanguageConnection connection) {
+
+          // Check for invalid parameters
+          if (connection == null) {
+              return new ArrayList<>();
+          }
+
+          // Print Report Title
+          System.out.println("The number of people who speak Chinese, English, Hindi,\n" +
+                  "       Spanish, Arabic from greatest number to smallest,\n" +
+                  "       including the percentage of the world population");
+
+          return connection.runLanguageQuery(PopulationReportQueries.POPULATION_BY_LANGUAGE);
+      }
+
 
 }
