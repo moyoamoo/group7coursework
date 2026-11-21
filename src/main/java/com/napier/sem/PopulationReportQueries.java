@@ -6,7 +6,7 @@ public final class PopulationReportQueries {
 
     // Aggregate city population per country first, so country population is not multiplied by city count.
     private static final String CITY_POPULATION_JOIN =
-            " FROM country c LEFT JOIN (SELECT CountryCode, SUM(Population) AS CityPopulation " +
+            "FROM country c LEFT JOIN (SELECT CountryCode, SUM(Population) AS CityPopulation " +
             "FROM city GROUP BY CountryCode) cp ON cp.CountryCode = c.Code ";
 
     public static final String DISTRIBUTION_BY_CONTINENT =
@@ -46,4 +46,14 @@ public final class PopulationReportQueries {
             "SELECT c.Name AS AreaName, c.Population AS TotalPopulation, " +
             "COALESCE(cp.CityPopulation, 0) AS CityPopulation " + CITY_POPULATION_JOIN +
             "WHERE c.Name = ?";
+    // Report 30
+    // The population of a district. (Issue 34)
+    public static final String POPULATION_OF_DISTRICT =
+            "SELECT ci.District AS AreaName, c.Name AS Country, " +
+                    "SUM(ci.Population) AS TotalPopulation " +
+                    "FROM city ci " +
+                    "JOIN country c ON ci.CountryCode = c.Code " +
+                    "WHERE ci.District = ? " +
+                    "GROUP BY ci.District, c.Name";
+
 }
