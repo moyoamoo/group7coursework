@@ -685,6 +685,26 @@ public class Reports {
         return connection.run(PopulationReportQueries.BY_COUNTRY, country);
     }
 
+
+    /*
+    Issue 34
+    Report 30
+    The population of a district
+    */
+    public List<PopulationReport> getPopulationOfADistrict(PopulationReportConnection populationReportConnection, String district) {
+
+        // If null, return empty string
+        if (populationReportConnection == null || district == null || district.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Population of District " + district);
+
+        return populationReportConnection.run(PopulationReportQueries.POPULATION_OF_A_DISTRICT, district);
+    }
+
+
     // Issue #28
     public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);

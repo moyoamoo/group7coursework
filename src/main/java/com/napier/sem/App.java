@@ -183,9 +183,13 @@ public class App
 
         // Issue 34
         // The population of a district (Report 30)
+        List<PopulationReport> populationOfADistrict = reports.getPopulationOfADistrict(populationReportConnect, "Porto");
+        reports.displayPopulationReports(populationOfADistrict);
 
         // Issue 35
         // The population of a city (Report 31)
+
+
 
         // Issue 36
         // The number of people who speak Chinese, English, Hindi, Spanish, Arabic from greatest number to smallest, including the percentage of the world population (Report 32)
