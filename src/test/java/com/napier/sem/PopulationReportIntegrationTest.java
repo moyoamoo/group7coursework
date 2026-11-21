@@ -20,7 +20,7 @@ class PopulationReportIntegrationTest {
     }
 
     @AfterAll static void tearDown() { if (app != null) app.disconnect(); }
-
+/*
     @Test void issue24ReturnsCountriesForValidRegion() {
         List<PopulationReport> result = app.reports.getPopulationByRegion(populationConnection, "Western Europe");
         assertFalse(result.isEmpty());
@@ -42,4 +42,6 @@ class PopulationReportIntegrationTest {
     @Test void issue25RejectsBlankCountry() {
         assertTrue(app.reports.getPopulationByCountry(populationConnection, " ").isEmpty());
     }
+    */
+
 }

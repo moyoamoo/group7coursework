@@ -9,7 +9,6 @@ import java.util.List;
 
 // Represents db connection for city reports
 
-
 public class CapitalCityConnection {
     private final Connection con;
 
@@ -18,13 +17,17 @@ public class CapitalCityConnection {
     }
 
     public List<CapitalCity> runCapitalCityQuery(String sql, Object... params){
+
+        // New list of capital cities
         List<CapitalCity> cities = new ArrayList<>();
 
+        // Prepare SQL Statement
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             for (int i = 0; i < params.length; i++) {
                 stmt.setObject(i + 1, params[i]);
             }
 
+            // Execute SQL Statement
             try(ResultSet rset = stmt.executeQuery()) {
                 while (rset.next()) {
                     cities.add(new CapitalCity(

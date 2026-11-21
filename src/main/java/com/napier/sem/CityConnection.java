@@ -18,13 +18,17 @@ public class CityConnection {
     }
 
     public List<City> runCityQuery(String sql, Object... params){
+
+        // New list of cities
         List<City> cities = new ArrayList<>();
 
+        // Prepare SQL Statement
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // If the statement has params, add the params to SQL
             for (int i = 0; i < params.length; i++) {
                 stmt.setObject(i + 1, params[i]);
             }
-
+            // Execute SQL Statement
             try(ResultSet rset = stmt.executeQuery()) {
                 while (rset.next()) {
                     cities.add(new City(
