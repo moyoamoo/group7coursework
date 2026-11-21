@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidationUnitTest {
     Reports reports = new Reports();
+    PrintReportConsole consoleReports = new PrintReportConsole();
 
     CountryConnection dummyCountryConnect = null;
     CityConnection dummyCityConnect = null;
@@ -88,14 +89,15 @@ public class ValidationUnitTest {
 
     @Test
     void displayCountryReportsEmptyList() {
-        reports.displayCountryReports(new ArrayList<>());
+       consoleReports.displayCountryReports(new ArrayList<>());
     }
 
     // UNIT TEST ISSUE 13: All the cities in the world, largest to smallest
 
     @Test
     void displayCityReportsEmptyList() {
-        reports.displayCityReports(new ArrayList<>());
+
+        consoleReports.displayCityReports(new ArrayList<>());
     }
 
     @Test

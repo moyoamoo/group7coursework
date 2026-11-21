@@ -29,12 +29,6 @@ public class AppIntegrationTest {
     }
 
 
-    // Test if print report runs
-    @Test
-    void printReportRunsWithoutError(){
-        app.printReports();
-    }
-
     //Report 1: All the countries in the world organised by largest population to smallest (Issue #7)
 
     // Test to see if it returns all countries

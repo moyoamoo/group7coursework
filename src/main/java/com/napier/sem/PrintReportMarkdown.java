@@ -12,8 +12,9 @@ public class PrintReportMarkdown {
      *
      * @param cities list of cities
      * @param filename name of Markdown file
+     * @param reportTitle title of report
      */
-    public void outputCityReport(List<City> cities, String filename){
+    public void outputCityReport(List<City> cities, String filename, String reportTitle){
 
         // If countries is null, return
         if (cities == null){
@@ -28,6 +29,9 @@ public class PrintReportMarkdown {
 
         //New String builder
         StringBuilder sb = new StringBuilder();
+
+        // Report Title
+        sb.append("**").append(reportTitle).append("**\r\n\r\n");
 
         // Print header
         sb.append("| Name | Country | District | Population | \r\n");
@@ -56,8 +60,9 @@ public class PrintReportMarkdown {
      *
      * @param countries list of countries
      * @param filename name of Markdown file
+     * @param reportTitle title of report
      */
-    public void outputCountryReport(List<Country> countries, String filename){
+    public void outputCountryReport(List<Country> countries, String filename, String reportTitle){
 
         // If countries is null, return
         if (countries == null){
@@ -73,7 +78,9 @@ public class PrintReportMarkdown {
         //New String builder
         StringBuilder sb = new StringBuilder();
 
-        //
+        // Report Title
+        sb.append("**").append(reportTitle).append("**\r\n\r\n");
+
         // Print header
         sb.append("| Code | Name | Continent | Region | Population | Capital | \r\n");
         sb.append("| --- | --- | --- | --- | --- | --- |\r\n");
@@ -102,8 +109,9 @@ public class PrintReportMarkdown {
      *
      * @param capitalCities list of countries
      * @param filename name of Markdown file
+     * @param reportTitle title of report
      */
-    public void outputCapitalCityReport(List<CapitalCity> capitalCities, String filename){
+    public void outputCapitalCityReport(List<CapitalCity> capitalCities, String filename, String reportTitle){
 
         // If countries is null, return
         if (capitalCities == null){
@@ -118,6 +126,9 @@ public class PrintReportMarkdown {
 
         //New String builder
         StringBuilder sb = new StringBuilder();
+
+        // Report Title
+        sb.append("**").append(reportTitle).append("**\r\n\r\n");
 
         // Print header
         sb.append("| Name | Country | Population |\r\n");
@@ -147,8 +158,9 @@ public class PrintReportMarkdown {
      *
      * @param populationReports list of population reports
      * @param filename name of Markdown file
+     * @param reportTitle title of report
      */
-    public void outputPopulationReport(List<PopulationReport> populationReports, String filename){
+    public void outputPopulationReport(List<PopulationReport> populationReports, String filename, String reportTitle){
 
         // If population reports is null, return
         if (populationReports == null){
@@ -168,6 +180,9 @@ public class PrintReportMarkdown {
         boolean includesCityBreakdown = !populationReports.isEmpty()
                 && populationReports.get(0) != null
                 && populationReports.get(0).hasCityBreakdown();
+
+        // Report Title
+        sb.append("**").append(reportTitle).append("**\r\n\r\n");
 
         // Print header
         if (includesCityBreakdown) {
@@ -223,8 +238,9 @@ public class PrintReportMarkdown {
      *
      * @param languages list of languages
      * @param filename name of Markdown file
+     * @param reportTitle title of report
      */
-    public void outputLanguageReport(List<Language> languages, String filename){
+    public void outputLanguageReport(List<Language> languages, String filename, String reportTitle){
 
         // If languages is null, return
         if (languages == null){
@@ -239,6 +255,9 @@ public class PrintReportMarkdown {
 
         // New String builder
         StringBuilder sb = new StringBuilder();
+
+        // Report Title
+        sb.append("**").append(reportTitle).append("**\r\n\r\n");
 
         // Print header
         sb.append("| Language | Speakers | World population |\r\n");
