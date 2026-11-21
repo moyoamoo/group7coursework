@@ -19,18 +19,21 @@ public class App
         //Country Reports
 
         //Issue 7
+        //Report 1
         // All the countries in the world organised by largest population to smallest (Report 1)
         List<Country> allCountries = reports.getAllCountries(countryConnect);
         reports.displayCountryReports(allCountries);
         reports.outputCountryReport(allCountries, "Report_1.md");
 
         //Issue 8
+        //Report 2
         // All the countries in a continent organised by largest population to smallest (Report 2)
         List<Country> countriesByContinent = reports.getCountriesByContinent(countryConnect,"South America");
         reports.displayCountryReports(countriesByContinent);
         reports.outputCountryReport(countriesByContinent, "Report_2.md");
 
         //Issue 9
+        //Report 3
         // All the countries in a region organised by largest population to smallest (Report 3)
         List<Country> countriesByRegion = reports.getCountriesByRegion(countryConnect, "Polynesia");
         reports.displayCountryReports(countriesByRegion);
@@ -38,6 +41,7 @@ public class App
 
 
         //Issue 10
+        //Report 4
         // The top N populated countries in the world (Report 4)
         List<Country> nCountriesInWorld = reports.getNCountriesInWorld(countryConnect, 3);
         reports.displayCountryReports(nCountriesInWorld);
@@ -45,12 +49,14 @@ public class App
 
 
         //Issue 11
+        //Report 5
         // The top N populated countries in a continent (Report 5)
         List<Country> nCountriesInContinent = reports.getNCountriesInContinent(countryConnect, "Europe", 3);
         reports.displayCountryReports(nCountriesInContinent);
         reports.outputCountryReport(nCountriesInContinent, "Report_5.md");
 
         //Issue 12
+        //Report 6
         // The top N populated countries in a region (Report 6)
         List<Country> nCountriesInRegion = reports.getNCountriesInRegion(countryConnect, "Nordic Countries", 3);
         reports.displayCountryReports(nCountriesInRegion);
@@ -60,44 +66,52 @@ public class App
         // City Report
 
         //Issue 13
+        //Report 7
         // All the cities in the world organised by largest population to smallest (Report 7)
         List <City> allCities = reports.getAllCities(cityConnect);
         reports.displayCityReports(allCities);
         reports.outputCityReport(allCities, "Report_7.md");
 
         //Issue 14
+        //Report 8
         // All the cities in a continent organised by largest population to smallest (Report 8)
         List <City> allCitiesInContinent = reports.getAllCitiesInContinent(cityConnect, "Oceania");
         reports.displayCityReports(allCitiesInContinent);
         reports.outputCityReport(allCitiesInContinent, "Report_8.md");
 
         //Issue 17
+        //Report 9
         //All the cities in a region organised by largest population to smallest (Report 9)
         List<City> allCitiesInRegion = reports.getAllCitiesInRegion(cityConnect, "Polynesia");
         reports.displayCityReports(allCitiesInRegion);
 
         //Issue 15
+        //Report 10
         // All the cities in a country organised by largest population to smallest (Report 10)
         List <City> allCitiesInCountry = reports.getAllCitiesInCountry(cityConnect, "France");
         reports.displayCityReports(allCitiesInCountry);
         reports.outputCityReport(allCitiesInCountry, "Report_10.md");
 
         //Issue 16
+        //Report 11
         //All the cities in a district organised by largest population to smallest (Report 11)
         List <City> allCitiesInDistrict = reports.getAllCitiesInCountry(cityConnect, "Baltic Countries");
         reports.displayCityReports(allCitiesInDistrict);
 
         // Issue 18
+        //Report 12
         //All the cities in the world organised by largest population to smallest (Report 12)
         List <City> nCitiesInWorld = reports.getNCitiesInWorld(cityConnect, 10);
         reports.displayCityReports(nCitiesInWorld);
 
         //Issue 19
+        //Report 13
         //The top N populated cities in a continent where N is provided by the user (Report 13)
         List <City> nCitiesInContinent = reports.getNCitiesInContinent(cityConnect, "South America", 5);
         reports.displayCityReports(nCitiesInContinent);
 
         //Issue 20
+        //Report 14
         //The top N populated cities in a region where N is provided by the user (Report 14)
         List <City> nCitiesInRegion = reports.getNCitiesInRegion(cityConnect, "Eastern Asia", 3);
         reports.displayCityReports(nCitiesInRegion);
@@ -105,11 +119,13 @@ public class App
 
 
         // Issue 21
+        //Report 15
         // The top N populated cities in a country where N is provided by the user (Report 15)
         List <City> nCitiesInCountry = reports.getNCitiesInCountry(cityConnect, "France", 3);
         reports.displayCityReports(nCitiesInCountry);
 
         // Issue 22
+        //Report 16
         // The top N populated cities in a district where N is provided by the user (Report 16)
         List <City> nCitiesInDistrict = reports.getNCitiesInDistrict(cityConnect, "Bali", 3);
         reports.displayCityReports(nCitiesInDistrict);
@@ -117,15 +133,31 @@ public class App
 
         // All the capital cities in the world organised by largest population to smallest (Report 17)
 
+        //Issue 130
+        //Report 17
+        List <CapitalCity> allCapitals  = reports.getAllCapitals(capitalCityConnect);
+        reports.displayCapitalCityReports(allCapitals);
+        reports.outputCapitalCityReport(allCapitals, "Report_17.md");
+
+
         // Issue 24
+        //Report 18
         //All the capital cities in a continent organised by largest population to smallest (Report 18)
         List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
         reports.displayCapitalCityReports(capitalCitiesByContinent);
         reports.outputCapitalCityReport(capitalCitiesByContinent, "Report_18.md");
 
+        //Issue 131
+        //Report 19
+        // All the capital cities in a region organised by largest to smallest (Report 19)
+        List <CapitalCity> capitalCitiesByRegion = reports.getCapitalsByRegion(capitalCityConnect, "Caribbean");
+        reports.displayCapitalCityReports(capitalCitiesByRegion);
+        reports.outputCapitalCityReport(capitalCitiesByRegion, "Report_19.md");
+
         // All the capital cities in a region organised by largest to smallest (Report 19)
 
         // Issue 27
+        //Report 20
         // The top N populated capital cities in the world where N is provided by the user (Report 20)
         List <CapitalCity> topNCapitalsWorld = reports.getTopNCapitalsWorld(capitalCityConnect, 3);
         reports.displayCapitalCityReports(topNCapitalsWorld);
@@ -133,6 +165,7 @@ public class App
 
 
         // Issue 26
+        //Report 21
         // The top N populated capital cities in a continent where N is provided by the user (Report 21)
         List <CapitalCity> topNCapitalsByContinent = reports.getTopNCapitalsByContinent(capitalCityConnect, "Africa", 3);
         reports.displayCapitalCityReports(topNCapitalsByContinent);
@@ -140,6 +173,7 @@ public class App
 
 
         // Issue 25
+        //Report 22
         //The top N populated capital cities in a region where N is provided by the user (Report 22)
         List <CapitalCity> topNCapitalsByRegion = reports.getTopNCapitalsByRegion(capitalCityConnect, "Caribbean", 3);
         reports.displayCapitalCityReports(topNCapitalsByRegion);
@@ -149,45 +183,55 @@ public class App
         // Population Reports
 
         //Issue 28
+        //Report 23
         // The population of people, people living in cities, and people not living in cities in each continent (Report 23)
         System.out.println("\n#28 Population distribution by continent");
         reports.displayPopulationReports(reports.getPopulationDistributionByContinent(populationReportConnect));
 
         // Issue 29
+        //Report 24
         // The population of people, people living in cities, and people not living in cities in each region (Report 24)
         System.out.println("\n#29 Population distribution by region");
         reports.displayPopulationReports(reports.getPopulationDistributionByRegion(populationReportConnect));
 
         // Issue 30
+        //Report 25
         // The population of people, people living in cities, and people not living in cities in each country (Report 25)
         System.out.println("\n#30 Population distribution by country");
         reports.displayPopulationReports(reports.getPopulationDistributionByCountry(populationReportConnect));
 
         // Issue 87
+        //Report 26
         // The population of the world (Report 26)
 
         //Issue 31
+        //Report 27
         // The population of a continent (Report 27)
         System.out.println("\n#31 Total population by continent");
         reports.displayPopulationReports(reports.getTotalPopulationByContinent(populationReportConnect));
 
         //Issue 32
+        //Report 28
         // The population of region (Report 28)
         System.out.println("\n#32 Total population by region");
         reports.displayPopulationReports(reports.getTotalPopulationByRegion(populationReportConnect));
 
         // Issue 33
+        //Report 29
         // The population of a country (Report 29)
         System.out.println("\n#33 Total population by country");
         reports.displayPopulationReports(reports.getTotalPopulationByCountry(populationReportConnect));
 
         // Issue 34
+        //Report 30
         // The population of a district (Report 30)
 
         // Issue 35
+        //Report 31
         // The population of a city (Report 31)
 
         // Issue 36
+        //Report 32
         // The number of people who speak Chinese, English, Hindi, Spanish, Arabic from greatest number to smallest, including the percentage of the world population (Report 32)
    }
 

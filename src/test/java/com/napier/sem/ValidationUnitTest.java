@@ -11,7 +11,7 @@ public class ValidationUnitTest {
     CountryConnection dummyCountryConnect = null;
     CityConnection dummyCityConnect = null;
     CapitalCityConnection dummyCapitalConnection = null;
-
+    //report 2
     // Test that invalid continents return empty list
     @Test
     void report2InvalidContinentsReturnEmpty(){
@@ -28,7 +28,7 @@ public class ValidationUnitTest {
         assertTrue(result.isEmpty(), "Should return empty list for null continent");
 
     }
-
+    //report 3
     // Test that invalid region return empty list
     @Test
     void report3InvalidRegionReturnEmpty(){
@@ -45,7 +45,7 @@ public class ValidationUnitTest {
         assertTrue(result.isEmpty(), "Should return empty list for null region");
 
     }
-
+    // report 4
     // Test that invalid n return empty list
     @Test
     void report4InvalidNReturnEmpty(){
@@ -53,7 +53,7 @@ public class ValidationUnitTest {
         List<Country> result = reports.getNCountriesInWorld(dummyCountryConnect, n);
         assertTrue(result.isEmpty(), "Should return empty list for invalid n");
     }
-
+    //report 5
     // Test that invalid n return empty list
     @Test
     void report5InvalidNReturnEmpty(){
@@ -69,7 +69,7 @@ public class ValidationUnitTest {
         List<Country> result = reports.getNCountriesInContinent(dummyCountryConnect, null, n);
         assertTrue(result.isEmpty(), "Should return empty list for invalid n");
     }
-
+    //REPORT 6
     // UNIT TEST ISSUE 12: The top N populated countries in a region
     @Test
     void report6InvalidRegionReturnsEmpty() {
@@ -98,22 +98,23 @@ public class ValidationUnitTest {
         reports.displayCityReports(new ArrayList<>());
     }
 
+    //report 7
     @Test
     void report7TitleCorrect() {
         assertEquals("All the cities in the world organised by largest population to smallest",
         reports.getReports(7));
     }
-
+    //report8
     //UNIT TESTS ISSUE 14: cities in a continent
     @Test
-    void test14invalidContinentsReturnsEmpty() {
+    void report8invalidContinentsReturnsEmpty() {
         List<City> result = reports.getAllCitiesInContinent(dummyCityConnect, "Narnia");
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
     }
 
     @Test
-    void test14NullContinentReturnsEmpty() {
+    void report8NullContinentReturnsEmpty() {
         List<City> result = reports.getAllCitiesInContinent(dummyCityConnect, null);
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for null continent");
@@ -121,7 +122,7 @@ public class ValidationUnitTest {
 
     //UNIT TESTS ISSUE 15: cities in a country
     @Test
-    void test15InvalidCountryReturnsEmpty() {
+    void report10InvalidCountryReturnsEmpty() {
         List<City> result = reports.getAllCitiesInCountry(dummyCityConnect, "XYZ");
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for invalid country");
@@ -326,31 +327,66 @@ public class ValidationUnitTest {
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for null district");
     }
-    //UNIT TETS ISSUE 24: All capital  cities in  a continent
+
+    //Report 17
+    //All Capital Cities In The World
     @Test
-    void test24InvalidContinentReturnsEmpty() {
+    void report17NullConnectionReturnsEmpty(){
+        List<CapitalCity> result = reports.getAllCapitals(dummyCapitalConnection);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(),"Should return empty lists for null connection");
+    }
+
+    //report 18
+    //UNIT TEST ISSUE 24: All capital  cities in  a continent
+    @Test
+    void report18InvalidContinentReturnsEmpty() {
         List<CapitalCity> result = reports.getCapitalsByContinent(dummyCapitalConnection, "Narnia");
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
     }
 
     @Test
-    void test24NullContinentReturnsEmpty(){
+    void report18NullContinentReturnsEmpty(){
         List<CapitalCity> result = reports.getCapitalsByContinent(dummyCapitalConnection, null);
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return an empty list for null continent");
     }
 
     @Test
-    void test24BlankContinentReturnsEmpty() {
+    void report18BlankContinentReturnsEmpty() {
         List<CapitalCity> result = reports.getCapitalsByContinent(dummyCapitalConnection, "");
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for blank continent");
     }
 
+    //Report 19
+    //Issue 131: All Capital Cities In a Region
+    @Test
+    void report19InvalidRegionReturnsEmpty() {
+        List<CapitalCity> result = reports.getCapitalsByRegion(dummyCapitalConnection, "Narnia");
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid region");
+    }
+
+    @Test
+    void report19NullRegionReturnsEmpty(){
+        List<CapitalCity> result = reports.getCapitalsByRegion(dummyCapitalConnection, null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return an empty list for null region");
+    }
+
+    @Test
+    void report19BlankRegionReturnsEmpty() {
+        List<CapitalCity> result = reports.getCapitalsByRegion(dummyCapitalConnection, "");
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for blank region");
+    }
+
+    //report 21
     //UNIT TESTS ISSUE 26: Top N capitals in a continent
     @Test
-    void test26InvalidContinentReturnsEmpty() {
+    void report21InvalidContinentReturnsEmpty() {
         List<CapitalCity> result = reports.getTopNCapitalsByContinent(dummyCapitalConnection, "Narnia", 3);
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for invalid continent");

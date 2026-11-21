@@ -569,8 +569,23 @@ public class Reports {
     }
 
     // Capital City Reports
+    //Issue 130
+    //Report 17
+    public List<CapitalCity> getAllCapitals(CapitalCityConnection capitalCityConnect){
+        // Safety check for unit tests
+        if (capitalCityConnect == null) {
+            return new ArrayList<>();
+        }
+
+        //Print Report Title
+        System.out.println("All the capital cities in the world organised by largest population to smallest");
+        // Run database query to get all countries
+        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.ALL_CAPITALS);
+    }
+
 
     // Issue 24
+    // Report 18
     // All the capital cities in a continent organised by largest population to smallest (Report 18)
     public List<CapitalCity> getCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent) {
 
@@ -589,8 +604,29 @@ public class Reports {
         return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.CAPITALS_BY_CONTINENT, continent);
 
     }
+    //Issue 131
+    //Report 19
+    public List<CapitalCity> getCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region){
+        //Safety check for unit tests
+        if (capitalCityConnect == null || region == null || region.isBlank()){
+            return new ArrayList<>();
+        }
+
+        /* //check if region is valid
+        Boolean validRegion = userInput.getValidRegion((region));
+
+        //if not return empty array
+        if(!validRegion){
+            return new ArrayList<>();
+        }*/
+        ////print report title
+        System.out.println("All the capital cities in " + region + " organised by largest population to smallest");
+        //get all capital cities in a region
+        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.CAPITALS_BY_REGION, region);
+    }
 
     // Issue 27
+    //Report 20
     // The top N populated capital cities in the world where N is provided by the user (Report 20)
     public List<CapitalCity> getTopNCapitalsWorld(CapitalCityConnection capitalCityConnect, int n) {
         // Check if n is greater than 1
@@ -607,6 +643,7 @@ public class Reports {
     }
 
     // Issue 26
+    //Report 21
     // The top N populated capital cities in a continent where N is provided by the user (Report 21)
     public List<CapitalCity> getTopNCapitalsByContinent(CapitalCityConnection capitalCityConnect, String continent, int n) {
         // Check if n is greater than 1
@@ -629,6 +666,7 @@ public class Reports {
     }
 
     // Issue 25
+    //Report 22
     //The top N populated capital cities in a region where N is provided by the user (Report 22)
     public List<CapitalCity> getTopNCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region, int n) {
         // Check if n is greater than 1
@@ -650,6 +688,9 @@ public class Reports {
        return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.TOP_N_CAPITALS_BY_REGION, region, n);
 
     }
+
+    //Issue 87
+    //Report 26
 
     // Issue 31
     // The population of a country (Report 27)
