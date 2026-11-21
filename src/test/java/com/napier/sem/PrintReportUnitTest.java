@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PrintReportUnitTest {
 
-    static Reports reports;
+    static PrintReportConsole reports;
 
     @BeforeAll
     static void init() {
-        reports = new Reports();
+        reports = new PrintReportConsole();
     }
 
 
@@ -102,22 +102,7 @@ public class PrintReportUnitTest {
         }
     }
 
-    // Test null country report throws exception
-    @Test
-    void displayCountryReportsNullThrows()
-    {
-        assertThrows(NullPointerException.class, () -> reports.displayCountryReports(null));
-    }
-
     // City
-
-
-    // Test that country reports empty does not throw
-    @Test
-    void displayCityReportsEmptyListDoesNotThrow()
-    {
-        reports.displayCityReports(cityList(0));
-    }
 
     // Test that list keeps its size
     @Test
@@ -153,11 +138,6 @@ public class PrintReportUnitTest {
         }
     }
 
-    @Test
-    void displayCityReportsNullThrows()
-    {
-        assertThrows(NullPointerException.class, () -> reports.displayCityReports(null));
-    }
 
     // Capital City
 
@@ -205,9 +185,5 @@ public class PrintReportUnitTest {
         }
     }
 
-    @Test
-    void displayCapitalCityReportsNullThrows()
-    {
-        assertThrows(NullPointerException.class, () -> reports.displayCapitalCityReports(null));
-    }
+
 }

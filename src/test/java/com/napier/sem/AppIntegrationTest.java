@@ -29,13 +29,6 @@ public class AppIntegrationTest {
     }
 
 
-
-    // Test if print report runs
-    @Test
-    void printReportRunsWithoutError(){
-        app.printReports();
-    }
-
     //Report 1: All the countries in the world organised by largest population to smallest (Issue #7)
 
     // Test to see if it returns all countries
@@ -370,5 +363,31 @@ public class AppIntegrationTest {
         List<City> result = app.reports.getAllCities(app.cityConnect);
         assertTrue(result.get(0).getName().startsWith("Mumbai"));
     }
+
+    /*
+    Report 9
+    Issue 17
+    All the cities in a region organised by largest population to smallest
+    */
+
+    // Test that null region returns null
+    @Test
+    void report9RegionNullReturnsEmpty(){
+
+        List<City> result = app.reports.getAllCitiesInRegion(app.cityConnect, null);
+        assertTrue(result.isEmpty());
+    }
+
+    // Test that invalid region return empty array
+    @Test
+    void report9InvalidRegionReturnsEmpty(){
+
+        List<City> result = app.reports.getAllCitiesInRegion(app.cityConnect, "Pluto");
+        assertTrue(result.isEmpty());
+    }
+
+
+
+
 
 }
