@@ -12,7 +12,6 @@ public class Country {
     private String capital;
 
 
-
     // Constructor
     public Country(String code, String name, String continent, String region, int population, String capital){
         this.code = code;
@@ -22,9 +21,6 @@ public class Country {
         this.population = population;
         this.capital = capital;
     }
-
-
-
 
     // Getters
     public String getCode(){
@@ -65,7 +61,7 @@ public class Country {
         }
 
         // List of all countries in database
-        public final String[] countries = {
+    public final String[] countries = {
                 "Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
                 "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
                 "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
@@ -106,6 +102,5 @@ public class Country {
                 "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
                 "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
         };
-
     }
 

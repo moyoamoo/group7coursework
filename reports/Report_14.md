@@ -1,0 +1,5 @@
+| Name | Country | District | Population | 
+| --- | --- | --- | --- |
+| Seoul | South Korea | Seoul | 9981619 |
+| Shanghai | China | Shanghai | 9696300 |
+| Tokyo | Japan | Tokyo-to | 7980230 |
