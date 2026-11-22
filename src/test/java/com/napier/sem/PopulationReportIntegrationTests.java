@@ -2,6 +2,11 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /** Database integration tests for issues #24 and #25. Requires docker-compose world DB. */
 class PopulationReportIntegrationTests {
@@ -40,5 +45,17 @@ class PopulationReportIntegrationTests {
         assertTrue(app.reports.getPopulationByCountry(populationConnection, " ").isEmpty());
     }
     */
+
+    // Issue 35
+    // The population of a city (Report 31)
+
+    @Test
+    void report31ReturnsPopulation(){
+        String city = "London";
+        List <PopulationReport> result = app.reports.getPopulationByCity(populationConnection, city);
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+    }
+
 
 }

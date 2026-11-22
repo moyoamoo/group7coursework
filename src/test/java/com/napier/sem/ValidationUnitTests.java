@@ -394,4 +394,15 @@ public class ValidationUnitTests {
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
     }
+
+    /** Issue 36
+     * The number of people who speak Chinese, English, Hindi,
+     * Spanish, Arabic from greatest number to smallest,
+     * including the percentage of the world population  (Report 32) */
+
+    @Test
+    void report32NullConnectionReturnsEmpty(){
+        List<Language> result = reports.getPopulationByLanguage(null);
+        assertTrue(result.isEmpty());
+    }
 }
