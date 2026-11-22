@@ -16,11 +16,8 @@ class PopulationReportIntegrationTests {
     @BeforeAll static void setUp() {
         app = new App();
         app.connect("localhost:33060", 30000);
-        // Reuse the application's established JDBC connection through a small accessor-free setup
-        // is not possible, so the integration tests use the report connection exposed by App below.
         populationConnection = app.populationReportConnect;
     }
-
     @AfterAll static void tearDown() { if (app != null) app.disconnect(); }
 
     // Report 23: The population distribution by continent (Issue #28)
