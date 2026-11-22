@@ -700,63 +700,154 @@ public class Reports {
     //Issue 87
     //Report 26
 
-    // Issue 31
-    // The population of a country (Report 27)
-    public List<PopulationReport> getTotalPopulationByContinent(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_CONTINENT);
-    }
+    // Population Reports
 
-    // Issue 32
-    // Population by region (Report 28)
-    public List<PopulationReport> getPopulationByRegion(
-            PopulationReportConnection connection, String region) {
-
-        if (connection == null || region == null || region.isBlank()) {
-            return new ArrayList<>();
-        }
-
-        if (!userInput.getValidRegion(region)) {
-            return new ArrayList<>();
-        }
-
-        return connection.run(PopulationReportQueries.BY_REGION, region);
-    }
-
-    // Issue 33
-    // Population by country (Issue #25)
-    public List<PopulationReport> getPopulationByCountry(
-            PopulationReportConnection connection, String country) {
-
-        if (connection == null || country == null || country.isBlank()) {
-            return new ArrayList<>();
-        }
-
-        return connection.run(PopulationReportQueries.BY_COUNTRY, country);
-    }
-
-    // Issue #28
+    /*
+     Issue 28
+     Report 23
+     The population of people, people living in cities, and people not living in cities in each continent
+     */
     public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);
     }
 
-    // Issue #29
+    /*
+    Issue 29
+    Report 24
+    The population of people, people living in cities, and people not living in cities in each region
+    */
     public List<PopulationReport> getPopulationDistributionByRegion(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_REGION);
     }
 
-    // Issue #30
+    /* Issue 30
+       The population of people, people living in cities, and people not living in cities in each country (Report 25)
+    */
     public List<PopulationReport> getPopulationDistributionByCountry(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
     }
 
-    // Issue #32
-    public List<PopulationReport> getTotalPopulationByRegion(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_REGION);
+    /* Issue 31
+       The population of a continent (Report 27) */
+    public List<PopulationReport> getPopulationByContinent(PopulationReportConnection connection, String continent) {
+
+        // Check for invalid parameters
+        if (connection == null || continent == null || continent.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Check if continent is valid
+        Boolean validContinent = userInput.getValidContinent(continent);
+
+        // If not return empty array
+        if(!validContinent){
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + continent);
+
+        // Return information for report from world db
+        return connection.run(PopulationReportQueries.POPULATION_BY_CONTINENT, continent);
     }
 
-    // Issue #33
-    public List<PopulationReport> getTotalPopulationByCountry(PopulationReportConnection connection) {
-        return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.TOTAL_BY_COUNTRY);
+
+    /* Issue 32
+    The population of a region (Report 28) */
+    public List<PopulationReport> getPopulationByRegion(PopulationReportConnection connection, String region) {
+
+        // Check for invalid parameters
+        if (connection == null || region == null || region.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Check if region is valid
+        Boolean validRegion = userInput.getValidRegion(region);
+
+        // If not return empty array
+        if(!validRegion){
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + region);
+
+        // Return information for report from world db
+        return connection.run(PopulationReportQueries.POPULATION_BY_REGION, region);
+    }
+
+    /* Issue 33
+       The population of a country (Report 29) */
+    public List<PopulationReport> getPopulationByCountry(PopulationReportConnection connection, String country) {
+
+        // Check for invalid parameters
+        if (connection == null || country == null || country.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Check if country is valid
+        Boolean validCountry = userInput.getValidCountry(country);
+
+        // If not return empty array
+        if(!validCountry){
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + country);
+
+        return connection.run(PopulationReportQueries.POPULATION_BY_COUNTRY, country);
+    }
+
+    /** Issue 34
+     The population of a district (Report 30) */
+    public List<PopulationReport> getPopulationByDistrict(PopulationReportConnection connection, String district) {
+
+        // Check for invalid parameters
+        if (connection == null || district == null || district.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + district);
+
+        return connection.run(PopulationReportQueries.POPULATION_BY_DISTRICT, district);
+    }
+
+
+    /** Issue 35
+     The population of a city (Report 31) */
+    public List<PopulationReport> getPopulationByCity(PopulationReportConnection connection, String city) {
+
+        // Check for invalid parameters
+        if (connection == null || city == null || city.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("Total population of " + city);
+
+        return connection.run(PopulationReportQueries.POPULATION_BY_CITY, city);
+    }
+
+
+    /** Issue 36
+     The number of people who speak Chinese, English, Hindi,
+     Spanish, Arabic from greatest number to smallest,
+     including the percentage of the world population  (Report 32) */
+    public List<Language> getPopulationByLanguage(LanguageConnection connection) {
+
+        // Check for invalid parameters
+        if (connection == null) {
+            return new ArrayList<>();
+        }
+
+        // Print Report Title
+        System.out.println("The number of people who speak Chinese, English, Hindi,\n" +
+                "       Spanish, Arabic from greatest number to smallest,\n" +
+                "       including the percentage of the world population");
+
+        return connection.runLanguageQuery(PopulationReportQueries.POPULATION_BY_LANGUAGE);
     }
 
 }

@@ -30,8 +30,8 @@ public final class PopulationReportQueries {
             "COALESCE(cp.CityPopulation, 0) AS CityPopulation " + CITY_POPULATION_JOIN +
             "ORDER BY c.Name";
 
-    /* Report 27
-    / The population of a continent (Issue 31) */
+    // Report 27
+    // The population of a continent (Issue 31)
     public static final String POPULATION_BY_CONTINENT =
             "SELECT c.Continent AS AreaName, " +
                     "SUM(c.Population) AS TotalPopulation, " +
