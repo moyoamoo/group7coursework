@@ -188,6 +188,9 @@ public class App
 
         // Issue 87
         // The population of the world (Report 26)
+        List<PopulationReport> worldPopulation = reports.getWorldPopulation(populationReportConnect);
+        consoleReport.displayPopulationReports(worldPopulation);
+        markdownReport.outputPopulationReport(worldPopulation, "Report_26.md", reports.getReports(26));
 
         // Issue 31
         // The population of a continent (Report 27)

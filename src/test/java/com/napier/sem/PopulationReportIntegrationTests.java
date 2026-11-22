@@ -215,6 +215,50 @@ class PopulationReportIntegrationTests {
         assertTrue(result.isEmpty());
     }
 
+    // Report 26: Population if the world
+
+    // Tests that it returns the world population
+    @Test
+    void report26ReturnsWorldPopulation(){
+        List<PopulationReport> result = app.reports.getWorldPopulation(app.populationReportConnect);
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+    }
+
+    // Tests that it returns exactly one row
+    @Test
+    void report26ReturnsExactlyOneRow(){
+        List<PopulationReport> result = app.reports.getWorldPopulation(app.populationReportConnect);
+        assertNotNull(result);
+        assertEquals(1, result.size(), "World population report should only return a single row");
+    }
+
+    // Tests that the population is a positive number
+    @Test
+    void report26WorldPopulationIsGreaterThanZero(){
+        List<PopulationReport> result = app.reports.getWorldPopulation(app.populationReportConnect);
+        assertFalse(result.isEmpty());
+
+        // Check that total population is not 0 or negative
+        long worldPop = result.get(0).getTotalPopulation();
+        assertTrue(worldPop > 0, "World population should be a positive number");
+
+        // The world population in this dataset is around 6 billion
+        // Assert it is at least 1 billion to catch "0" bugs
+        assertTrue(worldPop > 1_000_000_000L, "World population should be greater than 1 billion");
+    }
+
+    // Test that the report has the correct columns
+    @Test
+    void report26CorrectColumns(){
+        List<PopulationReport> result = app.reports.getWorldPopulation(app.populationReportConnect);
+        assertFalse(result.isEmpty());
+
+        PopulationReport report = result.get(0);
+        assertNotNull(report.getAreaName());
+        assertTrue(report.getTotalPopulation() > 0);
+    }
+
 
     // Report 27: The population of a continent (Issue #31)
 

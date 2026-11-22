@@ -538,6 +538,15 @@ public class Reports {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
     }
 
+    //Report 26: Population of thr world (Issue 87)
+    public List<PopulationReport> getWorldPopulation(PopulationReportConnection connection) {
+        // Safety check for unit tests
+        if (connection == null) {
+            return new ArrayList<>();
+        }
+        return connection.run(PopulationReportQueries.TOTAL_WORLD_POPULATION);
+    }
+
     /* Issue 31
        The population of a continent (Report 27) */
     public List<PopulationReport> getPopulationByContinent(PopulationReportConnection connection, String continent) {

@@ -29,6 +29,16 @@ public final class PopulationReportQueries {
             "COALESCE(cp.CityPopulation, 0) AS CityPopulation " + CITY_POPULATION_JOIN +
             "ORDER BY c.Name";
 
+    //Report 26
+    //The Population of the world
+    public static final String TOTAL_WORLD_POPULATION =
+            "SELECT 'World' AS AreaName, " +
+                    "SUM(Population) AS TotalPopulation, " +
+                    "0 AS CityPopulation, " +
+                    "0 AS NonCityPopulation FROM country";
+
+
+
     // Report 27
     // The population of a continent (Issue 31)
     public static final String POPULATION_BY_CONTINENT =
