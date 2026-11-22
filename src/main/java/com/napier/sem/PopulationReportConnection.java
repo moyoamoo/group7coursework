@@ -18,7 +18,7 @@ public class PopulationReportConnection {
 
         List<PopulationReport> reports = new ArrayList<>();
 
-        if (connection == null || sql == null || sql.isBlank()){
+        if (connection == null || sql == null || sql.isBlank()) {
             return reports;
         }
 
@@ -32,7 +32,9 @@ public class PopulationReportConnection {
                 boolean hasCityPopulation = false;
 
                 for (int i = 1; i <= metadata.getColumnCount(); i++) {
-                    if ("CityPopulation".equalsIgnoreCase(metadata.getColumnLabel(i))) {
+                    String columnName = metadata.getColumnLabel(i).trim();
+
+                    if ("CityPopulation".equalsIgnoreCase(columnName)) {
                         hasCityPopulation = true;
                         break;
                     }
@@ -43,7 +45,8 @@ public class PopulationReportConnection {
                     long total = result.getLong("TotalPopulation");
 
                     if (hasCityPopulation) {
-                        reports.add(new PopulationReport(name, total, result.getLong("CityPopulation")));
+                        long cityPopulation = result.getLong("CityPopulation");
+                        reports.add(new PopulationReport(name, total, cityPopulation));
                     } else {
                         reports.add(new PopulationReport(name, total));
                     }
@@ -55,4 +58,5 @@ public class PopulationReportConnection {
 
         return reports;
     }
+
 }
