@@ -517,8 +517,6 @@ public class Reports {
 
     }
 
-    //Issue 87
-    //Report 26
 
     // Population Reports
 
