@@ -77,7 +77,7 @@ public class App
         // All the cities in a region organised by largest population to smallest (Report 9)
         List<City> allCitiesInRegion = reports.getAllCitiesInRegion(cityConnect, "Polynesia");
         consoleReport.displayCityReports(allCitiesInRegion);
-        markdownReport.outputCityReport(allCitiesInRegion, "Report_8.md", reports.getReports(9));
+        markdownReport.outputCityReport(allCitiesInRegion, "Report_9.md", reports.getReports(9));
 
         //Issue 15
         // All the cities in a country organised by largest population to smallest (Report 10)
@@ -208,7 +208,7 @@ public class App
         // The population of a country (Report 29)
         List<PopulationReport> populationByCountry = reports.getPopulationByCountry(populationReportConnect, "France");
         consoleReport.displayPopulationReports(populationByCountry);
-        markdownReport.outputPopulationReport(populationByRegion, "Report_29.md", reports.getReports(29));
+        markdownReport.outputPopulationReport(populationByCountry, "Report_29.md", reports.getReports(29));
 
         // Issue 34
         // The population of a district  (Report 30)
@@ -220,7 +220,7 @@ public class App
         // The population of a city (Report 31)
         List<PopulationReport> populationByCity = reports.getPopulationByCity(populationReportConnect, "Edinburgh");
         consoleReport.displayPopulationReports(populationByCity);
-        markdownReport.outputPopulationReport(populationByDistrict, "Report_31.md", reports.getReports(31));
+        markdownReport.outputPopulationReport(populationByCity, "Report_31.md", reports.getReports(31));
 
         /* Issue 36
            The number of people who speak Chinese, English, Hindi, Spanish,

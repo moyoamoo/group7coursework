@@ -12,8 +12,6 @@ public class ValidationUnitTests {
     CountryConnection dummyCountryConnect = null;
     CityConnection dummyCityConnect = null;
     CapitalCityConnection dummyCapitalConnection = null;
-    PopulationReportConnection dummyPopulationReportConnection = null;
-    LanguageConnection dummyLanguageConnection = null;
 
     //report 2
     // Test that invalid continents return empty list
