@@ -57,189 +57,6 @@ public class Reports {
         return reports[reportNumber - 1];
     }
 
-    /** Display country reports
-     *
-     * @param countries list of countries
-     */
-    public void displayCountryReports(List<Country> countries){
-        // Display countries
-        for(Country c : countries){
-            System.out.println(c.toString());
-        }
-    }
-
-    /** Display city reports
-     *
-     * @param cities list of countries
-     */
-    public void displayCityReports(List<City> cities){
-        // Display city
-        for(City c : cities){
-            System.out.println(c.toString());
-        }
-    }
-
-    /** Display Capital city reports
-     *
-     * @param capitalCities list of countries
-     */
-    public void displayCapitalCityReports(List<CapitalCity> capitalCities){
-        // Display capital city
-        for(CapitalCity c : capitalCities){
-            System.out.println(c.toString());
-        }
-    }
-    /**
-     * Outputs City Report as Markdown file in folder
-     *
-     * @param cities list of cities
-     * @param filename name of Markdown file
-     */
-    public void outputCityReport(List<City> cities, String filename){
-
-        // If countries is null, return
-        if (cities == null){
-            System.out.println("No Cities");
-            return;
-        }
-
-        // If the file name does end with .md, add
-        if (!filename.endsWith(".md")){
-            filename += ".md";
-        }
-
-        //New String builder
-        StringBuilder sb = new StringBuilder();
-
-        // Print header
-        sb.append("| Name | Country | District | Population | \r\n");
-        sb.append("| --- | --- | --- | --- |\r\n");
-
-        // Loop the through countries in the list and add to string builder
-        for (City c : cities){
-            if(c == null) continue;
-            sb.append("| " + c.getName() + " | " + c.getCountry() +  " | " + c.getDistrict() + " | " + c.getPopulation() + " |\r\n");
-        }
-        try {
-            // Create new folder
-            new File("./reports/").mkdir();
-            // Create new file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            // Add
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Outputs Country Report as Markdown file in folder
-     *
-     * @param countries list of countries
-     * @param filename name of Markdown file
-     */
-    public void outputCountryReport(List<Country> countries, String filename){
-
-        // If countries is null, return
-        if (countries == null){
-            System.out.println("No Countries");
-            return;
-        }
-
-        // If the file name does end with .md, add
-        if (!filename.endsWith(".md")){
-            filename += ".md";
-        }
-
-        //New String builder
-        StringBuilder sb = new StringBuilder();
-
-        // Print header
-        sb.append("| Code | Name | Continent | Region | Population | Capital | \r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- |\r\n");
-
-        // Loop the through countries in the list and add to string builder
-        for (Country c : countries){
-            if(c == null) continue;
-            sb.append("| " + c.getCode() + " | " + c.getName() +  " | " + c.getContinent() + " | " + c.getRegion() + " | " + c.getPopulation() + " |\r\n");
-        }
-        try {
-            // Create new folder
-            new File("./reports/").mkdir();
-            // Create new file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            // Add
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /** Display Population reports
-     *
-     * @param reports list for population reports
-     */
-    public void displayPopulationReports(List<PopulationReport> reports) {
-        if (reports == null || reports.isEmpty()) {
-            System.out.println("No population report data found.");
-            return;
-        }
-
-        for (PopulationReport report : reports) {
-            System.out.println(report);
-        }
-    }
-
-
-    /**
-     * Outputs Capital Cities Report as Markdown file in folder
-     *
-     * @param capitalCities list of countries
-     * @param filename name of Markdown file
-     */
-    public void outputCapitalCityReport(List<CapitalCity> capitalCities, String filename){
-
-        // If countries is null, return
-        if (capitalCities == null){
-            System.out.println("No Capital Cities");
-            return;
-        }
-
-        // If the file name does end with .md, add
-        if (!filename.endsWith(".md")){
-            filename += ".md";
-        }
-
-        //New String builder
-        StringBuilder sb = new StringBuilder();
-
-        // Print header
-        sb.append("| Name | Country | Population |\r\n");
-        sb.append("| --- | --- | --- |\r\n");
-
-        // Loop the through countries in the list and add to string builder
-        for (CapitalCity c : capitalCities){
-            if(c == null) continue;
-            sb.append("| " + c.getName() + " | " + c.getCountry() +  c.getPopulation() + " |\r\n");
-        }
-        try {
-            // Create new folder
-            new File("./reports/").mkdir();
-            // Create new file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
-            // Add
-            writer.write(sb.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
     //Country Reports
 
     // Issue 7
@@ -577,6 +394,7 @@ public class Reports {
     }
 
     // Capital City Reports
+
     //Issue 130
     //Report 17
     public List<CapitalCity> getAllCapitals(CapitalCityConnection capitalCityConnect){
@@ -587,6 +405,7 @@ public class Reports {
 
         //Print Report Title
         System.out.println("All the capital cities in the world organised by largest population to smallest");
+
         // Run database query to get all countries
         return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.ALL_CAPITALS);
     }
@@ -612,6 +431,7 @@ public class Reports {
         return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.CAPITALS_BY_CONTINENT, continent);
 
     }
+
     //Issue 131
     //Report 19
     public List<CapitalCity> getCapitalsByRegion(CapitalCityConnection capitalCityConnect, String region){
@@ -620,21 +440,21 @@ public class Reports {
             return new ArrayList<>();
         }
 
-        /* //check if region is valid
         Boolean validRegion = userInput.getValidRegion((region));
 
         //if not return empty array
         if(!validRegion){
             return new ArrayList<>();
-        }*/
-        ////print report title
+        }
+
+        // print report title
         System.out.println("All the capital cities in " + region + " organised by largest population to smallest");
+
         //get all capital cities in a region
         return capitalCityConnect.runCapitalCityQuery(CapitalCityQueries.CAPITALS_BY_REGION, region);
     }
 
     // Issue 27
-    //Report 20
     // The top N populated capital cities in the world where N is provided by the user (Report 20)
     public List<CapitalCity> getTopNCapitalsWorld(CapitalCityConnection capitalCityConnect, int n) {
         // Check if n is greater than 1

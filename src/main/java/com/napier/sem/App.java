@@ -123,13 +123,11 @@ public class App
 
         // Capital City Reports
 
-        // All the capital cities in the world organised by largest population to smallest (Report 17)
-
         //Issue 130
-        //Report 17
+        // All the capital cities in the world organised by largest population to smallest (Report 17)
         List <CapitalCity> allCapitals  = reports.getAllCapitals(capitalCityConnect);
-        reports.displayCapitalCityReports(allCapitals);
-        reports.outputCapitalCityReport(allCapitals, "Report_17.md");
+        consoleReport.displayCapitalCityReports(allCapitals);
+        markdownReport.outputCapitalCityReport(allCapitals, "Report_17.md",  reports.getReports(17));
 
 
         // Issue 24
@@ -142,8 +140,8 @@ public class App
         //Report 19
         // All the capital cities in a region organised by largest to smallest (Report 19)
         List <CapitalCity> capitalCitiesByRegion = reports.getCapitalsByRegion(capitalCityConnect, "Caribbean");
-        reports.displayCapitalCityReports(capitalCitiesByRegion);
-        reports.outputCapitalCityReport(capitalCitiesByRegion, "Report_19.md");
+        consoleReport.displayCapitalCityReports(capitalCitiesByRegion);
+        markdownReport.outputCapitalCityReport(capitalCitiesByRegion, "Report_19.md", reports.getReports(19));
 
         // All the capital cities in a region organised by largest to smallest (Report 19)
 

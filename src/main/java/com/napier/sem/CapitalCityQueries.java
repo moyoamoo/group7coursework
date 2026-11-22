@@ -14,7 +14,7 @@ public class CapitalCityQueries {
             "SELECT ci.Name, c.Name AS Country, ci.Population " +
                     "FROM city ci " +
                     "JOIN country c ON ci.ID = c.Capital " +
-                    "WHERE c.Region = ? " +
+                    "WHERE c.Continent = ? " +
                     "ORDER BY ci.Population DESC";
 
     // All the capital cities in a region organised by largest population to smallest. (Report 19)
@@ -22,7 +22,7 @@ public class CapitalCityQueries {
             "SELECT ci.Name, c.Name AS Country, ci.Population " +
                     "FROM city ci " +
                     "JOIN country c ON ci.ID = c.Capital " +
-                    "WHERE c.Continent = ? " +
+                    "WHERE c.Region = ? " +
                     "ORDER BY ci.Population DESC";
 
     // The top N populated capital cities in the world where N is provided by the user (Report 20)
