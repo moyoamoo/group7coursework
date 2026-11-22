@@ -832,9 +832,9 @@ public class Reports {
 
 
     /** Issue 36
-     The number of people who speak Chinese, English, Hindi,
-     Spanish, Arabic from greatest number to smallest,
-     including the percentage of the world population  (Report 32) */
+     * The number of people who speak Chinese, English, Hindi,
+     * Spanish, Arabic from greatest number to smallest,
+     * including the percentage of the world population  (Report 32) */
     public List<Language> getPopulationByLanguage(LanguageConnection connection) {
 
         // Check for invalid parameters

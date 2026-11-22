@@ -1,8 +1,6 @@
 package com.napier.sem;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProduceMarkdownUnitTest {
+public class ProduceMarkdownUnitTests {
 
     static PrintReportMarkdown reports;
 

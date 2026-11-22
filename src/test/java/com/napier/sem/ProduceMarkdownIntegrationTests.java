@@ -3,7 +3,7 @@ package com.napier.sem;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
-public class ProduceMarkdownIntegrationTest {
+public class ProduceMarkdownIntegrationTests {
 
     static App app;
 

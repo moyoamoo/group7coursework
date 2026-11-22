@@ -2,12 +2,9 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
 
 /** Database integration tests for issues #24 and #25. Requires docker-compose world DB. */
-class PopulationReportIntegrationTest {
+class PopulationReportIntegrationTests {
     static App app;
     static PopulationReportConnection populationConnection;
 

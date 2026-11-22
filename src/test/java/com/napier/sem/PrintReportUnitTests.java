@@ -1,6 +1,5 @@
 package com.napier.sem;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PrintReportUnitTest {
+public class PrintReportUnitTests {
 
     static PrintReportConsole reports;
 

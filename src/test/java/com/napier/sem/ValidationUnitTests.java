@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ValidationUnitTest {
+public class ValidationUnitTests {
     Reports reports = new Reports();
     PrintReportConsole consoleReports = new PrintReportConsole();
 
