@@ -18,7 +18,6 @@ class PopulationReportIntegrationTests {
         app.connect("localhost:33060", 30000);
         populationConnection = app.populationReportConnect;
     }
-
     @AfterAll static void tearDown() { if (app != null) app.disconnect(); }
 
     // Report 23: The population distribution by continent (Issue #28)
