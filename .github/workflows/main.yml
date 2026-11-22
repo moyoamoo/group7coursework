@@ -27,7 +27,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Unit Tests
-        run: mvn -Dtest='!*IntegrationTest' test
+        run: mvn -Dtest='!*IntegrationTests' test
 
       - name: CodeCov
         uses: codecov/codecov-action@v5
@@ -59,7 +59,7 @@ jobs:
           sleep 30
 
       - name: Integration Tests
-        run: mvn -Dtest='*IntegrationTest' test
+        run: mvn -Dtest='*IntegrationTests' test
 
       - name: Stop database
         if: always()
