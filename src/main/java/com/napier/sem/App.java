@@ -79,7 +79,7 @@ public class App
         consoleReport.displayCityReports(allCitiesInRegion);
         markdownReport.outputCityReport(allCitiesInRegion, "Report_8.md", reports.getReports(9));
 
-        // Issue 15
+        //Issue 15
         // All the cities in a country organised by largest population to smallest (Report 10)
         List <City> allCitiesInCountry = reports.getAllCitiesInCountry(cityConnect, "France");
         consoleReport.displayCityReports(allCitiesInCountry);
@@ -125,11 +125,25 @@ public class App
 
         // All the capital cities in the world organised by largest population to smallest (Report 17)
 
+        //Issue 130
+        //Report 17
+        List <CapitalCity> allCapitals  = reports.getAllCapitals(capitalCityConnect);
+        reports.displayCapitalCityReports(allCapitals);
+        reports.outputCapitalCityReport(allCapitals, "Report_17.md");
+
+
         // Issue 24
         //All the capital cities in a continent organised by largest population to smallest (Report 18)
         List <CapitalCity> capitalCitiesByContinent = reports.getCapitalsByContinent(capitalCityConnect, "Asia");
         consoleReport.displayCapitalCityReports(capitalCitiesByContinent);
         markdownReport.outputCapitalCityReport(capitalCitiesByContinent, "Report_18.md", reports.getReports(18));
+
+        //Issue 131
+        //Report 19
+        // All the capital cities in a region organised by largest to smallest (Report 19)
+        List <CapitalCity> capitalCitiesByRegion = reports.getCapitalsByRegion(capitalCityConnect, "Caribbean");
+        reports.displayCapitalCityReports(capitalCitiesByRegion);
+        reports.outputCapitalCityReport(capitalCitiesByRegion, "Report_19.md");
 
         // All the capital cities in a region organised by largest to smallest (Report 19)
 
@@ -212,6 +226,7 @@ public class App
            Arabic from greatest number to smallest, including the percentage
            of the world population (Report 32)
          */
+
         List<Language> languages = reports.getPopulationByLanguage(languageConnect);
         consoleReport.displayLanguageReports(languages);
         markdownReport.outputLanguageReport(languages, "Report_32.md", reports.getReports(32));
@@ -303,6 +318,9 @@ public class App
         } else {
             a. connect(args[0], Integer.parseInt(args[1]));
         }
+
+        // Show list of possible reports
+        // a.reports.displayReports("Welcome to Population Report");
 
         // Print all reports
         a.printReports();
