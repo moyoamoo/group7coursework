@@ -4,7 +4,6 @@ package com.napier.sem;
 public final class PopulationReportQueries {
     private PopulationReportQueries() { }
 
-    // Aggregate city population per country first, so country population is not multiplied by city count.
     private static final String CITY_POPULATION_JOIN =
             "FROM country c LEFT JOIN (SELECT CountryCode, SUM(Population) AS CityPopulation " +
             "FROM city GROUP BY CountryCode) cp ON cp.CountryCode = c.Code ";

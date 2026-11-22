@@ -520,27 +520,20 @@ public class Reports {
 
     // Population Reports
 
-    /*
-     Issue 28
-     Report 23
-     The population of people, people living in cities, and people not living in cities in each continent
-     */
+    // Issue 28: The population of people, people living in cities, and people not living in cities in each continent (Report 23)
+
     public List<PopulationReport> getPopulationDistributionByContinent(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_CONTINENT);
     }
 
-    /*
-    Issue 29
-    Report 24
-    The population of people, people living in cities, and people not living in cities in each region
-    */
+    // Issue 29: The population of people, people living in cities, and people not living in cities in each region (Report 24)
+
     public List<PopulationReport> getPopulationDistributionByRegion(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_REGION);
     }
 
-    /* Issue 30
-       The population of people, people living in cities, and people not living in cities in each country (Report 25)
-    */
+    // Issue 30: The population of people, people living in cities, and people not living in cities in each country (Report 25)
+
     public List<PopulationReport> getPopulationDistributionByCountry(PopulationReportConnection connection) {
         return connection == null ? new ArrayList<>() : connection.run(PopulationReportQueries.DISTRIBUTION_BY_COUNTRY);
     }
@@ -617,8 +610,7 @@ public class Reports {
         return connection.run(PopulationReportQueries.POPULATION_BY_COUNTRY, country);
     }
 
-    /** Issue 34
-     The population of a district (Report 30) */
+    //Issue 34: The population of a district (Report 30)
     public List<PopulationReport> getPopulationByDistrict(PopulationReportConnection connection, String district) {
 
         // Check for invalid parameters
@@ -633,8 +625,7 @@ public class Reports {
     }
 
 
-    /** Issue 35
-     The population of a city (Report 31) */
+    // Issue 35: The population of a city (Report 31)
     public List<PopulationReport> getPopulationByCity(PopulationReportConnection connection, String city) {
 
         // Check for invalid parameters
