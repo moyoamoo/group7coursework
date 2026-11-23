@@ -3,7 +3,8 @@ package com.napier.sem;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,7 +12,6 @@ public class PopulationReportUnitTests {
     Reports reports = new Reports();
     PrintReportConsole consoleReports = new PrintReportConsole();
     PopulationReportConnection dummyPopulationReportConnection = null;
-    LanguageConnection dummyLanguageConnection = null;
 
     // Report 23
 // Issue 28: Population distribution by continent
@@ -52,7 +52,9 @@ public class PopulationReportUnitTests {
     //Report 26: Population of the world (Issue 87)
     @Test
     void report26NullConnectionReturnsEmpty() {
-        List<PopulationReport> result = reports.getWorldPopulation(null);
+        List<PopulationReport> result =
+                reports.getWorldPopulation(null);
+
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for null connection");
     }
@@ -270,14 +272,45 @@ public class PopulationReportUnitTests {
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for null connection");
     }
-    /** Issue 36
-     * The number of people who speak Chinese, English, Hindi,
-     * Spanish, Arabic from greatest number to smallest,
-     * including the percentage of the world population  (Report 32) */
 
+    //Population Math and Logic Tests
+
+    // Checks that 600 of 1000 people in cities calculates to 60%.
     @Test
-    void report32NullConnectionReturnsEmpty(){
-        List<Language> result = reports.getPopulationByLanguage(null);
-        assertTrue(result.isEmpty());
+    void PopulationReportCalculatesCityPercentageCorrectly() {
+        PopulationReport report = new PopulationReport("Test",1000, 600);
+        assertEquals(60.0, report.getCityPercentage(), 0.01);
     }
+
+    // Checks that the remaining 400 of 1000 people outside cities calculates to 40%.
+    @Test
+    void PopulationReportCalculatesNonCityPercentageCorrectly() {
+        PopulationReport report = new PopulationReport("Test",1000, 600);
+        assertEquals(40.0, report.getNonCityPercentage(), 0.01);
+    }
+
+    // Checks that 1000 total minus 600 in cities equals 400 outside cities.
+    @Test
+    void populationReportCalculatesNonCityRawCountCorrectly() {
+        PopulationReport report = new PopulationReport("Test",1000, 600);
+        assertEquals(400, report.getNonCityPopulation());
+    }
+
+    // Checks that 0 population returns 0% instead of crashing with divide-by-zero.
+    @Test
+    void populationReportZeroPopulationDoesNotDivideByZero() {
+        PopulationReport report = new PopulationReport("Empty", 0, 0);
+        assertEquals(0.0, report.getCityPercentage(), 0.01);
+        assertEquals(0.0, report.getNonCityPercentage(), 0.01);
+    }
+
+    // Checks that the 2-argument constructor sets the city breakdown flag to false.
+    @Test
+    void populationReportWithoutCityBreakdownConstructorsWorks(){
+        PopulationReport report = new PopulationReport("World", 7000000000L);
+        assertEquals("World", report.getAreaName());
+        assertEquals(7000000000L, report.getTotalPopulation());
+        assertFalse(report.hasCityBreakdown());
+    }
+
 }

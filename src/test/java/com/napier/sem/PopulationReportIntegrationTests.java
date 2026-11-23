@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Database integration tests for issues #24 and #25. Requires docker-compose world DB. */
 class PopulationReportIntegrationTests {
     static App app;
     static PopulationReportConnection populationConnection;
@@ -242,8 +241,6 @@ class PopulationReportIntegrationTests {
         long worldPop = result.get(0).getTotalPopulation();
         assertTrue(worldPop > 0, "World population should be a positive number");
 
-        // The world population in this dataset is around 6 billion
-        // Assert it is at least 1 billion to catch "0" bugs
         assertTrue(worldPop > 1_000_000_000L, "World population should be greater than 1 billion");
     }
 

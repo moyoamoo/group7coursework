@@ -5,7 +5,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 
 
@@ -28,6 +27,10 @@ public class CountryIntegrationTests {
         app.disconnect();
     }
 
+    @Test
+    void printReportsRunsSuccessfully() {
+        app.printReports();
+    }
 
     //Report 1: All the countries in the world organised by largest population to smallest (Issue #7)
 
