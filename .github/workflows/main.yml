@@ -101,11 +101,11 @@ jobs:
           files: |
             ./target/*.jar
       - name: Copy Output
-        run: docker container cp group7coursework_app_1:./tmp/reports ./
+        run: docker container cp group7coursework-app-1:./tmp/reports ./
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          branch: reports # The branch the action should deploy to.
-          folder: reports # The folder we are copying
+          branch: reports
+          folder: reports
 
 
