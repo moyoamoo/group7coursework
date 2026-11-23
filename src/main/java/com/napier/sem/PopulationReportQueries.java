@@ -4,7 +4,6 @@ package com.napier.sem;
 public final class PopulationReportQueries {
     private PopulationReportQueries() { }
 
-    // Aggregate city population per country first, so country population is not multiplied by city count.
     private static final String CITY_POPULATION_JOIN =
             "FROM country c LEFT JOIN (SELECT CountryCode, SUM(Population) AS CityPopulation " +
             "FROM city GROUP BY CountryCode) cp ON cp.CountryCode = c.Code ";
@@ -29,6 +28,16 @@ public final class PopulationReportQueries {
             "SELECT c.Name AS AreaName, c.Population AS TotalPopulation, " +
             "COALESCE(cp.CityPopulation, 0) AS CityPopulation " + CITY_POPULATION_JOIN +
             "ORDER BY c.Name";
+
+    //Report 26
+    //The Population of the world
+    public static final String TOTAL_WORLD_POPULATION =
+            "SELECT 'World' AS AreaName, " +
+                    "SUM(Population) AS TotalPopulation, " +
+                    "0 AS CityPopulation, " +
+                    "0 AS NonCityPopulation FROM country";
+
+
 
     // Report 27
     // The population of a continent (Issue 31)

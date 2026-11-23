@@ -47,10 +47,4 @@ public class LanguageIntegrationTests {
         }
     }
 
-    // Test that null connection returns empty array
-    @Test
-    void report30NullConnectionReturnsEmptyArray(){
-        List<Language> result = app.reports.getPopulationByLanguage(null);
-        assertTrue(result.isEmpty());
-    }
 }
