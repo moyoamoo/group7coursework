@@ -1,0 +1,7 @@
+**The top N populated cities in a region where N is provided by the user**
+
+| Name | Country | District | Population | 
+| --- | --- | --- | --- |
+| Seoul | South Korea | Seoul | 9981619 |
+| Shanghai | China | Shanghai | 9696300 |
+| Tokyo | Japan | Tokyo-to | 7980230 |
