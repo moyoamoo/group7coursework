@@ -315,13 +315,6 @@ public class ValidationUnitTests {
 
     //Population reports
 
-    //Report 26: Population of the world (Issue 87)
-    @Test
-    void report26NullConnectionReturnsEmpty() {
-        List<PopulationReport> result = reports.getWorldPopulation(null);
-        assertNotNull(result);
-        assertTrue(result.isEmpty(), "Should return empty list for null connection");
-    }
 
 
 }

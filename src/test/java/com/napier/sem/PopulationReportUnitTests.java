@@ -49,6 +49,14 @@ public class PopulationReportUnitTests {
         assertTrue(result.isEmpty(), "Should return empty list for null connection");
     }
 
+    //Report 26: Population of the world (Issue 87)
+    @Test
+    void report26NullConnectionReturnsEmpty() {
+        List<PopulationReport> result = reports.getWorldPopulation(null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for null connection");
+    }
+
     // Report 27
 // Issue 31: Population of a continent
 
