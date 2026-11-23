@@ -24,6 +24,7 @@ public class LanguageUnitTest {
         return list;
     }
 
+    // Test that get name method takes name from class
     @Test
     void languageClassGetName(){
         int n = 5;
@@ -32,6 +33,7 @@ public class LanguageUnitTest {
         assertFalse(firstLanguage.isEmpty());
     }
 
+    // Test that get total speaker method takes total speakers from class
     @Test
     void languageClassGetTotalSpeakers(){
         int n = 5;
@@ -41,8 +43,9 @@ public class LanguageUnitTest {
                 "Total speakers should be zero or greater");
     }
 
+    // Test that get world percentage method takes world percentage from class
     @Test
-    void languageClassGetWorldPercetnage(){
+    void languageClassGetWorldPercentage(){
         int n = 5;
         List<Language> list = languageList(n);
         double worldPercetange = list.get(0).getWorldPercentage();
@@ -50,6 +53,18 @@ public class LanguageUnitTest {
                 "World Perecentage should be zero or greater");
     }
 
+    // Test that get string method takes method to string
+    @Test
+    void languageClassToString(){
+        int n = 5;
+        List<Language> list = languageList(n);
+
+        for (int i = 0; i < list.size(); i++){
+            assertNotNull(list.get(i).toString());
+        }
+    }
+
+    // Test that
     @Test
     void report32NullConnectionReturnsEmpty(){
         List<Language> result = reports.getPopulationByLanguage(null);
