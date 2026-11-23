@@ -65,11 +65,52 @@ public class CapitalCityUnitTest {
         assertTrue(result.isEmpty(), "Should return empty list for blank region");
     }
 
-    //report 21
-    //UNIT TESTS ISSUE 26: Top N capitals in a continent
+    //report 20
+    //UNIT TESTS ISSUE 27: The top N populated capital cities in the world where N is provided by the user
+    @Test
+    void report20InvalidNReturnsEmpty() {
+        int n = -1;
+        List<CapitalCity> result = reports.getTopNCapitalsWorld(dummyCapitalConnection, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
+    }
+
+    // Report 21
+    // UNIT TESTS ISSUE 26: Top N capitals in a continent
     @Test
     void report21InvalidContinentReturnsEmpty() {
-        List<CapitalCity> result = reports.getTopNCapitalsByContinent(dummyCapitalConnection, "Narnia", 3);
+        String continent = "Narnia";
+        int n = 3;
+        List<CapitalCity> result = reports.getTopNCapitalsByContinent(dummyCapitalConnection, continent, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
+    }
+
+    @Test
+    void report21InvalidNReturnsEmpty() {
+        String continent = "Africa";
+        int n = -1;
+        List<CapitalCity> result = reports.getTopNCapitalsByContinent(dummyCapitalConnection, continent, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
+    }
+
+    // Report 22
+    // UNIT TESTS ISSUE 25: Top N capitals in a Region
+    @Test
+    void report22InvalidRegionReturnsEmpty() {
+        String region = "Narnia";
+        int n = 3;
+        List<CapitalCity> result = reports.getTopNCapitalsByRegion(dummyCapitalConnection, region, n);
+        assertNotNull(result);
+        assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
+    }
+
+    @Test
+    void report22InvalidNReturnsEmpty() {
+        String region = "Central America";
+        int n = -1;
+        List<CapitalCity> result = reports.getTopNCapitalsByRegion(dummyCapitalConnection, region, n);
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list for invalid continent");
     }
