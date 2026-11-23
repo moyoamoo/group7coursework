@@ -14,6 +14,7 @@ public class CountryUnitTest {
 
     CountryConnection dummyCountryConnect = null;
 
+
     //report 2
     // Test that invalid continents return empty list
     @Test
