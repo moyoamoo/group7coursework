@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents db connection for city reports
+// Represents db connection for capital city reports
 
 public class CapitalCityConnection {
     private final Connection con;

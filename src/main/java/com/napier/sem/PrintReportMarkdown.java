@@ -90,7 +90,7 @@ public class PrintReportMarkdown {
         // Loop the through countries in the list and add to string builder
         for (Country c : countries){
             if(c == null) continue;
-            sb.append("| " + c.getCode() + " | " + c.getName() +  " | " + c.getContinent() + " | " + c.getRegion() + " | " + c.getPopulation() + c.getCapital());
+            sb.append("| " + c.getCode() + " | " + c.getName() +  " | " + c.getContinent() + " | " + c.getRegion() + " | " + c.getPopulation() + " | " + c.getCapital());
         }
         try {
             // Create new folder
