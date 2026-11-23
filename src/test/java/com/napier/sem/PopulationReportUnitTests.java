@@ -286,14 +286,14 @@ public class PopulationReportUnitTests {
     @Test
     void PopulationReportCalculatesNonCityPercentageCorrectly() {
         PopulationReport report = new PopulationReport("Test",1000, 600);
-        assertEquals(60.0, report.getNonCityPercentage(), 0.01);
+        assertEquals(40.0, report.getNonCityPercentage(), 0.01);
     }
 
     // Checks that 1000 total minus 600 in cities equals 400 outside cities.
     @Test
-    void PopulationReportCalculatesNonCityRawCountCorrectly() {
+    void populationReportCalculatesNonCityRawCountCorrectly() {
         PopulationReport report = new PopulationReport("Test",1000, 600);
-        assertEquals(60.0, report.getNonCityPercentage());
+        assertEquals(400, report.getNonCityPopulation());
     }
 
     // Checks that 0 population returns 0% instead of crashing with divide-by-zero.
@@ -304,7 +304,7 @@ public class PopulationReportUnitTests {
         assertEquals(0.0, report.getNonCityPercentage(), 0.01);
     }
 
-    // Checks that the 3-argument constructor sets the city breakdown flag to true.
+    // Checks that the 2-argument constructor sets the city breakdown flag to false.
     @Test
     void populationReportWithoutCityBreakdownConstructorsWorks(){
         PopulationReport report = new PopulationReport("World", 7000000000L);
@@ -312,4 +312,5 @@ public class PopulationReportUnitTests {
         assertEquals(7000000000L, report.getTotalPopulation());
         assertFalse(report.hasCityBreakdown());
     }
+
 }
