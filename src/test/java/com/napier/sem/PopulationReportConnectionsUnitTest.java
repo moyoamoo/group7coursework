@@ -17,8 +17,7 @@ class PopulationReportConnectionUnitTest {
     private ResultSetMetaData metadata;
     private PopulationReportConnection reportConnection;
 
-    // Builds a fresh set of mocks before every test and wires them together:
-    // connection -> statement -> result set -> metadata.
+
     @BeforeEach
     void setUp() throws SQLException {
         connection = mock(Connection.class);
@@ -33,7 +32,7 @@ class PopulationReportConnectionUnitTest {
         reportConnection = new PopulationReportConnection(connection);
     }
 
-    // Helper: tells the mocked metadata which column labels the "query" returns.
+
     private void columns(String... labels) throws SQLException {
         when(metadata.getColumnCount()).thenReturn(labels.length);
         for (int i = 0; i < labels.length; i++) {
@@ -41,28 +40,25 @@ class PopulationReportConnectionUnitTest {
         }
     }
 
-    // A null Connection should not throw; run() should just return an empty list.
     @Test
     void run_nullConnection_returnsEmptyList() {
         PopulationReportConnection c = new PopulationReportConnection(null);
         assertTrue(c.run("SELECT 1").isEmpty());
     }
 
-    // A null SQL string should return an empty list and never touch the database.
+
     @Test
     void run_nullSql_returnsEmptyList() throws SQLException {
         assertTrue(reportConnection.run(null).isEmpty());
         verify(connection, never()).prepareStatement(anyString());
     }
 
-    // A whitespace-only SQL string is treated as blank: empty list, no statement prepared.
     @Test
     void run_blankSql_returnsEmptyList() throws SQLException {
         assertTrue(reportConnection.run("   ").isEmpty());
         verify(connection, never()).prepareStatement(anyString());
     }
 
-    // A query that returns zero rows should give back an empty list.
     @Test
     void run_emptyResultSet_returnsEmptyList() throws SQLException {
         columns("AreaName", "TotalPopulation");
@@ -71,8 +67,7 @@ class PopulationReportConnectionUnitTest {
         assertTrue(reportConnection.run("SELECT x").isEmpty());
     }
 
-    // With only AreaName and TotalPopulation columns, each row becomes a report with
-    // name and total, and CityPopulation is never read from the result set.
+
     @Test
     void run_withoutCityPopulation_mapsNameAndTotal() throws SQLException {
         columns("AreaName", "TotalPopulation");
@@ -89,7 +84,6 @@ class PopulationReportConnectionUnitTest {
         verify(resultSet, never()).getLong("CityPopulation");
     }
 
-    // When a CityPopulation column is present, all three fields are mapped into the report.
     @Test
     void run_withCityPopulation_mapsAllThreeFields() throws SQLException {
         columns("AreaName", "TotalPopulation", "CityPopulation");
@@ -104,8 +98,6 @@ class PopulationReportConnectionUnitTest {
         assertEquals(1_500L, reports.get(0).getCityPopulation());
     }
 
-    // The CityPopulation column check ignores case, so an uppercase label
-    // (as some databases return) is still detected.
     @Test
     void run_cityPopulationLabelIsCaseInsensitive() throws SQLException {
         columns("AreaName", "TotalPopulation", "CITYPOPULATION");
@@ -131,7 +123,7 @@ class PopulationReportConnectionUnitTest {
         verify(statement).setObject(2, 5);
     }
 
-    // Calling run() with no parameters should not bind anything to the statement.
+
     @Test
     void run_noParams_doesNotBindAnything() throws SQLException {
         columns("AreaName", "TotalPopulation");
@@ -151,8 +143,6 @@ class PopulationReportConnectionUnitTest {
         assertDoesNotThrow(() -> reportConnection.run("SELECT x", (Object[]) null));
     }
 
-    // If preparing the statement fails with an SQLException, the error is caught
-    // and an empty list is returned instead of the exception propagating.
     @Test
     void run_prepareStatementThrows_returnsEmptyList() throws SQLException {
         when(connection.prepareStatement(anyString())).thenThrow(new SQLException("boom"));
@@ -160,8 +150,7 @@ class PopulationReportConnectionUnitTest {
         assertTrue(reportConnection.run("SELECT x").isEmpty());
     }
 
-    // If executing the query fails with an SQLException, the error is caught
-    // and an empty list is returned.
+
     @Test
     void run_executeQueryThrows_returnsEmptyList() throws SQLException {
         when(statement.executeQuery()).thenThrow(new SQLException("bad query"));
@@ -169,8 +158,7 @@ class PopulationReportConnectionUnitTest {
         assertTrue(reportConnection.run("SELECT x").isEmpty());
     }
 
-    // The try-with-resources blocks should close both the ResultSet and the
-    // PreparedStatement, so no database resources leak.
+
     @Test
     void run_closesStatementAndResultSet() throws SQLException {
         columns("AreaName", "TotalPopulation");
