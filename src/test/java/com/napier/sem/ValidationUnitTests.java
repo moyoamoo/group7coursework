@@ -9,9 +9,7 @@ public class ValidationUnitTests {
     Reports reports = new Reports();
     PrintReportConsole consoleReports = new PrintReportConsole();
 
-    CountryConnection dummyCountryConnect = null;
     CityConnection dummyCityConnect = null;
-    CapitalCityConnection dummyCapitalConnection = null;
 
     // UNIT TEST ISSUE 13: All the cities in the world, largest to smallest
 
