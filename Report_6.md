@@ -2,6 +2,4 @@
 
 | Code | Name | Continent | Region | Population | Capital | 
 | --- | --- | --- | --- | --- | --- |
-| SWE | Sweden | Europe | Nordic Countries | 8861400 |
-| DNK | Denmark | Europe | Nordic Countries | 5330000 |
-| FIN | Finland | Europe | Nordic Countries | 5171300 |
+| SWE | Sweden | Europe | Nordic Countries | 8861400Stockholm| DNK | Denmark | Europe | Nordic Countries | 5330000København| FIN | Finland | Europe | Nordic Countries | 5171300Helsinki [Helsingfors]
